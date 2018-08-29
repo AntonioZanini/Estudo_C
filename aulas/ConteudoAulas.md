@@ -1,20 +1,20 @@
-﻿#Conteúdo Aulas - Linguagem C - UNITEN/ANHANGUERA - SOROCABA
+# Linguagem C - UNITEN/ANHANGUERA - SOROCABA
 
-##AULA 1 - 27/08/2018
+## AULA 1 - 27/08/2018
 
 - Explicação sobre Algoritmos e Fluxograma.
 
-##AULA 2 - 29/08/2018
+## AULA 2 - 29/08/2018
 
 - Breve descrição da história da linguagem C.
 
-###Tipos de Variáveis:
+### Tipos de Variáveis:
 
-- números inteiros	→ int
-- ponto flutuante 	→ float, double
-- caracteres		→ char
+- Números inteiros	→ int
+- Ponto flutuante 	→ float, double
+- Caracteres		→ char
 
-###Comandos:
+### Comandos:
 
 - #include			→ Inclusão de biblioteca.
 - stdio.h 			→ Biblioteca de tratamento de entrada e saída de dados.
@@ -29,7 +29,7 @@
 - switch			→ Estrura Condicional: switch (variável) { case (caso1): [código]; break; case (caso2): [código]; break;}.
 - system("pause")	→ Pausa da tela.
 
-###Código:
+### Código:
 
 	#include <stdio.h>
 	int main()
