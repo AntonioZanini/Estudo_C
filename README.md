@@ -17,3 +17,6 @@ Uma simples descrição de progresso e visão sobre as atividades.
 
 - Arquivo de estudo _002-type.c_ criado.
 - Um bom exercício sobre os tipos e utilizações de bibliotecas, não é nada fácil manter na memória os limites e tamanhos dos tipos, mas, sem dúvidas, brincar com eles assim ajuda. **Warnings realmente me incomodam**, no primeiro programa consegui escapar deles, mas não tive a mesma "sorte" neste.
+
+- Arquivo de estudo _003-oper_cond_loop.c_ criado.
+- Exercício multitécnico idealizado inicialmente para a prática das operações matemáticas e estruturas condicionais, porém, novas ideias adicionaram o uso de estruturas de repetição e criação de funções.
