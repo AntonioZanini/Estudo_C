@@ -4,6 +4,10 @@ Repositório de códigos de códigos realizados na prática do aprendizado, com 
 
 Códigos são separados em pastas Aulas e Extras, sendo as primeiras os conteúdos lecionados pelo curso de Linguagem C da UNITEN/Anhanguera, enquanto os últimos são experimentos frutos de pesquisas em livros, apostilas e páginas da internet.
 
+## Matéria das Aulas
+
+- [Conteúdo explicado nas aulas.](aulas/ConteudoAulas.md)
+
 ## Atividades
 
 Uma simples descrição de progresso e visão sobre as atividades.
