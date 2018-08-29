@@ -24,3 +24,6 @@ Uma simples descrição de progresso e visão sobre as atividades.
 ### Dia 2 (29/08/2018)
 
 - Término do arquivo _003-oper_cond_loop.c_. Vários erros pequenos (e warnings) no caminho, mas nada realmente prejudicial. Pesquisas neste exercício me colocaram a intensão investigar mais os padrões de codificação multiplataforma para C, até o momento não vi algo claro, mas terei mente, a partir de agora, a questão de disponibilidade de comandos em plataformas diferentes.
+
+- Primeira aula sobre a linguagem C do curso. Explicações sobre o básico, como esperado, sobre comandos e algumas particularidades da linguagem. Foi uma aula extensa e totalmente expositiva, talvez tivesse mais efetividade ao abordar várias pequenas práticas, mesmo que alcançando menos conteúdo explicado. Observação de código já pronto também me parece pouco interessante, sendo uma alternativa melhor a criação durante a aula.
+- Arquivo de estudo _Aula02-ex01-mensagem_ criado durante a aula. Exercício simples criado nos últimos minutos de aula para ilustrar a criação, compilação e execução de um programa.
