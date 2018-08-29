@@ -20,3 +20,7 @@ Uma simples descrição de progresso e visão sobre as atividades.
 
 - Arquivo de estudo _003-oper_cond_loop.c_ criado.
 - Exercício multitécnico idealizado inicialmente para a prática das operações matemáticas e estruturas condicionais, porém, novas ideias adicionaram o uso de estruturas de repetição e criação de funções.
+
+### Dia 2 (29/08/2018)
+
+- Término do arquivo _003-oper_cond_loop.c_. Vários erros pequenos (e warnings) no caminho, mas nada realmente prejudicial. Pesquisas neste exercício me colocaram a intensão investigar mais os padrões de codificação multiplataforma para C, até o momento não vi algo claro, mas terei mente, a partir de agora, a questão de disponibilidade de comandos em plataformas diferentes.
