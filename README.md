@@ -31,3 +31,8 @@ Uma simples descrição de progresso e visão sobre as atividades.
 
 - Primeira aula sobre a linguagem C do curso. Explicações sobre o básico, como esperado, sobre comandos e algumas particularidades da linguagem. Foi uma aula extensa e totalmente expositiva, talvez tivesse mais efetividade ao abordar várias pequenas práticas, mesmo que alcançando menos conteúdo explicado. Observação de código já pronto também me parece pouco interessante, sendo uma alternativa melhor a criação durante a aula.
 - Arquivo de estudo _Aula02-ex01-mensagem_ criado durante a aula. Exercício simples criado nos últimos minutos de aula para ilustrar a criação, compilação e execução de um programa.
+
+### Dia 3 (30/08/2018)
+
+- Arquivo de estudo _004-operandos.c_ criado.
+- Um exercício idealizado para operações, mas que rapidamente me instigou a dar o melhor trato estético que atualmente sou capaz, gerando preocupações com posicionamentos e caracteres. Fiquei satisfeito com o desempenho da validação de entrada de dados, apesar de simples está com boas restrições de segurança.
