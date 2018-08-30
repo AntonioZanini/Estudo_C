@@ -5,9 +5,6 @@
 #include <time.h>
 #include <ctype.h>
 #include <windows.h>
- 
-
-
 
 enum direcoes 
 {
@@ -27,23 +24,34 @@ int direcaoOposta(int direcaoNormal);
 int atribuirPontas(bloco * blocoAtual, int id, bool cima, bool direita, bool baixo, bool esquerda);
 int carregarBlocos(bloco * blocos) ;
 char procuraBloco(bloco * blocos, int direcaoLivre, int * blocoAnterior, int * blocoAtual);
+bool verificaRota(int rota[100][2], int x, int y);
 void gotoxy(int x, int y);
+
 int main ()
 {
 	char caracterDir;
 	
 	bloco blocos[11];
 	int blocoAnterior, blocoAtual = 5;
-	int numDir;
-	/*char path[100];*/
+	int numPasso = 0;
+	int path[100][2];
 	bool direcaoLivre = false;
 	int direcaoProximo;
 	int X = 0, Y = 0;
+	int i;
 
 	carregarBlocos(blocos);
+	for (i = 0; i < 100; i++)
+	{
+		path[i][0] = 0;
+		path[i][1] = 0;
+	}
+	path[numPasso][0]= X;
+	path[numPasso][1]= Y;
 	printf("%c", blocos[blocoAtual].caracter);
 	srand(time(NULL));
-	
+
+
 	do
 	{
 		caracterDir = toupper(getch());
@@ -51,7 +59,6 @@ int main ()
 		switch(caracterDir)
 		{
 			case ('C'):
-				numDir = CIMA;
 				if (blocos[blocoAtual].pontasAbertas[CIMA] == true)
 				{
 					direcaoLivre = true;
@@ -60,7 +67,6 @@ int main ()
 				}
 			break;
 			case ('B'):
-				numDir = BAIXO;
 				if (blocos[blocoAtual].pontasAbertas[BAIXO] == true)
 				{
 					direcaoLivre = true;
@@ -69,7 +75,6 @@ int main ()
 				}
 			break;
 			case ('D'):
-				numDir = DIREITA;
 				if (blocos[blocoAtual].pontasAbertas[DIREITA] == true)
 				{
 					direcaoLivre = true;
@@ -78,7 +83,6 @@ int main ()
 				}
 			break;
 			case ('E'):
-				numDir = ESQUERDA;
 				if (blocos[blocoAtual].pontasAbertas[ESQUERDA] == true)
 				{
 					direcaoLivre = true;
@@ -89,15 +93,18 @@ int main ()
 			default:
 				direcaoLivre = false;
 		}
-		if (direcaoLivre)
+		if (direcaoLivre && verificaRota(path, X, Y))
 		{
 			gotoxy(X, Y);
 			printf("%c", procuraBloco(blocos, direcaoProximo, &blocoAnterior, &blocoAtual));
-
+			numPasso++;
+			path[numPasso][0]= X;
+			path[numPasso][1]= Y;
 		}
 		else 
 		{
-			printf("direcao invalida\n");
+			printf("GAME OVER!\a");
+			caracterDir = 'S';
 		}
 	} while (caracterDir != 'S');
 	
@@ -182,3 +189,19 @@ int direcaoOposta(int direcaoNormal)
 	return dirOposta;
 
 }
+
+bool verificaRota(int rota[100][2], int x, int y) 
+{
+	int i;
+	bool retorno = true;
+	for (i = 0; i < 100; i++)
+	{
+		if ((rota[i][0] == x) && (rota[i][1] == y))
+		{
+			retorno = false;
+		}
+	}
+
+	return retorno;
+}
+
