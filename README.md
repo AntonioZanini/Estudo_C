@@ -36,3 +36,4 @@ Uma simples descrição de progresso e visão sobre as atividades.
 
 - Arquivo de estudo _004-operandos.c_ criado.
 - Um exercício idealizado para operações, mas que rapidamente me instigou a dar o melhor trato estético que atualmente sou capaz, gerando preocupações com posicionamentos e caracteres. Fiquei satisfeito com o desempenho da validação de entrada de dados, apesar de simples está com boas restrições de segurança.
+- Pesquisas e comentários sobre comandos novos utilizados. Reparos de pequenos problemas. No geral, processo mais demorado que difícil.
