@@ -37,3 +37,6 @@ Uma simples descrição de progresso e visão sobre as atividades.
 - Arquivo de estudo _004-operandos.c_ criado.
 - Um exercício idealizado para operações, mas que rapidamente me instigou a dar o melhor trato estético que atualmente sou capaz, gerando preocupações com posicionamentos e caracteres. Fiquei satisfeito com o desempenho da validação de entrada de dados, apesar de simples está com boas restrições de segurança.
 - Pesquisas e comentários sobre comandos novos utilizados. Reparos de pequenos problemas. No geral, processo mais demorado que difícil.
+
+- Arquivo de estudo _005-ponteiros.c_ criado.
+- Este exercício era para ser simples, apenas passar ponteiros entre funções, mas a empolgação me levou e passei a escaloná-lo sucessivamente enquanto escrevia o código. Agora é mais como um protótipo de um jogo utilizando caracteres especiais que formam um labirinto pela tela. O código ainda não está refinado, mas está funcionando razoavelmente, **é realmente um resultado bonito de se ver**.
