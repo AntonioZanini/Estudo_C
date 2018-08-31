@@ -25,6 +25,7 @@ int atribuirPontas(bloco * blocoAtual, int id, bool cima, bool direita, bool bai
 int carregarBlocos(bloco * blocos) ;
 char procuraBloco(bloco * blocos, int direcaoLivre, int * blocoAnterior, int * blocoAtual);
 bool verificaRota(int rota[100][2], int x, int y);
+bool dentroDaTela(int x, int y);
 void gotoxy(int x, int y);
 
 int main ()
@@ -91,8 +92,9 @@ int main ()
 				}
 			break;
 		}
-		if (direcaoLivre && verificaRota(path, X, Y))
+		if (direcaoLivre && verificaRota(path, X, Y) && dentroDaTela(X, Y))
 		{
+
 			gotoxy(X, Y);
 			printf("%c", procuraBloco(blocos, direcaoProximo, &blocoAnterior, &blocoAtual));
 			numPasso++;
@@ -107,7 +109,7 @@ int main ()
 			}
 			else 
 			{
-				if (!verificaRota(path, X, Y))
+				if (!verificaRota(path, X, Y) || !dentroDaTela(X, Y))
 				{
 					printf("GAME OVER!\a");
 					caracterDir = 'S';
@@ -209,6 +211,18 @@ bool verificaRota(int rota[100][2], int x, int y)
 			retorno = false;
 		}
 	}
+
+	return retorno;
+}
+
+bool dentroDaTela(int x, int y)
+{
+	bool retorno = true;
+
+	if (x < 0 || x > 100)
+		retorno =false;
+	if (y < 0 || y > 30)
+		retorno =false;
 
 	return retorno;
 }

@@ -40,3 +40,7 @@ Uma simples descrição de progresso e visão sobre as atividades.
 
 - Arquivo de estudo _005-ponteiros.c_ criado.
 - Este exercício era para ser simples, apenas passar ponteiros entre funções, mas a empolgação me levou e passei a escaloná-lo sucessivamente enquanto escrevia o código. Agora é mais como um protótipo de um jogo utilizando caracteres especiais que formam um labirinto pela tela. O código ainda não está refinado, mas está funcionando razoavelmente, **é realmente um resultado bonito de se ver**.
+
+### Dia 4 (31/08/2018)
+
+- Múltiplos pequenos ajustes no exercício de ponteiros, como o potencial do programa, é possível que eu o mantenha como objeto de estudo por mais alguns dias. Por enquanto é um simples jogo de sorte em um labirinto aleatória. Pretendo inserir uma tela inicial e sistema de fases com algum tipo pontuação.
