@@ -55,10 +55,10 @@ int main ()
 	do
 	{
 		caracterDir = toupper(getch());
-
+		direcaoLivre = false;
 		switch(caracterDir)
 		{
-			case ('C'):
+			case ('8'):
 				if (blocos[blocoAtual].pontasAbertas[CIMA] == true)
 				{
 					direcaoLivre = true;
@@ -66,7 +66,7 @@ int main ()
 					Y--;
 				}
 			break;
-			case ('B'):
+			case ('2'):
 				if (blocos[blocoAtual].pontasAbertas[BAIXO] == true)
 				{
 					direcaoLivre = true;
@@ -74,7 +74,7 @@ int main ()
 					Y++;
 				}
 			break;
-			case ('D'):
+			case ('6'):
 				if (blocos[blocoAtual].pontasAbertas[DIREITA] == true)
 				{
 					direcaoLivre = true;
@@ -82,7 +82,7 @@ int main ()
 					X++;
 				}
 			break;
-			case ('E'):
+			case ('4'):
 				if (blocos[blocoAtual].pontasAbertas[ESQUERDA] == true)
 				{
 					direcaoLivre = true;
@@ -90,8 +90,6 @@ int main ()
 					X--;
 				}
 			break;
-			default:
-				direcaoLivre = false;
 		}
 		if (direcaoLivre && verificaRota(path, X, Y))
 		{
@@ -100,11 +98,21 @@ int main ()
 			numPasso++;
 			path[numPasso][0]= X;
 			path[numPasso][1]= Y;
+
 		}
-		else 
-		{
-			printf("GAME OVER!\a");
-			caracterDir = 'S';
+		else {
+			if (!direcaoLivre)
+			{
+				printf("\a");
+			}
+			else 
+			{
+				if (!verificaRota(path, X, Y))
+				{
+					printf("GAME OVER!\a");
+					caracterDir = 'S';
+				}
+			}
 		}
 	} while (caracterDir != 'S');
 	
