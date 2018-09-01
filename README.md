@@ -16,7 +16,7 @@ Uma simples descrição de progresso e visão sobre as atividades.
 
 - Repositório Criado.
 - Arquivo de estudo _001-var.c_ criado.
-- Criação do repositório e criação de um simples arquivo inicial de estudos, apesar dos conceitos simples envolvendo o conteúdo trabalhado, me vi surpreendido e impelido a pesquisas adicionais ao descobrir que comando trivialmente utilizados em estudos de minha antiga faculdade (scanf e system("PAUSE")), na verdade, eram contraindicados em situações na qual os utilizava corriqueiramente no passado.
+- Criação do repositório e criação de um simples arquivo inicial de estudos, apesar dos conceitos simples envolvendo o conteúdo trabalhado, me vi surpreendido e impelido a pesquisas adicionais ao descobrir que comando trivialmente utilizados em estudos de minha antiga faculdade (_scanf()_ e _system("PAUSE")_), na verdade, eram contraindicados em situações na qual os utilizava corriqueiramente no passado.
 - O maior tempo gasto foi descrição em comentários, porém isso se mostra proveitoso dado o auxílio à absorção do aprendizado, assim como para futuras consultas.
 
 - Arquivo de estudo _002-type.c_ criado.
@@ -44,3 +44,5 @@ Uma simples descrição de progresso e visão sobre as atividades.
 ### Dia 4 (31/08/2018)
 
 - Múltiplos pequenos ajustes no exercício de ponteiros, como o potencial do programa, é possível que eu o mantenha como objeto de estudo por mais alguns dias. Por enquanto é um simples jogo de sorte em um labirinto aleatória. Pretendo inserir uma tela inicial e sistema de fases com algum tipo pontuação.
+
+- Uma aula com o primeiro programa efetivo da classe, um programa sobre variáveis, entrada e exibição de dados. Apesar de também ter sido excessivamente expositiva, teve algum tempo para a programação em si, talvez um programa mais simples tivesse sido mais efetivo para aqueles com menos experiência, mesmo com minha bagagem e pesquisa acabei me enrolando um pouco, mas reaprendi as limitações do _printf()_, ou seja, mais um motivo para ter cuidado ao utilizá-lo.

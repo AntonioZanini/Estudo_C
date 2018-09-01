@@ -4,5 +4,5 @@ Esta seção tem o intuito de servir tanto como um índice para os exercícios, 
 
 ## Categorias
 
-- Aulas.
+- [Aulas](aulas/analise.md).
 - [Extra 1: Básicos.](extra01-basico/analise.md)

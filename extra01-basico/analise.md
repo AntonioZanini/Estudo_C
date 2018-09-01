@@ -5,6 +5,26 @@ Esta seção tem o intuito de servir tanto como um índice para os exercícios, 
 ## Exercícios
 
 1. [**001-var.c**](001-var.c).
+
 Exercício simples de manipulação de variáveis. 
 - A pesquisa envolvida em seu estudo me ensinou sobre a função **_fgets()_** e sua capacidade de limitar a entrada de caracteres, de modo a ser um recurso seguro em determinadas situações de coleta de dados. 
 - Outro aprendizado foi sobre a função **_system()_**, em minhas experiências anteriores com C ela apenas era utilizada para pausar o programa para a visualização (desta maneira _system("pause")_), porém ao analisá-la um pouco pude ver que ela é muito mais que isso, sendo uma interação direta com ambiente de execução pedindo recursos externos para fins internos. Saber disto é ter a noção que nem sempre utilizar tais recursos pode ser uma boa ideia, _system(pause)_ pede ao ambiente de execução que pause todas as suas ações, e isso não parece a melhor maneira de se realizar uma simples pausa em um programa procedural.
+
+2. [**002-type.c**](002-type.c).
+
+Exercício sobre os tipos de variáveis. Abortando espaço utilizado na memória e os limites de valores que aos quais cada tipo suporta.
+- Neste exercício não houveram complicações, mas a pesquisa me levou por conhecimentos que eu deduzia à primeira vista, como disponibilidades dos tipo de inteiro não-assinalados. Os tamanhos dos inteiros me deixou um pouco intrigado, os valores de tamanho retornados pelas funções foram iguais entre _int_ e _long_, inicialmente me causou confusão, mas a pesquisa revelou que a causa era uma questão de legado de arquitetura, sendo devido aos compiladores em sistemas modernos (x84 e x64) que utilizam o tamanho de 4 bytes (32 bits) ao invés de 2 bytes (16 bits) para o tamanho de _int_.
+- Tentei incluir todos os tipos que vi descritos em múltiplas fontes, mas o tipo _long long_ me pareceu complicar excessivamente a premissa do exercício ao não ser facilmente adicionado utilizando as mesmas bibliotecas que seus companheiros inteiros.
+
+3. [**003-oper_cond_loop.c**](003-oper_cond_loop.c).
+
+Programa: **OPERAÇÕES COM TEMPERATURAS**. Exercício sobre operações aritméticas, estruturas condicionais e repetitivas e funções.
+- Este foi o primeiro exercício com uma grande escalada de recursos utilizados durante o desenvolvimento, de algo simples como conversões com formulas definidas evoluiu para algo com interface e estruturas bem definidas. 
+- Utilização de _enum_ é algo que começou de um modo promissor, deixando o código mais legível e estruturado. 
+
+4. [**004-operandos.c**](004-operandos.c).
+
+Programa: **OPERAÇÕES**. Exercício sobre operações aritméticas controladas pelo usuário, envolvendo coleta e validação de dados.
+- O programa OPERAÇÕES foi um exercício para praticar mais as operações matemáticas e, ao começá-lo, procurei deixar o seu visual o mais interessante possível, não fiz nenhum milagre, mas o considero "elegante".
+- A utilização de valores _ASCII_ para consertar a barreira do idioma em relação ao Unicode deu um trabalho considerável, mas valeu a pena, principalmente ao não ter que escrever **operacao** não tela!
+- O nível de validação que fiz não era planejado inicialmente, mas a possibilidade se apresentou e me atirei nela, e ficou interessante. Eu poderia aprimorar ainda mais, porém não iria acrescentar muito ao resultado ou ao propósito do exercício.
