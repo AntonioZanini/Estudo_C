@@ -28,6 +28,7 @@ enum estados
 	TITULO = 'T',
 	JOGO = 'J',
 	GAMEOVER = 'O',
+	MUDAFASE = 'F',
 	SAIR = 'S'
 };
 
@@ -47,6 +48,8 @@ int aleatorio (int *x, int *y);
 void telaTitulo (char * estadoTitulo);
 void telaJogo (char * estadoJogo, int * pontuacao, int * fase);
 void telaGameOver(char * estadoGameOver, int pontuacaoFinal);
+void telaMudaFase(int faseNova);
+void verificarSaida(int rota[100][2], int pontasAtuais[4], int X, int Y, int passoAtual, int localSaida[2], int nivelSaida);
 void gotoxy(int x, int y);
 
 int main ()
@@ -71,6 +74,13 @@ int main ()
 				telaGameOver(&estadoPrincipal, pontuacao);
 			break;
 		}
+
+		if (estadoPrincipal == MUDAFASE)
+		{
+			estadoPrincipal = JOGO;
+			fase++;
+			telaMudaFase(fase);
+		}
 		
 	}	while (estadoPrincipal != SAIR);
 
@@ -82,7 +92,18 @@ void telaTitulo (char * estadoTitulo)
 	char valorDigitado;
 
 	system("COLOR 0F");
+/*
+	  HANDLE  hConsole;
+    int k;
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
+  	for(k = 1; k < 255; k++)
+  	{
+    SetConsoleTextAttribute(hConsole, k);
+    printf("%3d  %s\n", k, "I want to be nice today!");
+	}
+	getch();
+*/
 
 	do 
 	{
@@ -126,6 +147,7 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 	bool semColisao;
 	int direcaoProximo;
 	int X, Y, i;
+	int portaSaida[2] = {-1, -1};
 	for (i = 0; i < 100; i++)
 	{
 		path[i][0] = 0;
@@ -198,41 +220,16 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 			}
 			else
 			{
+
+				verificaFase(estadoJogo, portaSaida, X, Y);
+				limparPortas(portaSaida, X, Y);
 				gotoxy(X, Y);
 				printf("%c", procuraBloco(blocos, direcaoProximo, &blocoAnterior, &blocoAtual));
-
+				verificarSaida(path, blocos[blocoAtual].pontasAbertas, X, Y, numPasso, portaSaida, *faseJogo);
 				*pontuacaoJogo += 1 * (*faseJogo);
 			}
 		}
-		/*
-		if (direcaoLivre && semColisao && dentroDaTela(X, Y))
-		{
-			moverRegistrar(path, &X, &Y, direcaoProximo);
-			gotoxy(X, Y);
-			printf("%c", procuraBloco(blocos, direcaoProximo, &blocoAnterior, &blocoAtual));
-			numPasso++;
-			*pontuacaoJogo += 1 * (*faseJogo);
-			path[numPasso][0]= X;
-			path[numPasso][1]= Y;
 
-		}
-		else {
-			if (!direcaoLivre || !dentroDaTela(X, Y))
-			{
-				printf("\a");
-			}
-			else 
-			{
-				if (!semColisao)
-				{
-					
-					*estadoJogo = GAMEOVER;
-					printf("\a\a\a");
-					getch();		
-				}
-			}
-		}
-		*/
 	} while (*estadoJogo == JOGO);
 }
 
@@ -258,6 +255,16 @@ void telaGameOver(char * estadoGameOver, int pontuacaoFinal)
 	{
 		*estadoGameOver = SAIR;
 	}
+}
+
+void telaMudaFase(int faseNova)
+{
+	system("cls");
+	gotoxy(50, 15);
+	system("COLOR F0");
+	printf("MUDAN%cA DE FASE! NIVEL %i!", Ccedil, faseNova);
+	getch();
+	system("COLOR 0F");
 }
 
 int carregarBlocos(bloco * blocos) 
@@ -375,37 +382,7 @@ bool verificaMoverRegistrarRota(int rota[100][2], int * x, int * y, int direcaoM
 	}
 	return retorno;
 }
-/*
-bool moverRegistrar(int * rota[100][2], int * x, int * y, int direcaoMovimento) 
-{
-	int i;
-	bool retorno = true;
-	switch(direcao)
-	{
-		case (CIMA):
-			y--;
-		break;
-		case (DIREITA):
-			x++;
-		break;
-		case (BAIXO):
-			y++;
-		break;
-		case (ESQUERDA):
-			x--;
-		break;
-	}
-	for (i = 0; i < 100; i++)
-	{
-		if ((rota[i][0] == x) && (rota[i][1] == y))
-		{
-			retorno = false;
-		}
-	}
 
-	return retorno;
-}
-*/
 bool dentroDaTela(int x, int y, int direcaoTela)
 {
 	bool retorno = true;
@@ -439,4 +416,86 @@ int aleatorio (int *x, int *y)
 	*x = rand() % (LIMITE_X / 2);
 	*y = rand() % (LIMITE_Y / 2);
 	return 0;
+}
+
+void verificarSaida(int rota[100][2], int pontasAtuais[4], int X, int Y, int passoAtual, int localSaida[2], int nivelSaida)
+{
+  HANDLE  hConsole;
+  int chancesSaidaAparecer, direcao, i, x, y;
+  int direcoesTestadas[4] = {CIMA, DIREITA,BAIXO, ESQUERDA};
+  bool direcaoVazia;
+  chancesSaidaAparecer = rand() % 100;
+  if (chancesSaidaAparecer < ((passoAtual / 2) - (nivelSaida * 5)))
+  {
+    for (direcao = 0; direcao < 4; direcao++)
+    {
+      direcaoVazia = true;
+      x = X;
+      y = Y;
+      if (pontasAtuais[direcao] == true)
+      {
+        switch(direcao)
+        {
+          case (CIMA):
+            y--;
+          break;
+          case (DIREITA):
+            x++;
+          break;
+          case (BAIXO):
+            y++;
+          break;
+          case (ESQUERDA):
+            x--;
+          break;
+        }
+        for (i = 0; i < 100; i++)
+        {
+          if ((rota[i][0] == x) && (rota[i][1] == y))
+          {
+            direcaoVazia = false;
+          }
+        }
+      }
+      else
+      {
+        continue;
+      }
+      if (direcaoVazia)
+      {
+        gotoxy(x,y);
+        hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        SetConsoleTextAttribute(hConsole, 14);
+        /*	Fundo Preto com a cor da letra brilhante:
+        	9 - Azul Es	10 - Verde	11 - Azul Cl	12 - Vermelho	13 - Purpura	14 - Amarelo	15 - Branco        */
+        printf("%c", '\xDB');
+        SetConsoleTextAttribute(hConsole, 15);
+        localSaida[0] = x;
+        localSaida[1] = y;
+        gotoxy(X, Y);
+        break;
+      }
+    }
+  }
+}
+
+verificaFase(char * estadoFase, int portaFase[2], int X, int Y)
+{
+  if (portaFase[0] == X && portaFase[1] == Y)
+  {
+    (*estadoFase) = MUDAFASE;
+    
+  }
+}
+
+limparPortas(int saida[2], int x, int y)
+{
+	if ((saida[0] != -1) && (saida[1] != -1))
+	{
+	  gotoxy(saida[0], saida[1]);
+	  printf(" ");
+	  gotoxy(x, y);
+	  saida[0] = -1;
+	  saida[1] = -1;
+	}
 }
