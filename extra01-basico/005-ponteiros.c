@@ -6,12 +6,29 @@
 #include <ctype.h>
 #include <windows.h>
 
+#define LIMITE_Y 30
+#define LIMITE_X 100
+/* CARACTERES ESPECIAIS */
+#define Ccedil '\x80' /* Ç */
+#define Aacute '\xB5' /* Á */
+#define Agrave '\xB7' /* À */
+#define Atilde '\xC7' /* Ã */
+#define Iacute '\xD6' /* Í */
+
 enum direcoes 
 {
 	CIMA = 0,
 	DIREITA,
 	BAIXO,
 	ESQUERDA
+};
+
+enum estados
+{
+	TITULO = 'T',
+	JOGO = 'J',
+	GAMEOVER = 'O',
+	SAIR = 'S'
 };
 
 typedef struct 
@@ -26,32 +43,95 @@ int carregarBlocos(bloco * blocos) ;
 char procuraBloco(bloco * blocos, int direcaoLivre, int * blocoAnterior, int * blocoAtual);
 bool verificaRota(int rota[100][2], int x, int y);
 bool dentroDaTela(int x, int y);
+int aleatorio (int *x, int *y);
+void telaTitulo (char * estadoTitulo);
+void telaJogo (char * estadoJogo, int * pontuacao, int * fase);
+void telaGameOver(char * estadoGameOver, int pontuacaoFinal);
 void gotoxy(int x, int y);
 
 int main ()
 {
+	char estadoPrincipal = TITULO;
+	int pontuacao = 0, fase = 1;
+
+	srand(time(NULL));
+	do
+	{
+		switch(estadoPrincipal)
+		{
+			case (TITULO):
+				telaTitulo(&estadoPrincipal);
+				pontuacao = 0;
+				fase = 1;
+			break;
+			case (JOGO):
+				telaJogo(&estadoPrincipal, &pontuacao, &fase);
+			break;
+			case (GAMEOVER):
+				telaGameOver(&estadoPrincipal, pontuacao);
+			break;
+		}
+		
+	}	while (estadoPrincipal != SAIR);
+
+	return 0;
+}
+
+void telaTitulo (char * estadoTitulo)
+{
+	char valorDigitado;
+
+	do 
+	{
+		system("cls");
+		gotoxy(0, 0);
+		printf("=======================================================================\n");
+		printf("\n\t\t\tLABIRINTO DIMENSIONAL\n\n");
+		printf("=======================================================================\n\n");
+		printf("\t\t(J) JOGAR\t\t\t(S) SAIR\n\n");
+		printf("=======================================================================\n\n");
+		printf("ESCOLHA A OP%c%cO DESEJADA: ", Ccedil, Atilde);
+		valorDigitado = toupper(getche());
+		switch(valorDigitado)
+		{
+			case ('J'):
+				*estadoTitulo = JOGO;
+			break;
+			case ('S'):
+				*estadoTitulo = SAIR;
+			break;
+			default:
+				printf("\n\nVALOR INV%cLIDO, ESCOLHA NOVAMENTE!", Aacute);
+				getch();
+		} 
+	} while (*estadoTitulo == TITULO);
+}
+
+void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
+{
 	char caracterDir;
-	
 	bloco blocos[11];
-	int blocoAnterior, blocoAtual = 5;
+	int blocoAnterior, blocoAtual = 10;
 	int numPasso = 0;
 	int path[100][2];
 	bool direcaoLivre = false;
 	int direcaoProximo;
-	int X = 0, Y = 0;
-	int i;
-
-	carregarBlocos(blocos);
+	int X, Y, i;
 	for (i = 0; i < 100; i++)
 	{
-		path[i][0] = 0;
-		path[i][1] = 0;
+		path[i][0] = X;
+		path[i][1] = Y;
 	}
+
+	carregarBlocos(blocos);
+	system("cls");
+	aleatorio(&X, &Y);
+	gotoxy(X, Y);
+
 	path[numPasso][0]= X;
 	path[numPasso][1]= Y;
-	printf("%c", blocos[blocoAtual].caracter);
-	srand(time(NULL));
 
+	printf("%c", blocos[blocoAtual].caracter);
 
 	do
 	{
@@ -91,6 +171,10 @@ int main ()
 					X--;
 				}
 			break;
+			case ('S'):
+				/* IMPLEMENTAR GAME OVER */
+
+			break;
 		}
 		if (direcaoLivre && verificaRota(path, X, Y) && dentroDaTela(X, Y))
 		{
@@ -103,22 +187,46 @@ int main ()
 
 		}
 		else {
-			if (!direcaoLivre)
+			if (!direcaoLivre || !dentroDaTela(X, Y))
 			{
 				printf("\a");
 			}
 			else 
 			{
-				if (!verificaRota(path, X, Y) || !dentroDaTela(X, Y))
+				if (!verificaRota(path, X, Y))
 				{
-					printf("GAME OVER!\a");
-					caracterDir = 'S';
+					
+					*estadoJogo = GAMEOVER;
+					printf("\a\a\a");
+					getch();		
 				}
 			}
 		}
-	} while (caracterDir != 'S');
+	} while (*estadoJogo == JOGO);
+}
+
+
+void telaGameOver(char * estadoGameOver, int pontuacaoFinal)
+{
+	char resposta;
 	
-	return 0;
+	system("cls");
+	gotoxy(0, 0);
+	printf("=======================================================================\n");
+	printf("\n\t\t\tGAME OVER!\n\n");
+	printf("=======================================================================\n\n");
+	printf("\n\t\t\tPONTUA%c%cO FINAL: %d\n\n", Ccedil, Atilde, pontuacaoFinal);
+	printf("=======================================================================\n\n");
+	printf("\t\tRETORNAR %c TELA DE T%cTULO? (S/N) ", Agrave, Iacute);
+	resposta = toupper(getch());
+	if (resposta == 'S')
+	{
+		*estadoGameOver = TITULO;
+	}
+	else
+	{
+		*estadoGameOver = SAIR;
+	}
 }
 
 int carregarBlocos(bloco * blocos) 
@@ -220,10 +328,17 @@ bool dentroDaTela(int x, int y)
 	bool retorno = true;
 
 	if (x < 0 || x > 100)
-		retorno =false;
+		retorno = false;
 	if (y < 0 || y > 30)
-		retorno =false;
+		retorno = false;
 
 	return retorno;
+}
+
+int aleatorio (int *x, int *y)
+{
+	*x = rand() % (LIMITE_X / 2);
+	*y = rand() % (LIMITE_Y / 2);
+	return 0;
 }
 

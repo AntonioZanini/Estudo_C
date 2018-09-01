@@ -46,3 +46,7 @@ Uma simples descrição de progresso e visão sobre as atividades.
 - Múltiplos pequenos ajustes no exercício de ponteiros, como o potencial do programa, é possível que eu o mantenha como objeto de estudo por mais alguns dias. Por enquanto é um simples jogo de sorte em um labirinto aleatória. Pretendo inserir uma tela inicial e sistema de fases com algum tipo pontuação.
 
 - Uma aula com o primeiro programa efetivo da classe, um programa sobre variáveis, entrada e exibição de dados. Apesar de também ter sido excessivamente expositiva, teve algum tempo para a programação em si, talvez um programa mais simples tivesse sido mais efetivo para aqueles com menos experiência, mesmo com minha bagagem e pesquisa acabei me enrolando um pouco, mas reaprendi as limitações do _printf()_, ou seja, mais um motivo para ter cuidado ao utilizá-lo.
+
+### Dia 5 (01/09/2018)
+
+- Maiores modificações no exercício de ponteiros, agora intitulado **Labirinto Dimensional**, iniciei a modulação do código e separei claramente os módulos de execução através do controle de estados durante a execução do jogo. Ainda existem as fases e a pontuação a serem implementadas, além de ajustes na movimentação, mas o jogo já está com uma boa aparência.
