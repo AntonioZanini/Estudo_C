@@ -12,6 +12,10 @@ Códigos são separados em pastas Aulas e Extras, sendo as primeiras os conteúd
 
 Uma simples descrição de progresso e visão sobre as atividades.
 
+## Análises de Exercícios
+
+[Lista geral de analise de exercícios.](menuAnalise.md)
+
 ### Dia 1 (28/08/2018)
 
 - Repositório Criado.
