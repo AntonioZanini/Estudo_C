@@ -41,8 +41,8 @@ int direcaoOposta(int direcaoNormal);
 int atribuirPontas(bloco * blocoAtual, int id, bool cima, bool direita, bool baixo, bool esquerda);
 int carregarBlocos(bloco * blocos) ;
 char procuraBloco(bloco * blocos, int direcaoLivre, int * blocoAnterior, int * blocoAtual);
-bool verificaRota(int rota[100][2], int x, int y);
-bool dentroDaTela(int x, int y);
+bool verificaMoverRegistrarRota(int rota[100][2], int * x, int * y, int direcaoMovimento, int * passoAtual);
+bool dentroDaTela(int x, int y, int direcaoTela);
 int aleatorio (int *x, int *y);
 void telaTitulo (char * estadoTitulo);
 void telaJogo (char * estadoJogo, int * pontuacao, int * fase);
@@ -81,12 +81,20 @@ void telaTitulo (char * estadoTitulo)
 {
 	char valorDigitado;
 
+	system("COLOR 0F");
+
+
 	do 
 	{
 		system("cls");
 		gotoxy(0, 0);
 		printf("=======================================================================\n");
 		printf("\n\t\t\tLABIRINTO DIMENSIONAL\n\n");
+		printf("=======================================================================\n\n");
+		printf("  COMANDOS:                      8 CIMA\n\n");
+		printf("                     ESQUERDA 4     6 DIREITA \n\n");
+		printf("                                 2 BAIXO\n");
+		printf("  S SAIR\n\n");
 		printf("=======================================================================\n\n");
 		printf("\t\t(J) JOGAR\t\t\t(S) SAIR\n\n");
 		printf("=======================================================================\n\n");
@@ -115,12 +123,13 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 	int numPasso = 0;
 	int path[100][2];
 	bool direcaoLivre = false;
+	bool semColisao;
 	int direcaoProximo;
 	int X, Y, i;
 	for (i = 0; i < 100; i++)
 	{
-		path[i][0] = X;
-		path[i][1] = Y;
+		path[i][0] = 0;
+		path[i][1] = 0;
 	}
 
 	carregarBlocos(blocos);
@@ -144,7 +153,6 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 				{
 					direcaoLivre = true;
 					direcaoProximo = CIMA;
-					Y--;
 				}
 			break;
 			case ('2'):
@@ -152,7 +160,6 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 				{
 					direcaoLivre = true;
 					direcaoProximo = BAIXO;
-					Y++;
 				}
 			break;
 			case ('6'):
@@ -160,7 +167,6 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 				{
 					direcaoLivre = true;
 					direcaoProximo = DIREITA;
-					X++;
 				}
 			break;
 			case ('4'):
@@ -168,7 +174,6 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 				{
 					direcaoLivre = true;
 					direcaoProximo = ESQUERDA;
-					X--;
 				}
 			break;
 			case ('S'):
@@ -176,12 +181,37 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 
 			break;
 		}
-		if (direcaoLivre && verificaRota(path, X, Y) && dentroDaTela(X, Y))
+		if (!direcaoLivre)
 		{
+			printf("\a");
+		}
+		else
+		{
+			semColisao = verificaMoverRegistrarRota(path, &X, &Y, direcaoProximo, &numPasso);
+			if (!semColisao || !dentroDaTela(X, Y, direcaoProximo))
+			{
+					
+				*estadoJogo = GAMEOVER;
+				system("COLOR 4F");
+				printf("\a\a\a");
+				getch();		
+			}
+			else
+			{
+				gotoxy(X, Y);
+				printf("%c", procuraBloco(blocos, direcaoProximo, &blocoAnterior, &blocoAtual));
 
+				*pontuacaoJogo += 1 * (*faseJogo);
+			}
+		}
+		/*
+		if (direcaoLivre && semColisao && dentroDaTela(X, Y))
+		{
+			moverRegistrar(path, &X, &Y, direcaoProximo);
 			gotoxy(X, Y);
 			printf("%c", procuraBloco(blocos, direcaoProximo, &blocoAnterior, &blocoAtual));
 			numPasso++;
+			*pontuacaoJogo += 1 * (*faseJogo);
 			path[numPasso][0]= X;
 			path[numPasso][1]= Y;
 
@@ -193,7 +223,7 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 			}
 			else 
 			{
-				if (!verificaRota(path, X, Y))
+				if (!semColisao)
 				{
 					
 					*estadoJogo = GAMEOVER;
@@ -202,6 +232,7 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 				}
 			}
 		}
+		*/
 	} while (*estadoJogo == JOGO);
 }
 
@@ -308,10 +339,62 @@ int direcaoOposta(int direcaoNormal)
 
 }
 
-bool verificaRota(int rota[100][2], int x, int y) 
+bool verificaMoverRegistrarRota(int rota[100][2], int * x, int * y, int direcaoMovimento, int * passoAtual) 
+{
+	int i, vX = * x, vY = * y;
+	bool retorno = true;
+	switch(direcaoMovimento)
+	{
+		case (CIMA):
+			vY--;
+		break;
+		case (DIREITA):
+			vX++;
+		break;
+		case (BAIXO):
+			vY++;
+		break;
+		case (ESQUERDA):
+			vX--;
+		break;
+	}
+	for (i = 0; i < 100; i++)
+	{
+		if ((rota[i][0] == vX) && (rota[i][1] == vY))
+		{
+			retorno = false;
+		}
+	}
+	if (retorno == true)
+	{
+		(*x) = vX;
+		(*y) = vY;
+		(*passoAtual) ++;
+		rota[*passoAtual][0]= (*x);
+		rota[*passoAtual][1]= (*y);
+	}
+	return retorno;
+}
+/*
+bool moverRegistrar(int * rota[100][2], int * x, int * y, int direcaoMovimento) 
 {
 	int i;
 	bool retorno = true;
+	switch(direcao)
+	{
+		case (CIMA):
+			y--;
+		break;
+		case (DIREITA):
+			x++;
+		break;
+		case (BAIXO):
+			y++;
+		break;
+		case (ESQUERDA):
+			x--;
+		break;
+	}
 	for (i = 0; i < 100; i++)
 	{
 		if ((rota[i][0] == x) && (rota[i][1] == y))
@@ -322,11 +405,27 @@ bool verificaRota(int rota[100][2], int x, int y)
 
 	return retorno;
 }
-
-bool dentroDaTela(int x, int y)
+*/
+bool dentroDaTela(int x, int y, int direcaoTela)
 {
 	bool retorno = true;
-
+/*
+	switch(direcaoTela)
+	{
+		case (CIMA):
+			y--;
+		break;
+		case (DIREITA):
+			x++;
+		break;
+		case (BAIXO):
+			y++;
+		break;
+		case (ESQUERDA):
+			x--;
+		break;
+	}
+*/
 	if (x < 0 || x > 100)
 		retorno = false;
 	if (y < 0 || y > 30)
@@ -341,4 +440,3 @@ int aleatorio (int *x, int *y)
 	*y = rand() % (LIMITE_Y / 2);
 	return 0;
 }
-
