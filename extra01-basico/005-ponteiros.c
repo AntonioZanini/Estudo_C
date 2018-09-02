@@ -6,7 +6,9 @@
 #include <ctype.h>
 #include <windows.h>
 
-#define LIMITE_Y 30
+#define MINIMO_X 1
+#define MINIMO_Y 3
+#define LIMITE_Y 28
 #define LIMITE_X 100
 /* CARACTERES ESPECIAIS */
 #define Ccedil '\x80' /* Ç */
@@ -47,9 +49,12 @@ bool dentroDaTela(int x, int y, int direcaoTela);
 int aleatorio (int *x, int *y);
 void telaTitulo (char * estadoTitulo);
 void telaJogo (char * estadoJogo, int * pontuacao, int * fase);
-void telaGameOver(char * estadoGameOver, int pontuacaoFinal);
+void telaGameOver(char * estadoGameOver, int pontuacaoFinal, int faseFinal);
 void telaMudaFase(int faseNova);
 void verificarSaida(int rota[100][2], int pontasAtuais[4], int X, int Y, int passoAtual, int localSaida[2], int nivelSaida);
+void atualizaPontuacao(int x, int y, int pontuacaoAtual);
+void limparPortas(int saida[2], int x, int y);
+void verificaFase(char * estadoFase, int portaFase[2], int X, int Y);
 void gotoxy(int x, int y);
 
 int main ()
@@ -71,7 +76,7 @@ int main ()
 				telaJogo(&estadoPrincipal, &pontuacao, &fase);
 			break;
 			case (GAMEOVER):
-				telaGameOver(&estadoPrincipal, pontuacao);
+				telaGameOver(&estadoPrincipal, pontuacao, fase);
 			break;
 		}
 
@@ -109,17 +114,29 @@ void telaTitulo (char * estadoTitulo)
 	{
 		system("cls");
 		gotoxy(0, 0);
-		printf("=======================================================================\n");
-		printf("\n\t\t\tLABIRINTO DIMENSIONAL\n\n");
-		printf("=======================================================================\n\n");
-		printf("  COMANDOS:                      8 CIMA\n\n");
-		printf("                     ESQUERDA 4     6 DIREITA \n\n");
-		printf("                                 2 BAIXO\n");
-		printf("  S SAIR\n\n");
-		printf("=======================================================================\n\n");
-		printf("\t\t(J) JOGAR\t\t\t(S) SAIR\n\n");
-		printf("=======================================================================\n\n");
-		printf("ESCOLHA A OP%c%cO DESEJADA: ", Ccedil, Atilde);
+		printf("|====================================================================================================|\n");
+		printf("|                                                                                                    |\n");
+		printf("|                                        LABIRINTO DIMENSIONAL                                       |\n");
+		printf("|                                                                                                    |\n");
+		printf("|====================================================================================================|\n");
+		printf("|                                                                                                    |\n");
+		printf("|              FUJA! N%cO OLHE PARA TR%cS! PROCURE PELA SA%cDA! AQUILO EST%c TE PERSEGUINDO!             |\n", Atilde, Aacute, Iacute, Aacute);
+		printf("|                                                                                                    |\n");
+		printf("|====================================================================================================|\n");
+		printf("|                                                                                                    |\n");
+		printf("|  COMANDOS:                                   8 CIMA                                                |\n");
+		printf("|                                                                                                    |\n");
+		printf("|                                  ESQUERDA 4     6 DIREITA                                          |\n");
+		printf("|                                                                                                    |\n");
+		printf("|                                              2 BAIXO                                               |\n");
+		printf("|  S SAIR                                                                                            |\n");
+		printf("|                                                                                                    |\n");
+		printf("|====================================================================================================|\n");
+		printf("|                                                                                                    |\n");
+		printf("|  (J/[ENTER]) JOGAR        (S) SAIR                                                                 |\n");
+		printf("|                                                                                                    |\n");
+		printf("|====================================================================================================|\n\n");
+		printf("   ESCOLHA A OP%c%cO DESEJADA: ", Ccedil, Atilde);
 		valorDigitado = toupper(getche());
 		switch(valorDigitado)
 		{
@@ -129,6 +146,9 @@ void telaTitulo (char * estadoTitulo)
 			case ('S'):
 				*estadoTitulo = SAIR;
 			break;
+			case (13): /* Enter */
+				*estadoTitulo = JOGO;
+				break;
 			default:
 				printf("\n\nVALOR INV%cLIDO, ESCOLHA NOVAMENTE!", Aacute);
 				getch();
@@ -156,7 +176,16 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 
 	carregarBlocos(blocos);
 	system("cls");
+	printf("|====================================================================================================|\n");
+	printf("|   LABIRINTO DIMENSIONAL - FASE %02i                                   PONTUA%c%cO: %05i               |\n", *faseJogo, Ccedil, Atilde, *pontuacaoJogo);
+	printf("|====================================================================================================|\n");
+	for (i = 0; i < 26; ++i)
+	{
+		printf("|                                                                                                    |\n");
+	}
+	printf("|====================================================================================================|");
 	aleatorio(&X, &Y);
+
 	gotoxy(X, Y);
 
 	path[numPasso][0]= X;
@@ -199,13 +228,18 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 				}
 			break;
 			case ('S'):
-				/* IMPLEMENTAR GAME OVER */
+				*estadoJogo = GAMEOVER;
 
 			break;
 		}
 		if (!direcaoLivre)
 		{
 			printf("\a");
+			if (*estadoJogo == GAMEOVER)
+			{
+				system("COLOR 4F");
+				getch();	
+			}
 		}
 		else
 		{
@@ -215,7 +249,7 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 					
 				*estadoJogo = GAMEOVER;
 				system("COLOR 4F");
-				printf("\a\a\a");
+				printf("\a");
 				getch();		
 			}
 			else
@@ -226,7 +260,8 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 				gotoxy(X, Y);
 				printf("%c", procuraBloco(blocos, direcaoProximo, &blocoAnterior, &blocoAtual));
 				verificarSaida(path, blocos[blocoAtual].pontasAbertas, X, Y, numPasso, portaSaida, *faseJogo);
-				*pontuacaoJogo += 1 * (*faseJogo);
+				*pontuacaoJogo += 1 + (1 * (*faseJogo));
+				atualizaPontuacao(X, Y, *pontuacaoJogo);
 			}
 		}
 
@@ -234,20 +269,25 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 }
 
 
-void telaGameOver(char * estadoGameOver, int pontuacaoFinal)
+void telaGameOver(char * estadoGameOver, int pontuacaoFinal, int faseFinal)
 {
 	char resposta;
 	
+
 	system("cls");
 	gotoxy(0, 0);
-	printf("=======================================================================\n");
-	printf("\n\t\t\tGAME OVER!\n\n");
-	printf("=======================================================================\n\n");
-	printf("\n\t\t\tPONTUA%c%cO FINAL: %d\n\n", Ccedil, Atilde, pontuacaoFinal);
-	printf("=======================================================================\n\n");
-	printf("\t\tRETORNAR %c TELA DE T%cTULO? (S/N) ", Agrave, Iacute);
+	printf("|====================================================================================================|\n");
+	printf("|                                                                                                    |\n");
+	printf("|                                             GAME OVER!                                             |\n");
+	printf("|                                                                                                    |\n");
+	printf("|====================================================================================================|\n");
+	printf("|                                                                                                    |\n");
+	printf("|           FASE DA MORTE: %02d                            PONTUA%c%cO FINAL: %05d                      |\n", faseFinal, Ccedil, Atilde, pontuacaoFinal);
+	printf("|                                                                                                    |\n");
+	printf("|====================================================================================================|\n\n");
+	printf("   RETORNAR %c TELA DE T%cTULO? (S/N) ", Agrave, Iacute);
 	resposta = toupper(getch());
-	if (resposta == 'S')
+	if (resposta == 'S' || resposta == 13)
 	{
 		*estadoGameOver = TITULO;
 	}
@@ -403,9 +443,9 @@ bool dentroDaTela(int x, int y, int direcaoTela)
 		break;
 	}
 */
-	if (x < 0 || x > 100)
+	if (x < MINIMO_X || x > LIMITE_X)
 		retorno = false;
-	if (y < 0 || y > 30)
+	if (y < MINIMO_Y || y > LIMITE_Y)
 		retorno = false;
 
 	return retorno;
@@ -413,8 +453,8 @@ bool dentroDaTela(int x, int y, int direcaoTela)
 
 int aleatorio (int *x, int *y)
 {
-	*x = rand() % (LIMITE_X / 2);
-	*y = rand() % (LIMITE_Y / 2);
+	*x = (rand() % (LIMITE_X - MINIMO_X)) + MINIMO_X;
+	*y = (rand() % (LIMITE_Y - MINIMO_Y)) + MINIMO_Y;
 	return 0;
 }
 
@@ -479,7 +519,7 @@ void verificarSaida(int rota[100][2], int pontasAtuais[4], int X, int Y, int pas
   }
 }
 
-verificaFase(char * estadoFase, int portaFase[2], int X, int Y)
+void verificaFase(char * estadoFase, int portaFase[2], int X, int Y)
 {
   if (portaFase[0] == X && portaFase[1] == Y)
   {
@@ -488,7 +528,7 @@ verificaFase(char * estadoFase, int portaFase[2], int X, int Y)
   }
 }
 
-limparPortas(int saida[2], int x, int y)
+void limparPortas(int saida[2], int x, int y)
 {
 	if ((saida[0] != -1) && (saida[1] != -1))
 	{
@@ -498,4 +538,12 @@ limparPortas(int saida[2], int x, int y)
 	  saida[0] = -1;
 	  saida[1] = -1;
 	}
+}
+
+void atualizaPontuacao(int x, int y, int pontuacaoAtual)
+{
+	int xPlacar = 81, yPlacar = 1;
+	gotoxy(xPlacar, yPlacar);
+	printf("%05i", pontuacaoAtual);
+	gotoxy(x, y);
 }

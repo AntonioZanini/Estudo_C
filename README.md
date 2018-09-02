@@ -55,3 +55,7 @@ Uma simples descrição de progresso e visão sobre as atividades.
 
 - Maiores modificações no exercício de ponteiros, agora intitulado **Labirinto Dimensional**, iniciei a modulação do código e separei claramente os módulos de execução através do controle de estados durante a execução do jogo. Ainda existem as fases e a pontuação a serem implementadas, além de ajustes na movimentação, mas o jogo já está com uma boa aparência.
 - Pontuação e sistema de fases implementadas, é praticamente um incompleto jogo completo, falta polir bastante e otimizar o código (bastante), mas como parte do exercício farei apenas o suficiente para o seu propósito. Ao concluir irei criar um repositório apenas para este jogo, para aprimorá-lo futuramente.
+
+### Dia 6 (02/09/2018)
+
+- Múltiplos ajustes no exercício de ponteiros: limites, interface, pontuação e controle. Coisas simples, mas que fizeram uma boa diferença na UX. Já estou perto do ponto em que o programa pode ser considerado completo.
