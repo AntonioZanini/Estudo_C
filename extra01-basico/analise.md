@@ -28,3 +28,10 @@ Programa: **OPERAÇÕES**. Exercício sobre operações aritméticas controladas
 - O programa OPERAÇÕES foi um exercício para praticar mais as operações matemáticas e, ao começá-lo, procurei deixar o seu visual o mais interessante possível, não fiz nenhum milagre, mas o considero "elegante".
 - A utilização de valores _ASCII_ para consertar a barreira do idioma em relação ao Unicode deu um trabalho considerável, mas valeu a pena, principalmente ao não ter que escrever **operacao** não tela!
 - O nível de validação que fiz não era planejado inicialmente, mas a possibilidade se apresentou e me atirei nela, e ficou interessante. Eu poderia aprimorar ainda mais, porém não iria acrescentar muito ao resultado ou ao propósito do exercício.
+
+5. [**005-ponteiros.c**](005-ponteiros.c).
+
+Programa: **LABIRINTO FANTASMA**. Exercício de um jogo sobre a movimentação em um labirinto, envolvendo múltiplas funções e fluxo de dados através de ponteiros.
+- De início ele seria apenas algo como uma concatenação de caracteres de acordo com a direção de seu desenho, mas ao imaginar mais e descobrir como mover o cursor pela tela o objetivo subiu.
+- Várias pequenas descobertas me moveram durante o desenvolvimento: _rand()_, _system("COLOR")_, _SetConsoleCursorPosition()_ e _SetConsoleTextAttribute()_. Elas possibilitaram pequenos detalhes e grandes funcionalidades, aquela que mais me interessei é a _SetConsoleCursorPosition()_ que permite personalizar o fluxo de texto da _stdout_ possibilitando maior controle na saída de texto.
+- Este exercício me deu um grau de satisfação imenso, creio que nos próximos exercícios irei tentar me manter mais simples e objetivo.

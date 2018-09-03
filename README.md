@@ -60,3 +60,9 @@ Uma simples descrição de progresso e visão sobre as atividades.
 
 - Múltiplos ajustes no exercício de ponteiros: limites, interface, pontuação e controle. Coisas simples, mas que fizeram uma boa diferença na UX. Já estou perto do ponto em que o programa pode ser considerado completo.
 - Exercício implementado totalmente, para a conclusão faltam apenas o código comentado e a análise.
+
+### Dia 7 (03/09/2018)
+
+- O curso da UNITEN falhou comigo novamente, mais uma vez não tivemos aula e nem explicações sobre o ocorrido. Depois disso não tenho certeza da continuidade das aulas.
+
+- Exercício _005-ponteiros.c_ completo, depois de cinco dias trabalhando neste exercício já é hora de seguir em frente. Foi um grande aprendizado, principalmente no aspecto central, ponteiros. Consegui utilizá-los à exaustão! Agora estou mais acostumado com eles.
