@@ -59,3 +59,4 @@ Uma simples descrição de progresso e visão sobre as atividades.
 ### Dia 6 (02/09/2018)
 
 - Múltiplos ajustes no exercício de ponteiros: limites, interface, pontuação e controle. Coisas simples, mas que fizeram uma boa diferença na UX. Já estou perto do ponto em que o programa pode ser considerado completo.
+- Exercício implementado totalmente, para a conclusão faltam apenas o código comentado e a análise.

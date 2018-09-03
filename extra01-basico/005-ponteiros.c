@@ -41,9 +41,9 @@ typedef struct
 } bloco;
 
 int direcaoOposta(int direcaoNormal);
-int atribuirPontas(bloco * blocoAtual, int id, bool cima, bool direita, bool baixo, bool esquerda);
-int carregarBlocos(bloco * blocos) ;
-char procuraBloco(bloco * blocos, int direcaoLivre, int * blocoAnterior, int * blocoAtual);
+void atribuirPontas(bloco * blocoAtual, int id, bool cima, bool direita, bool baixo, bool esquerda);
+void carregarBlocos(bloco * blocos) ;
+char procuraBloco(bloco * blocos, int direcaoLivre, int * blocoAtual);
 bool verificaMoverRegistrarRota(int rota[100][2], int * x, int * y, int direcaoMovimento, int * passoAtual);
 bool dentroDaTela(int x, int y, int direcaoTela);
 int aleatorio (int *x, int *y);
@@ -51,7 +51,10 @@ void telaTitulo (char * estadoTitulo);
 void telaJogo (char * estadoJogo, int * pontuacao, int * fase);
 void telaGameOver(char * estadoGameOver, int pontuacaoFinal, int faseFinal);
 void telaMudaFase(int faseNova);
-void verificarSaida(int rota[100][2], int pontasAtuais[4], int X, int Y, int passoAtual, int localSaida[2], int nivelSaida);
+bool novoNaRota(int rota[100][2], int x, int y);
+void aparecerItem(int rota[100][2], int x, int y, int * saidaAtual, int * itemAtual);
+void verificaItem(int itemLocal[2], int X, int Y, int * itemBonus, int * pontuacao, int faseAtual);
+void verificarSaida(int rota[100][2], int pontasAtuais[4], int X, int Y, int passoAtual, int localSaida[2], int itemLocal[2], int itemBonus, int nivelSaida);
 void atualizaPontuacao(int x, int y, int pontuacaoAtual);
 void limparPortas(int saida[2], int x, int y);
 void verificaFase(char * estadoFase, int portaFase[2], int X, int Y);
@@ -98,7 +101,7 @@ void telaTitulo (char * estadoTitulo)
 
 	system("COLOR 0F");
 /*
-	  HANDLE  hConsole;
+	HANDLE  hConsole;
     int k;
     hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -133,6 +136,10 @@ void telaTitulo (char * estadoTitulo)
 		printf("|                                                                                                    |\n");
 		printf("|====================================================================================================|\n");
 		printf("|                                                                                                    |\n");
+		printf("|  %c - PORTA               %c - SUPRIMENTOS                                                           |\n", '\xDB', '\xDC');
+		printf("|                                                                                                    |\n");
+		printf("|====================================================================================================|\n");
+		printf("|                                                                                                    |\n");
 		printf("|  (J/[ENTER]) JOGAR        (S) SAIR                                                                 |\n");
 		printf("|                                                                                                    |\n");
 		printf("|====================================================================================================|\n\n");
@@ -160,7 +167,7 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 {
 	char caracterDir;
 	bloco blocos[11];
-	int blocoAnterior, blocoAtual = 10;
+	int blocoAtual = 10;
 	int numPasso = 0;
 	int path[100][2];
 	bool direcaoLivre = false;
@@ -168,6 +175,8 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 	int direcaoProximo;
 	int X, Y, i;
 	int portaSaida[2] = {-1, -1};
+	int itemLocal[2] = {-1, -1};
+	int itemBonus = 0;
 	for (i = 0; i < 100; i++)
 	{
 		path[i][0] = 0;
@@ -240,6 +249,11 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 				system("COLOR 4F");
 				getch();	
 			}
+			else
+			{
+				(*pontuacaoJogo) -= (1 * (*faseJogo));
+				atualizaPontuacao(X, Y, *pontuacaoJogo);
+			}
 		}
 		else
 		{
@@ -256,10 +270,12 @@ void telaJogo (char * estadoJogo, int * pontuacaoJogo, int * faseJogo)
 			{
 
 				verificaFase(estadoJogo, portaSaida, X, Y);
+				aparecerItem(path, X, Y, portaSaida, itemLocal);
+				verificaItem(itemLocal, X, Y, &itemBonus, pontuacaoJogo, *faseJogo);
 				limparPortas(portaSaida, X, Y);
 				gotoxy(X, Y);
-				printf("%c", procuraBloco(blocos, direcaoProximo, &blocoAnterior, &blocoAtual));
-				verificarSaida(path, blocos[blocoAtual].pontasAbertas, X, Y, numPasso, portaSaida, *faseJogo);
+				printf("%c", procuraBloco(blocos, direcaoProximo, &blocoAtual));
+				verificarSaida(path, blocos[blocoAtual].pontasAbertas, X, Y, numPasso, portaSaida, itemLocal, itemBonus, *faseJogo);
 				*pontuacaoJogo += 1 + (1 * (*faseJogo));
 				atualizaPontuacao(X, Y, *pontuacaoJogo);
 			}
@@ -307,7 +323,7 @@ void telaMudaFase(int faseNova)
 	system("COLOR 0F");
 }
 
-int carregarBlocos(bloco * blocos) 
+void carregarBlocos(bloco * blocos) 
 {
 	blocos[0].caracter = '\xB9';
 	atribuirPontas(blocos, 0, true, false, true, true);
@@ -331,7 +347,6 @@ int carregarBlocos(bloco * blocos)
 	atribuirPontas(blocos, 9, false, true, false, true);
 	blocos[10].caracter = '\xCE';
 	atribuirPontas(blocos, 10, true, true, true, true);
-	return 0;
 }
 
 void gotoxy(int x, int y)
@@ -342,24 +357,21 @@ void gotoxy(int x, int y)
   SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-int atribuirPontas(bloco blocoAtual[], int id, bool cima, bool direita, bool baixo, bool esquerda)
+void atribuirPontas(bloco blocoAtual[], int id, bool cima, bool direita, bool baixo, bool esquerda)
 {
 	blocoAtual[id].pontasAbertas[CIMA] = cima;
 	blocoAtual[id].pontasAbertas[DIREITA] = direita;
 	blocoAtual[id].pontasAbertas[BAIXO] = baixo;
 	blocoAtual[id].pontasAbertas[ESQUERDA] = esquerda;
-
-	return 0;
 }
 
-char procuraBloco(bloco * blocos, int direcao, int * blocoAnterior, int * blocoAtual)
+char procuraBloco(bloco * blocos, int direcao, int * blocoAtual)
 {
 	int dirOposta = direcaoOposta(direcao);
 	int r = 0;
 	do{
 		r = rand() % 11;
 	} while (blocos[r].pontasAbertas[dirOposta] != true);
-	blocoAnterior = blocoAtual;
 	*blocoAtual = r;
 	return blocos[r].caracter;
 }
@@ -426,23 +438,7 @@ bool verificaMoverRegistrarRota(int rota[100][2], int * x, int * y, int direcaoM
 bool dentroDaTela(int x, int y, int direcaoTela)
 {
 	bool retorno = true;
-/*
-	switch(direcaoTela)
-	{
-		case (CIMA):
-			y--;
-		break;
-		case (DIREITA):
-			x++;
-		break;
-		case (BAIXO):
-			y++;
-		break;
-		case (ESQUERDA):
-			x--;
-		break;
-	}
-*/
+
 	if (x < MINIMO_X || x > LIMITE_X)
 		retorno = false;
 	if (y < MINIMO_Y || y > LIMITE_Y)
@@ -458,14 +454,75 @@ int aleatorio (int *x, int *y)
 	return 0;
 }
 
-void verificarSaida(int rota[100][2], int pontasAtuais[4], int X, int Y, int passoAtual, int localSaida[2], int nivelSaida)
+void aparecerItem(int rota[100][2], int x, int y, int * saidaAtual, int * itemAtual)
+{
+	HANDLE  hConsole;
+	int itemMinX = ((MINIMO_X + x) / 2) + 15;
+	int itemMinY = (MINIMO_Y + y) / 2;
+	int itemMaxX = ((LIMITE_X + x) / 2) - 15;
+	int itemMaxY = (LIMITE_Y + y) / 2;
+	int itemX = 0, itemY = 0;
+	int chanceAparecer;
+
+	if (itemAtual[0] == -1 && itemAtual[1] == -1)
+	{
+		chanceAparecer = rand() % 100;
+
+		if (chanceAparecer < 10)
+		{
+			itemX = (rand() % (itemMaxX - itemMinX)) + itemMinX;
+			itemY = (rand() % (itemMaxY - itemMinY)) + itemMinY;
+	
+			if (novoNaRota(rota, itemX, itemY) && (saidaAtual[0] != itemX || saidaAtual[1] != itemY))
+			{
+				gotoxy(itemX, itemY);
+				hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        		SetConsoleTextAttribute(hConsole, 10);
+        		/*	Fundo Preto com a cor da letra brilhante:
+        			9 - Azul Es	10 - Verde	11 - Azul Cl	12 - Vermelho	13 - Purpura	14 - Amarelo	15 - Branco        */
+        		printf("%c", '\xDC');
+        		SetConsoleTextAttribute(hConsole, 15);
+        		itemAtual[0] = itemX;
+        		itemAtual[1] = itemY;
+        		gotoxy(x, y);
+			}
+		}
+	}
+}
+
+void verificaItem(int itemLocal[2], int X, int Y, int * itemBonus, int * pontuacao, int faseAtual)
+{
+  if (itemLocal[0] == X && itemLocal[1] == Y)
+  {
+    (*pontuacao) += 10 * faseAtual; 
+    (*itemBonus) = 30;
+    itemLocal[0] = -1;
+    itemLocal[1] = -1;
+  }
+}
+
+bool novoNaRota(int rota[100][2], int x, int y)
+{
+	int i;
+	bool resultado = true;
+	for (i = 0; i < 100; i++)
+	{
+  		if ((rota[i][0] == x) && (rota[i][1] == y))
+  		{
+    		resultado = false;
+  		}
+	}
+	return resultado;
+}
+
+void verificarSaida(int rota[100][2], int pontasAtuais[4], int X, int Y, int passoAtual, int localSaida[2], int itemLocal[2], int itemBonus, int nivelSaida)
 {
   HANDLE  hConsole;
   int chancesSaidaAparecer, direcao, i, x, y;
   int direcoesTestadas[4] = {CIMA, DIREITA,BAIXO, ESQUERDA};
   bool direcaoVazia;
   chancesSaidaAparecer = rand() % 100;
-  if (chancesSaidaAparecer < ((passoAtual / 2) - (nivelSaida * 5)))
+  if (chancesSaidaAparecer < ((passoAtual / 2) - (nivelSaida * 5) + itemBonus))
   {
     for (direcao = 0; direcao < 4; direcao++)
     {
@@ -489,12 +546,10 @@ void verificarSaida(int rota[100][2], int pontasAtuais[4], int X, int Y, int pas
             x--;
           break;
         }
-        for (i = 0; i < 100; i++)
+        direcaoVazia = novoNaRota(rota, x, y);
+        if (itemLocal[0] == x && itemLocal[1] == y)
         {
-          if ((rota[i][0] == x) && (rota[i][1] == y))
-          {
-            direcaoVazia = false;
-          }
+        	direcaoVazia = false;
         }
       }
       else
@@ -547,3 +602,4 @@ void atualizaPontuacao(int x, int y, int pontuacaoAtual)
 	printf("%05i", pontuacaoAtual);
 	gotoxy(x, y);
 }
+
