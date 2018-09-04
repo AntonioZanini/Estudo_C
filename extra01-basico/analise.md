@@ -35,3 +35,8 @@ Programa: **LABIRINTO FANTASMA**. Exercício de um jogo sobre a movimentação e
 - De início ele seria apenas algo como uma concatenação de caracteres de acordo com a direção de seu desenho, mas ao imaginar mais e descobrir como mover o cursor pela tela o objetivo subiu.
 - Várias pequenas descobertas me moveram durante o desenvolvimento: _rand()_, _system("COLOR")_, _SetConsoleCursorPosition()_ e _SetConsoleTextAttribute()_. Elas possibilitaram pequenos detalhes e grandes funcionalidades, aquela que mais me interessei é a _SetConsoleCursorPosition()_ que permite personalizar o fluxo de texto da _stdout_ possibilitando maior controle na saída de texto.
 - Este exercício me deu um grau de satisfação imenso, creio que nos próximos exercícios irei tentar me manter mais simples e objetivo.
+
+6. [**006-recursividade-fatorial.c**](006-recursividade-fatorial.c).
+
+Exercício extremamente simples, nenhum recurso novo da linguagem C, o maior benefício é exercitar conceitos da lógica de programação, nesse caso, a **recursividade**.
+- Imaginei que fosse ter mais dificuldades na lógica, mas foi bem simples. Como é praticamente um enigna lógico fiz um [algoritmo](006-algoritmo.txt) deste exercício antes do programa para me preocupar apenas com a sua lógica.

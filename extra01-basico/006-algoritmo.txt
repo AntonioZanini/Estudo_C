@@ -1,0 +1,18 @@
+Inteiro Fatorial (Inteiro n)
+InÍCIO
+	Inteiro total ← n;
+	SE (n > 1)
+	EnTÃO
+		total ← total * Fatorial(n - 1);
+	FIM SE
+	RETORnA total; 
+FIM.
+
+Algoritmo Principal()
+InÍCIO
+	Inteiro valor, resultado;
+	ESCREVA ("DIGITE NÚMERO PARA FATORIAL:")
+	LEIA (valor);
+	resultado ← Fatorial(valor);
+	ESCREVA (resultado);
+FIM.
