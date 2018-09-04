@@ -66,3 +66,9 @@ Uma simples descrição de progresso e visão sobre as atividades.
 - O curso da UNITEN falhou comigo novamente, mais uma vez não tivemos aula e nem explicações sobre o ocorrido. Depois disso não tenho certeza da continuidade das aulas.
 
 - Exercício _005-ponteiros.c_ completo, depois de cinco dias trabalhando neste exercício já é hora de seguir em frente. Foi um grande aprendizado, principalmente no aspecto central, ponteiros. Consegui utilizá-los à exaustão! Agora estou mais acostumado com eles.
+
+- Arquivo de estudo _006-recursividade-fatorial.c_ criado.
+- Exercício lógico de recursividade, foi bem rápido e preciso.
+
+- Arquivo de estudo _007-strings-criptografia.c_ criado.
+- Exercício um pouco ambicioso que cria uma chave de encriptação aleatória e faz substituições simples porém duplicando a quantidade de caracteres. A criptografia está funcionando, agora falta o processo reverso.

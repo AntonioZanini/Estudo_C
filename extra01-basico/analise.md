@@ -39,4 +39,4 @@ Programa: **LABIRINTO FANTASMA**. Exercício de um jogo sobre a movimentação e
 6. [**006-recursividade-fatorial.c**](006-recursividade-fatorial.c).
 
 Exercício extremamente simples, nenhum recurso novo da linguagem C, o maior benefício é exercitar conceitos da lógica de programação, nesse caso, a **recursividade**.
-- Imaginei que fosse ter mais dificuldades na lógica, mas foi bem simples. Como é praticamente um enigna lógico fiz um [algoritmo](006-algoritmo.txt) deste exercício antes do programa para me preocupar apenas com a sua lógica.
+- Imaginei que fosse ter mais dificuldades na lógica, mas foi bem simples. Como é praticamente um enigma lógico fiz um [algoritmo](006-algoritmo.txt) deste exercício antes do programa para me preocupar apenas com a sua lógica.

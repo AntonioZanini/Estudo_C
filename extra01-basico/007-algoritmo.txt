@@ -1,0 +1,87 @@
+TIPO
+UnidadeCripto = REGISTRO
+	Alfa: Caractere
+	Cripto: Caractere[0..2]
+FIM REGISTRO
+
+CONSTANTE Alfabeto ← {"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"}
+
+Algoritmo Principal()
+INÍCIO
+	Chave : UnidadeCripto[0.51]
+	Palavra : Caractere[20]
+	Codigo : Caractere[40]
+
+	Chave ← CarregaChave();
+
+	ESCREVA("Insira uma palavra para ser criptografada:");
+	LEIA (Palavra);
+	Codigo ← Criptografa(Palavra, Chave);
+	ESCREVA("Valor criptografado: " + Codigo);
+
+FIM
+
+
+Caractere[] Criptografa (Caractere[] Original, UnidadeCripto[] Chave)
+INÍCIO
+	Tamanho, y , BuscaIndice: Inteiro
+	Criptografado : Caractere[0..(Comprimento(Original) * 2)]
+
+	Criptografado ← "";
+	Tamanho ← Comprimento(Original[y]);
+	PARA (y ← 0; y < Tamanho; y++)
+		BuscaIndice ← ProcuraCaractere(Original[y]);
+		SE (BuscaIndice = -1)
+			Criptografado ← CONCATENA(Criptografado, CONCATENA(Original[y], Original[y]));
+		SENÃO
+			Criptografado ← CONCATENA(Criptografado, Chave[BuscaIndice].Cripto);
+		FIM SE
+	FIM PARA
+	RETORNA Criptografado;
+FIM
+
+UnidadeCripto[] CarregarChave ()
+INÍCIO
+	
+	Chave: UnidadeCripto[0..51]
+	ValorNovo: Caractere[0..2]
+	R1, R2: Inteiro;
+	Inteiro: i;
+
+	PARA (i ← 0; i < 52; i++)
+		Chave[i].Alfa ← Alfabeto[x]; 
+		FAÇA 
+			R1 ← random(0..51);
+			R2 ← random(0..51);
+			ValorNovo ← CONCATENA(Alfabeto[R1], Alfabeto[R2]);
+		ENQUANTO (JaExisteEM(ValorNovo, Chave) OU (R1 <> R2)) FIM FAÇA
+		Chave[i].Cripto ← ValorNovo;
+	FIM PARA
+	RETORNA Chave;
+FIM
+
+Lógico JaExisteEM(Caractere Unidade[0..2], UnidadeCripto Coleção[0..51])
+INÍCIO
+	Encontrado : Lógico;
+	Encontrado ← Falso;
+	x : Inteiro;
+	PARA (x ← 0; x < 52; x++)
+		SE (Unidade = Coleção[x].Cripto)
+			Encontrado ← Verdadeiro;
+		FIM SE
+	FIM PARA
+	RETORNA Encontrado;
+FIM
+
+Inteiro ProcuraCaractere(Caractere X)
+INÍCIO
+	a: Inteiro;
+	Resultado : Inteiro;
+	Resultado ← -1;
+	PARA (a ← 0; a < 52; a++)
+		SE (X = Alfabeto[a])
+			Resultado ← a;
+		FIM SE
+	FIM PARA
+	RETORNA Resultado;
+FIM

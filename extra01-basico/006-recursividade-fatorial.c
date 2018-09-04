@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <conio.h>
 
+/* Exercício de recursividade, ele realiza o cálculo de fatorial através das execuções recursivas da função fatorial. */
+
 long fatorial(int n);
 
 int main()
