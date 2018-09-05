@@ -11,6 +11,7 @@ INÍCIO
 	Chave : UnidadeCripto[0.51]
 	Palavra : Caractere[20]
 	Codigo : Caractere[40]
+	Decodificado : Caractere[20]
 
 	Chave ← CarregaChave();
 
@@ -19,8 +20,32 @@ INÍCIO
 	Codigo ← Criptografa(Palavra, Chave);
 	ESCREVA("Valor criptografado: " + Codigo);
 
+	Decodificado ← Descriptografar(Codigo, Chave);
+
+	ESCREVA("Valor descriptografado: " + Decodificado);
+
 FIM
 
+
+Caractere[] Descriptografar (Caractere[] Codigo, UnidadeCripto[] Chave)
+INÍCIO
+	Decodificado : Caractere[0..(Comprimento(Codigo) / 2)]
+	BuscaIndice, z, c1 = 0, c2 = 1, Tamanho: Inteiro
+
+	Decodificado ← "";
+	Tamanho ← Comprimento(Codigo) / 2;
+	PARA (z ← 0; z < Tamanho; z++)
+		BuscaIndice ← ProcuraCripto(Codigo[c1], Codigo[c2], Chave);
+		SE (BuscaIndice = -1)
+			Decodificado ← CONCATENA(Decodificado, Codigo[c1]);
+		SENÃO
+			Decodificado ← CONCATENA(Decodificado, Chave[BuscaIndice].Alfa);
+		FIM SE
+		c1 ← c1 + 2;
+		c2 ← c1 + 1;
+	FIM PARA
+	RETORNA Decodificado;
+FIM
 
 Caractere[] Criptografa (Caractere[] Original, UnidadeCripto[] Chave)
 INÍCIO
@@ -28,7 +53,7 @@ INÍCIO
 	Criptografado : Caractere[0..(Comprimento(Original) * 2)]
 
 	Criptografado ← "";
-	Tamanho ← Comprimento(Original[y]);
+	Tamanho ← Comprimento(Original);
 	PARA (y ← 0; y < Tamanho; y++)
 		BuscaIndice ← ProcuraCaractere(Original[y]);
 		SE (BuscaIndice = -1)
@@ -81,6 +106,24 @@ INÍCIO
 	PARA (a ← 0; a < 52; a++)
 		SE (X = Alfabeto[a])
 			Resultado ← a;
+		FIM SE
+	FIM PARA
+	RETORNA Resultado;
+FIM
+
+Caractere ProcuraCripto(Caractere letra1, Caractere letra2, Caractere[] Chave)
+INÍCIO
+	x: Inteiro;
+	Resultado: Inteiro;
+	Busca : Caractere[0..1];
+
+	Resultado ← -1;
+	Busca[0] ← letra1;
+	Busca[1] ← letra2;
+
+	PARA (x ← 0; x < 52; x++)
+		SE (Busca = Chave[x].Cripto)
+			Resultado ← x;
 		FIM SE
 	FIM PARA
 	RETORNA Resultado;

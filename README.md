@@ -67,8 +67,14 @@ Uma simples descrição de progresso e visão sobre as atividades.
 
 - Exercício _005-ponteiros.c_ completo, depois de cinco dias trabalhando neste exercício já é hora de seguir em frente. Foi um grande aprendizado, principalmente no aspecto central, ponteiros. Consegui utilizá-los à exaustão! Agora estou mais acostumado com eles.
 
+### Dia 8 (04/09/2018)
+
 - Arquivo de estudo _006-recursividade-fatorial.c_ criado.
 - Exercício lógico de recursividade, foi bem rápido e preciso.
 
 - Arquivo de estudo _007-strings-criptografia.c_ criado.
 - Exercício um pouco ambicioso que cria uma chave de encriptação aleatória e faz substituições simples porém duplicando a quantidade de caracteres. A criptografia está funcionando, agora falta o processo reverso.
+
+### Dia 9 (05/09/2018)
+
+- Exercício _007-strings-criptografia.c_ completo, a descriptografia foi adicionada e a apresentação foi levemente melhorada. Um interessante exercício que exigiu bastante manipulação de strings.

@@ -40,3 +40,9 @@ Programa: **LABIRINTO FANTASMA**. Exercício de um jogo sobre a movimentação e
 
 Exercício extremamente simples, nenhum recurso novo da linguagem C, o maior benefício é exercitar conceitos da lógica de programação, nesse caso, a **recursividade**.
 - Imaginei que fosse ter mais dificuldades na lógica, mas foi bem simples. Como é praticamente um enigma lógico fiz um [algoritmo](006-algoritmo.txt) deste exercício antes do programa para me preocupar apenas com a sua lógica.
+
+7. [**007-strings-criptografia.c**](007-strings-criptografia.c).
+
+Programa: **CRIPTOGRAFIA**. [Algoritmo](007-algoritmo.txt). Exercício composto pela captura de uma cadeia de caracteres e criptografá-la e descriptografá-la por substituição com uma chave dupla criada aleatoriamente no início de sua execução.
+- Este exercício impôs boas horas manipulando as limitadas cadeias de caractere da linguagem C. Tive que contorná-las, mas não foram tão problemáticas assim.
+- Com algoritmo construído de antemão, a parte de programação demorou apenas ao perceber alguns erros de digitação e implementar algumas funções auxiliares, comparado com o exercício de ponteiros este foi extremamente rápido.
