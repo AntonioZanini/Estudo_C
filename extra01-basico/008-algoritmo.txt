@@ -1,0 +1,79 @@
+Algoritmo Principal
+INÍCIO
+Lista : Inteiro[0..10];
+
+ESCREVA("INSIRA UMA SEQUÊNCIA DE NÚMEROS: ");
+LEIA(Lista);
+Lista ← OrdenaBolha(Lista , 10);
+ESCREVA(Lista);
+
+FIM
+
+Inteiro[] OrdenaBolha(Inteiro[] Ordenar, Inteiro NumElementos)
+INÍCIO
+	x, aux, numComp: Inteiro;
+	novamente : Lógico;
+	aux ← 0;
+	numComp ← 0;
+	FAÇA
+		novamente ← FALSO;
+		PARA (x ← 0; x < (NumElementos - 1); x++)
+			SE (Ordenar[x] > Ordenar[x+1])
+				aux ← Ordenar[x];
+				Ordenar[x] ←  Ordenar[x+1];
+				Ordenar[x+1] ← aux;
+				novamente ← VERDADEIRO;
+			FIM SE
+			numComp ← numComp + 1;
+		FIM PARA
+	ENQUANTO (novamente = VERDADEIRO)
+FIM
+
+Inteiro[] OrdenaSelecao(Inteiro[] Ordenar, Inteiro NumElementos)
+INÍCIO
+	x, aux, indaux, numComp, ordenado, limite: Inteiro;
+	novamente : Lógico;
+	novamente ← FALSO;
+	x ← 1;
+	ordenado ← 0;
+	aux ← Ordenar[0];
+	indaux ← 0;
+	FAÇA
+		SE (aux < Ordenar[x])
+			aux ← Ordenar[x];
+			indaux ← x;
+			novamente ← VERDADEIRO;
+		FIM SE
+		numComp ← numComp + 1;
+		x ← x + 1;
+		SE (x => (NumElementos - ordenado))
+			Ordenar[indaux] ← Ordenar[x-1]
+			Ordenar[x-1] ← aux;
+			indaux ← 0;
+			aux ← Ordenar[0];
+			x ← 1;
+			ordenado ← ordenado + 1;
+			novamente ← FALSO;
+		FIM SE
+	ENQUANTO (novamente = VERDADEIRO)
+FIM
+
+limite ← NumElementos;
+FAÇA
+	novamente ← FALSO;
+	indaux ← 0;
+	aux ← Ordenar[0]
+	PARA (x ← 1; x < limite; x++)
+		SE (aux < Ordenar[x])
+			aux ← Ordenar[x];
+			indaux ← x;
+		FIM SE
+		numComp ← numComp + 1;
+	FIM PARA
+	SE (aux > Ordenar[x])
+		Ordenar[indaux] ← Ordenar[x];
+		Ordenar[x-1] ← aux;
+		novamente ← VERDADEIRO;
+		limite ← limite - 1;
+	FIM SE
+ENQUANTO (novamente = VERDADEIRO)
