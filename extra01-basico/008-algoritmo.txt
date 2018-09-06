@@ -1,79 +1,79 @@
 Algoritmo Principal
 INÍCIO
-Lista : Inteiro[0..10];
+Lista, LB, LS, LI : Inteiro[0..10];
 
 ESCREVA("INSIRA UMA SEQUÊNCIA DE NÚMEROS: ");
 LEIA(Lista);
-Lista ← OrdenaBolha(Lista , 10);
-ESCREVA(Lista);
+LB ← OrdenaBolha(Lista , 10);
+LS ← OrdenaBolha(Lista , 10);
+LI ← OrdenaBolha(Lista , 10);
+ESCREVA("BOLHA");
+ESCREVA(LB);
+ESCREVA("SELEÇÃO");
+ESCREVA(LS);
+ESCREVA("INSERÇÃO");
+ESCREVA(LI);
 
 FIM
 
 Inteiro[] OrdenaBolha(Inteiro[] Ordenar, Inteiro NumElementos)
 INÍCIO
-	x, aux, numComp: Inteiro;
+	x, aux, UltimoOrdenado: Inteiro;
 	novamente : Lógico;
 	aux ← 0;
-	numComp ← 0;
+	UltimoOrdenado ← (NumElementos - 1);
 	FAÇA
 		novamente ← FALSO;
-		PARA (x ← 0; x < (NumElementos - 1); x++)
+		PARA (x ← 0; x < (UltimoOrdenado); x++)
 			SE (Ordenar[x] > Ordenar[x+1])
 				aux ← Ordenar[x];
 				Ordenar[x] ←  Ordenar[x+1];
 				Ordenar[x+1] ← aux;
 				novamente ← VERDADEIRO;
 			FIM SE
-			numComp ← numComp + 1;
 		FIM PARA
+		UltimoOrdenado ← x;
 	ENQUANTO (novamente = VERDADEIRO)
 FIM
 
 Inteiro[] OrdenaSelecao(Inteiro[] Ordenar, Inteiro NumElementos)
 INÍCIO
-	x, aux, indaux, numComp, ordenado, limite: Inteiro;
-	novamente : Lógico;
-	novamente ← FALSO;
-	x ← 1;
-	ordenado ← 0;
-	aux ← Ordenar[0];
-	indaux ← 0;
+	x, aux, indaux, ordenado, primeiro: Inteiro;
+	primeiro ← 0;
+	aux ← Ordenar[primeiro];
 	FAÇA
-		SE (aux < Ordenar[x])
-			aux ← Ordenar[x];
-			indaux ← x;
-			novamente ← VERDADEIRO;
-		FIM SE
-		numComp ← numComp + 1;
-		x ← x + 1;
-		SE (x => (NumElementos - ordenado))
-			Ordenar[indaux] ← Ordenar[x-1]
-			Ordenar[x-1] ← aux;
-			indaux ← 0;
-			aux ← Ordenar[0];
-			x ← 1;
-			ordenado ← ordenado + 1;
-			novamente ← FALSO;
-		FIM SE
-	ENQUANTO (novamente = VERDADEIRO)
+		indaux ← primeiro;
+		aux ← Ordenar[indaux]
+		PARA (x ← primeiro+1; x < NumElementos; x++)
+			SE (aux > Ordenar[x])
+				aux ← Ordenar[x];
+				indaux ← x;
+			FIM SE
+		FIM PARA
+		Ordenar[indaux] ← Ordenar[primeiro]
+		Ordenar[primeiro] ← aux;
+		primeiro ← primeiro + 1;
+	ENQUANTO (primeiro < (NumElementos - 1))
+	RETORNA Ordenar;
 FIM
 
-limite ← NumElementos;
-FAÇA
-	novamente ← FALSO;
-	indaux ← 0;
-	aux ← Ordenar[0]
-	PARA (x ← 1; x < limite; x++)
-		SE (aux < Ordenar[x])
-			aux ← Ordenar[x];
-			indaux ← x;
+Inteiro[] OrdenaInsercao(Inteiro[] Ordenar, Inteiro NumElementos)
+INÍCIO
+	y, x, indSorted, indSorting, aux : Inteiro;
+	indSorted ← 0;
+	PARA (x ← (indSorted+1); x < NumElementos; x++)
+		SE (Ordenar[indSorted] > Ordenar[x])
+			indSorting ← x;
+			PARA (y ← (x - 1); y>=0; y--)
+				SE (Ordenar[y] > Ordenar[indSorting])
+					aux ← Ordenar[y];
+					Ordenar[y] ← Ordenar[indSorting];
+					Ordenar[indSorting] ← aux;
+					indSorting ← y;
+				FIM SE
+			FIM PARA
 		FIM SE
-		numComp ← numComp + 1;
-	FIM PARA
-	SE (aux > Ordenar[x])
-		Ordenar[indaux] ← Ordenar[x];
-		Ordenar[x-1] ← aux;
-		novamente ← VERDADEIRO;
-		limite ← limite - 1;
+		indSorted ← x;
 	FIM SE
-ENQUANTO (novamente = VERDADEIRO)
+	RETORNA Ordenar;
+FIM

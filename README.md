@@ -78,3 +78,8 @@ Uma simples descrição de progresso e visão sobre as atividades.
 ### Dia 9 (05/09/2018)
 
 - Exercício _007-strings-criptografia.c_ completo, a descriptografia foi adicionada e a apresentação foi levemente melhorada. Um interessante exercício que exigiu bastante manipulação de strings.
+
+### Dia 10 (06/09/2018)
+
+- Arquivo de estudo _008-strings-criptografia.c_ criado.
+- Exercício envolvendo mais lógica que programação, revendo métodos de ordenação e criando seus algoritmos e programas. Até agora foram implementadas as ordenações por _Bolha_, _Seleção_ e _Inserção_.
