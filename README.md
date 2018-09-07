@@ -83,3 +83,7 @@ Uma simples descrição de progresso e visão sobre as atividades.
 
 - Arquivo de estudo _008-strings-criptografia.c_ criado.
 - Exercício envolvendo mais lógica que programação, revendo métodos de ordenação e criando seus algoritmos e programas. Até agora foram implementadas as ordenações por _Bolha_, _Seleção_ e _Inserção_.
+
+### Dia 11 (07/09/2018)
+
+- Adicionado o método de ordenação Quick Sort ao exercício extra 08. Algoritmo criado e passado sem erros aparentes em C (pelo menos na versão do compilador por browser).
