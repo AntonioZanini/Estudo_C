@@ -21,7 +21,7 @@ void CopiaLista(int * original, int * lista);
 
 int main ()
 {
-	int original[COMPRIMENTO], lb[COMPRIMENTO], ls[COMPRIMENTO], li[COMPRIMENTO];
+	int original[COMPRIMENTO], lb[COMPRIMENTO], ls[COMPRIMENTO], li[COMPRIMENTO], lq[COMPRIMENTO];
 	int i;
 
 	GerarOriginal(original);
@@ -29,10 +29,12 @@ int main ()
 	CopiaLista(original, lb);
 	CopiaLista(original, ls);
 	CopiaLista(original, li);
+	CopiaLista(original, lq);
 
 	OrdenaBolha(lb);
 	OrdenaSelecao(ls);
 	OrdenaInsercao(li);
+	OrdenaQuick(lq);
 
 	printf("=============================================================================\n\n");
 	printf("                                  ORDENA%c%cES\n\n", Ccedil, Otilde);
@@ -71,6 +73,16 @@ int main ()
 	for (i = 0; i < COMPRIMENTO; i++)
 	{
 		printf("%i", li[i]);
+		if (i == (COMPRIMENTO - 1))
+			printf("\n");
+		else
+			printf("-");
+	}
+	printf("\n=============================================================================\n\n");
+	printf("                         ORDENA%c%cO POR QUCK SORT: ", Ccedil, Atilde);
+	for (i = 0; i < COMPRIMENTO; i++)
+	{
+		printf("%i", lq[i]);
 		if (i == (COMPRIMENTO - 1))
 			printf("\n");
 		else
@@ -144,6 +156,36 @@ void OrdenaInsercao(int * lista)
 			}
 		}
 		indSorted = x;
+	}
+}
+
+void OrdenaQuick(int * lista)
+{
+	QuickSetor(lista, 0, (COMPRIMENTO - 1));
+}
+
+void QuickSetor(int * lista, int inicial, int final)
+{
+	int pivot, wall, x, aux;
+	pivot = final;
+	wall = inicial;
+	if (inicial < final)
+	{
+		for (x = inicial; x < final; x++)
+		{
+			if (lista[pivot] > lista[x])
+			{
+				aux = lista[wall];
+				lista[wall] = lista[x];
+				lista[x] = aux;
+				wall++;
+			}
+		}
+		aux = lista[wall];
+		lista[wall] = lista[pivot];
+		lista[pivot] = aux;
+		QuickSetor(lista, inicial, (wall - 1));
+		QuickSetor(lista, (wall + 1), final);
 	}
 }
 
