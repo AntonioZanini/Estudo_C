@@ -1,18 +1,21 @@
 Algoritmo Principal
 INÍCIO
-Lista, LB, LS, LI : Inteiro[0..10];
+Lista, LB, LS, LI, LQ: Inteiro[0..10];
 
 ESCREVA("INSIRA UMA SEQUÊNCIA DE NÚMEROS: ");
 LEIA(Lista);
 LB ← OrdenaBolha(Lista , 10);
-LS ← OrdenaBolha(Lista , 10);
-LI ← OrdenaBolha(Lista , 10);
+LS ← OrdenaSelecao(Lista , 10);
+LI ← OrdenaInsercao(Lista , 10);
+LQ ← OrdenaQuick(Lista, 10);
 ESCREVA("BOLHA");
 ESCREVA(LB);
 ESCREVA("SELEÇÃO");
 ESCREVA(LS);
 ESCREVA("INSERÇÃO");
 ESCREVA(LI);
+ESCREVA("QUICK SORT");
+ESCREVA(LQ);
 
 FIM
 
@@ -74,6 +77,34 @@ INÍCIO
 			FIM PARA
 		FIM SE
 		indSorted ← x;
+	FIM SE
+	RETORNA Ordenar;
+FIM
+
+Inteiro[] OrdenaQuick(Inteiro[] Ordenar, Inteiro NumElementos)
+INÍCO
+	RETORNA OrdenaSetor(Ordenar, 0, (NumElementos -1));
+FIM
+
+Inteiro[] OrdenaSetor(Inteiro[] Ordenar, Inteiro Inicial, Inteiro Final)
+INÍCIO
+	pivot, wall, x, aux: Inteiro;
+	pivot ← Final;
+	wall ← Inicial;
+	SE (Inicial < Final)
+		PARA (x ← Inicial; x < Final; x++)
+			SE (Ordenar[pivot] > Ordenar[x])
+				aux ← Ordenar[wall];
+				Ordenar[wall] ← Ordenar[x];
+				Ordenar[x] ← aux;
+				wall ← wall + 1;
+			FIM SE
+		FIM PARA
+		aux ← Ordenar[wall];
+		Ordenar[wall] ← Ordenar[pivot];
+		Ordenar[pivot] ← aux;
+		Ordenar[Inicial..(wall -1)] ← OrdenaSetor(Ordenar, Inicial, (wall -1));
+		Ordenar[Inicial..(wall +1)] ← OrdenaSetor(Ordenar, (wall +1), Final);
 	FIM SE
 	RETORNA Ordenar;
 FIM
