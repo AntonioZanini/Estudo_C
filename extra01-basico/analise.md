@@ -46,3 +46,8 @@ Exercício extremamente simples, nenhum recurso novo da linguagem C, o maior ben
 Programa: **CRIPTOGRAFIA**. [Algoritmo](007-algoritmo.txt). Exercício composto pela captura de uma cadeia de caracteres e criptografá-la e descriptografá-la por substituição com uma chave dupla criada aleatoriamente no início de sua execução.
 - Este exercício impôs boas horas manipulando as limitadas cadeias de caractere da linguagem C. Tive que contorná-las, mas não foram tão problemáticas assim.
 - Com algoritmo construído de antemão, a parte de programação demorou apenas ao perceber alguns erros de digitação e implementar algumas funções auxiliares, comparado com o exercício de ponteiros este foi extremamente rápido.
+
+8. [**008-ordenacao.c**](_008-ordenacao.c_).
+
+Programa: **ORDENAÇÕES**. [Algoritmo](008-algoritmo.txt). Exercício composto por geração de valores inteiros aleatórios e a sua ordenação através de múltiplos métodos.
+- Este exercício não impôs muitos desafios de programação ou lógica, mas sua prática custou bem mais tempo em algoritmo do que em implementação do código, provando que uma lógica bem trabalhada sempre facilita o trabalho na hora da criação do código.

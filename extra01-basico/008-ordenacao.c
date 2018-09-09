@@ -4,12 +4,14 @@
 
 /* Programa: ORDENAÇÕES */
 /* Descrição: */
-/* Programa que gera uma sequência numérica e a ordena utilizando multiplos algoritmos de ordenação. */
+/* Programa que gera uma sequência numérica e a ordena utilizando múltiplos algoritmos de ordenação. */
 
-#define FAIXA 100
-#define COMPRIMENTO 10
 
-#define Ccedil '\x80'
+/* CONSTANTES */
+#define FAIXA 100					/* Constantes de para facilitar alteração de valores chave do programa, */
+#define COMPRIMENTO 10				/* como faixa para a geração de números aleatórios ou o comprimento padrão das matrizes. */
+
+#define Ccedil '\x80'				/* Constantes para exibição de caracteres utf-8. */
 #define Atilde '\xC7'
 #define Otilde '\xE5'
 
@@ -20,22 +22,22 @@ void GerarOriginal(int * lista);
 void CopiaLista(int * original, int * lista);
 
 int main ()
-{
+{	/* Declaração das matrizes utilizadas, a que receberá os números aleatórios e as que receberão as ordenações. */
 	int original[COMPRIMENTO], lb[COMPRIMENTO], ls[COMPRIMENTO], li[COMPRIMENTO], lq[COMPRIMENTO];
 	int i;
 
-	GerarOriginal(original);
-	
+	GerarOriginal(original);		/* Chama função que gera número aleatórios e preenche a matriz original, */
+									/* a geração é baseada nos valores de FAIXA e COMPRIMENTO. */
 	CopiaLista(original, lb);
-	CopiaLista(original, ls);
-	CopiaLista(original, li);
+	CopiaLista(original, ls);		/* Executa função que copia a matriz aleatória para cada uma das matrizes a */
+	CopiaLista(original, li);		/* serem ordenadas. */
 	CopiaLista(original, lq);
 
-	OrdenaBolha(lb);
+	OrdenaBolha(lb);				/* Executa a função de ordenação enviando uma matriz a sua respectiva função. */
 	OrdenaSelecao(ls);
 	OrdenaInsercao(li);
 	OrdenaQuick(lq);
-
+									/* Tela de Exibição. */
 	printf("=============================================================================\n\n");
 	printf("                                  ORDENA%c%cES\n\n", Ccedil, Otilde);
 	printf("=============================================================================\n\n");
@@ -92,7 +94,7 @@ int main ()
 	return 0;
 }
 
-void OrdenaBolha(int * lista)
+void OrdenaBolha(int * lista)			/* Função que realizada a ordenação de uma matriz numérica por BubbleSort */
 {
 	int x, aux =0, ultimoOrdenado;
 	bool novamente;
@@ -114,7 +116,7 @@ void OrdenaBolha(int * lista)
 	} while (novamente);
 }
 
-void OrdenaSelecao(int * lista)
+void OrdenaSelecao(int * lista)			/* Função que realizada a ordenação de uma matriz numérica por SelectionSort */
 {
 	int x, aux, indAux, primeiro = 0;
 	aux = primeiro;
@@ -136,7 +138,7 @@ void OrdenaSelecao(int * lista)
 	} while (primeiro < (COMPRIMENTO -1));
 }
 
-void OrdenaInsercao(int * lista)
+void OrdenaInsercao(int * lista)		/* Função que realizada a ordenação de uma matriz numérica por InsertionSort */
 {
 	int y, x, indSorted = 0, indSorting, aux;
 	for (x = indSorted+1; x < COMPRIMENTO; x++)
@@ -159,13 +161,13 @@ void OrdenaInsercao(int * lista)
 	}
 }
 
-void OrdenaQuick(int * lista)
+void OrdenaQuick(int * lista)		/* Função que realizada a ordenação de uma matriz numérica por QuickSort */
 {
 	QuickSetor(lista, 0, (COMPRIMENTO - 1));
 }
 
-void QuickSetor(int * lista, int inicial, int final)
-{
+void QuickSetor(int * lista, int inicial, int final)	/* Função efetiva que realiza o processo de QuickSort através de  */
+{														/* execuções recursivas. */
 	int pivot, wall, x, aux;
 	pivot = final;
 	wall = inicial;
@@ -189,8 +191,8 @@ void QuickSetor(int * lista, int inicial, int final)
 	}
 }
 
-void GerarOriginal(int * lista)
-{
+void GerarOriginal(int * lista)						/* Função que gera uma matriz aleatória de COMPRIMENTO números com */
+{													/* valores que varias de 0 à FAIXA - 1. */
 	int x;
 	srand(time(NULL));
 	for (x = 0; x < COMPRIMENTO; x++)
@@ -199,7 +201,7 @@ void GerarOriginal(int * lista)
 	}
 }
 
-void CopiaLista(int * original, int * lista)
+void CopiaLista(int * original, int * lista)		/* Função que copia cada elemento de uma matriz inteira para outra. */
 {
 	int x;
 	for (x = 0; x < COMPRIMENTO; x++)
