@@ -87,3 +87,8 @@ Uma simples descrição de progresso e visão sobre as atividades.
 ### Dia 11 (07/09/2018)
 
 - Adicionado o método de ordenação Quick Sort ao exercício extra 08. Algoritmo criado e passado sem erros aparentes em C (pelo menos na versão do compilador por browser).
+
+### Dia 12 (08/09/2018)
+
+- Arquivo de estudo _009-listas.c_ criado.
+- Exercício com listas e as funcionalidades necessárias para a sua utilização. Será um exercício simples, porém deve ter uma abrangência considerável para abordar os tópicos necessários.
