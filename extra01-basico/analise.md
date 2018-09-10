@@ -56,11 +56,13 @@ Programa: **ORDENAÇÕES**. [Algoritmo](008-algoritmo.txt). Exercício composto 
 
 Programa: **CADASTRO DE ASSOCIADOS**. Exercício que manipula uma lista encadeada de nós compostos por estruturas que abstraem registros de cadastro.
 - Um exercício esclarecedor, com a manipulação de ponteiros para a criação de uma lista encadeada aprendi a utilização do _malloc()_, que faz a alocação de memória adequada ao tipo e fornece o endereço desse espaço na memória.
-- Também entendi que _sizeof_ **não é uma função** e sim um operador que fornece o tamanho utilizado por tal variável, exemplo:
+- Também entendi que _sizeof_ **não é uma função** e sim um operador que fornece o tamanho utilizado por tal variável.
 
-	elemento *lista;
+Exemplo:
+
+  	elemento *lista;
 	lista = malloc(sizeof (elemento));
-	
+
 Neste caso, _sizeof_ pega o tipo elemento como uma forma _casting_, e fornece o seu valor de espaço a _malloc()_. O operador poderia funcionar com a variável em si em vez do "_casting_":
 
   	elemento *lista;
