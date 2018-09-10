@@ -51,3 +51,26 @@ Programa: **CRIPTOGRAFIA**. [Algoritmo](007-algoritmo.txt). Exercício composto 
 
 Programa: **ORDENAÇÕES**. [Algoritmo](008-algoritmo.txt). Exercício composto por geração de valores inteiros aleatórios e a sua ordenação através de múltiplos métodos.
 - Este exercício não impôs muitos desafios de programação ou lógica, mas sua prática custou bem mais tempo em algoritmo do que em implementação do código, provando que uma lógica bem trabalhada sempre facilita o trabalho na hora da criação do código.
+
+9. [**009-listas.c**](009-listas.c).
+
+Programa: **CADASTRO DE ASSOCIADOS**. Exercício que manipula uma lista encadeada de nós compostos por estruturas que abstraem registros de cadastro.
+- Um exercício esclarecedor, com a manipulação de ponteiros para a criação de uma lista encadeada aprendi a utilização do _malloc()_, que faz a alocação de memória adequada ao tipo e fornece o endereço desse espaço na memória.
+- Também entendi que _sizeof_ **não é uma função** e sim um operador que fornece o tamanho utilizado por tal variável, exemplo:
+
+	elemento *lista;
+	lista = malloc(sizeof (elemento));
+	
+Neste caso, _sizeof_ pega o tipo elemento como uma forma _casting_, e fornece o seu valor de espaço a _malloc()_. O operador poderia funcionar com a variável em si em vez do "_casting_":
+
+  	elemento *lista;
+	lista = malloc(sizeof *lista);
+
+ou, também:
+
+	int *i, x;
+	i = malloc(sizeof x);
+
+- Houve alguma complicação em operações de exclusão de nós, mas acho que consegui resolver sem que o resultado possa ser considerado uma gambiarra.
+- A formatação de saída das strings no relatório teve uma boa aparência.
+- A função _fgets()_ não foi adequada a este exercício, apesar dela ter vantagens em seu controle de entrada, a captura de _'\n'_ em suas strings cria uma complicação desnecessária, para a qual não achei um modo simples o suficiente para justificar seu uso.
