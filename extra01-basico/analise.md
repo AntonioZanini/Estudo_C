@@ -76,3 +76,9 @@ ou, também:
 - Houve alguma complicação em operações de exclusão de nós, mas acho que consegui resolver sem que o resultado possa ser considerado uma gambiarra.
 - A formatação de saída das strings no relatório teve uma boa aparência.
 - A função _fgets()_ não foi adequada a este exercício, apesar dela ter vantagens em seu controle de entrada, a captura de _'\n'_ em suas strings cria uma complicação desnecessária, para a qual não achei um modo simples o suficiente para justificar seu uso.
+
+10. [**010-fila.c**](010-fila.c).
+
+Programa: **FILA DE MENSAGENS**. Exercício que manipula uma lista encadeada de modo a utilizá-la como uma fila de mensagens a serem exibidas na tela.
+- Um exercício simples com muitas coisas já utilizadas no exercício anterior, apenas sendo adaptado para a lógica das utilizações de filas.
+- Este exercício me fez dar uma pesquisada adicional em _convenções de codificação em linguagem C_, encontrei materiais e tentarei me adequar a eles a partir de hoje.

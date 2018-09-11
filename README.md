@@ -102,3 +102,8 @@ Uma simples descrição de progresso e visão sobre as atividades.
 
 - Com a troca de instrutor, a aula de hoje se tornou reintrodutória mas, ainda assim, teve bastante prática e um ritmo acelerado.
 - Abordados desde ideias e conceitos iniciais da programação à estruturas condicionais na linguagem C, uma boa aula.
+
+### Dia 14 (11/09/2018)
+
+- Arquivo de estudo _010-fila.c_ criado.
+- Exercício mais simples que os anteriores, utilizando-se de uma lista encadeada para ilustrar a funcionalidade de uma fila. O programa recebe múltiplas frases e as armazena e uma fila, ao final do programa, ele as exibe pela ordem de entrada.
