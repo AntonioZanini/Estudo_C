@@ -1,10 +1,10 @@
 # Linguagem C - UNITEN/ANHANGUERA - SOROCABA
 
-## AULA 1 - 27/08/2018
+## AULA 1 - 27/08/2018 (Prof. Luís)
 
 - Explicação sobre Algoritmos e Fluxograma.
 
-## AULA 2 - 29/08/2018
+## AULA 2 - 29/08/2018 (Prof. Luís)
 
 - Breve descrição da história da linguagem C.
 
@@ -39,7 +39,7 @@
 		return 0;
 	}
 
-## AULA 3 - 31/08/2018
+## AULA 3 - 31/08/2018 (Prof. Luís)
 
 ### Algol. Cadastro em C
 
@@ -101,4 +101,96 @@
 
 		printf("Cadastro preenchido corretamente? ");
 		getch();
+	}
+
+### AULA 4 - 10/09/2018 (Prof. Stark)
+
+### Definições:
+
+#### Variáveis
+
+- Local na memória principal. Ex: n1, n2.
+- Variáveis **não podem** começar com dígitos. Ex errado: 2w.
+- Variáveis **não podem** ter espaços. Ex errado: peso do aluno.
+- Variáveis **não podem** ter caracteres especiais (que sejam operadores). Ex errado: sala/aula, f-e.
+- Dica **variáveis** → minúscula.
+- 	   **Constantes** → Maiúscula.
+
+### Comandos:
+
+- math.h 		Biblioteca de operações matemáticas.
+- If 			Estrutura Condicional.
+- For 			Laço Repetitivo.
+- While 		Laço Repetitivo.
+- =				Operador de atribuição.
+- ==			Operador de comparação.
+
+### Código:
+
+**Exemplo 1**
+
+	#include <stdio.h>
+	main ()
+	{
+		int n1, n2;
+		printf("Introduza o primeiro inteiro\n");
+		scanf("%d", &n1);
+		printf("Introduza o segundo inteiro\n");
+		scanf("%d", &n2);
+		if (n1 == n2)
+			printf("%d igual a %d\n", n1, n2 );
+		if (n1 < n2)
+			printf("%d maior do que a %d\n", n2, n1);
+		else
+			printf("%d maior do que a %d\n", n1, n2);
+	}
+
+**Exemplo 2**
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <conio.h>
+	main ()
+	{
+		float n1, n2;
+		char r;
+		printf("Introduza o primeiro valor\n");
+		scanf("%f", &n1);
+		printf("Introduza o segundo valor\n");
+		scanf("%f", &n2);
+		if (n1 == n2)
+			printf("%.2f igual a %.2f\n", n1, n2 );
+		else if (n1 < n2)
+			printf("%.2f maior do que %.2f\n", n2, n1);
+		else
+			printf("%.2f maior do que %.2f\n", n1, n2);			
+		system("pause");
+	}
+
+**Exercício 1**
+Grupo 1.1 - Fazer um programa em C que pergunta um valor em metros e imprime o correspondente em decímetros, centímetros e milímetros
+
+_**Lógica:**_
+
+	Pergunta um valor em metros
+	Imprimir valor em decímetros  (1 metro =   10 decímetros)
+	Imprimir valor em centímetros (1 metro =  100 centímetros)
+	Imprimir valor em milímetros  (1 metro = 1000 milímetros)
+
+_**Linguagem C:**_
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	main()
+	{
+		float metros, decimetros, centimetros, milimetros;
+		printf("Insira um valor em metros: ");
+		scanf("%f", &metros);
+		decimetros = metros * 10;
+		centimetros = metros * 100;
+		milimetros = metros * 1000;
+		printf(" %.2f metros equivale a %.2f decimetros.\n", metros, decimetros);
+		printf(" %.2f metros equivale a %.2f centimetros.\n", metros, centimetros);
+		printf(" %.2f metros equivale a %.2f milimetros.\n", metros, milimetros);
+		system("pause");
 	}

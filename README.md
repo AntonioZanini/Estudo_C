@@ -99,3 +99,6 @@ Uma simples descrição de progresso e visão sobre as atividades.
 
 - Exercício _009-listas.c_ completo.
 - Terminadas a funcionalidades, comentários e análises. Foi um exercício rápido, porém, muito educativo.
+
+- Com a troca de instrutor, a aula de hoje se tornou reintrodutória mas, ainda assim, teve bastante prática e um ritmo acelerado.
+- Abordados desde ideias e conceitos iniciais da programação à estruturas condicionais na linguagem C, uma boa aula.
