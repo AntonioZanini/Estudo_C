@@ -82,3 +82,9 @@ ou, também:
 Programa: **FILA DE MENSAGENS**. Exercício que manipula uma lista encadeada de modo a utilizá-la como uma fila de mensagens a serem exibidas na tela.
 - Um exercício simples com muitas coisas já utilizadas no exercício anterior, apenas sendo adaptado para a lógica das utilizações de filas.
 - Este exercício me fez dar uma pesquisada adicional em _convenções de codificação em linguagem C_, encontrei materiais e tentarei me adequar a eles a partir de hoje.
+
+11. [**11-pilha.c**](11-pilha.c).
+
+Programa: **PILHA DE NÚMEROS**. Exercício que manipula uma lista encadeada de modo a utilizá-la como uma pilha de números a serem exibidos na tela.
+- Um exercício bem simples, porém o fato de ter errado na digitação que define novos tipos causou uma demora incompatível com a dificuldade deste código.
+- Este foi o exercício em que erros mais me atrapalharam, preciso tentar minimizá-los ainda mais.
