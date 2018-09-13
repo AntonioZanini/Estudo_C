@@ -114,3 +114,8 @@ Uma simples descrição de progresso e visão sobre as atividades.
 - Exercício simples envolto em erros que desejo evitar futuramente, a lista encadeada utilizada para representar uma pilha de números a serem exibidos ao final da execução do programa.
 
 - Mais uma aula, a velocidade foi ainda mais impressionante, cinco exercícios realizados e solucionados em sala de forma plena, estou satisfeito com o progresso.
+
+### Dia 16 (13/09/2018)
+
+- Arquivo de estudo _012-lista-ordena.c_ criado.
+- Exercício para reforçar o estudo de listas, utilizando em conjunto com ordenação.

@@ -1,5 +1,9 @@
 # Linguagem C - UNITEN/ANHANGUERA - SOROCABA
 
+## Arquivos Relacionados
+
+- Lista de exercícios adotada: [Curso de Extensão - Linguagem C / Universidade de Brasília](http://www.telecom.uff.br/~marcos/protocolos/www.cic.unb.br/docentes/jacobi/Extensao/ListaExerc.pdf).
+
 ## AULA 1 - 27/08/2018 (Prof. Luís)
 
 - Explicação sobre Algoritmos e Fluxograma.
