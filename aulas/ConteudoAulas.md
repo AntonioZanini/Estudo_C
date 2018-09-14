@@ -337,9 +337,9 @@ Versão que imprime todos os valores de 0 a 255 de Decimal, Hex, Octal e Char.
 	}
 
 **Exercício 3**
-Grupo 1.4 - Fazer um programa em "C" que pergunte um valor em graus Fahreinheit e imprime no vídeo o correspondente em graus Celsius usando as fórmulas que seguem.
-	A. Usar uma variável _double_ para ler o valor em Fahreinheit e a formula: **C = (f - 32.0) * (5.0/9.0)**.
-	B. Usar uma variável _int_ para ler o valor em Fahreinheit e a formula: **C = (f - 32) * (5/9)**.
+Grupo 1.4 - Fazer um programa em "C" que pergunte um valor em graus Fahrenheit e imprime no vídeo o correspondente em graus Celsius usando as fórmulas que seguem.
+	A. Usar uma variável _double_ para ler o valor em Fahrenheit e a formula: **C = (f - 32.0) * (5.0/9.0)**.
+	B. Usar uma variável _int_ para ler o valor em Fahrenheit e a formula: **C = (f - 32) * (5/9)**.
 
 **A**
 
@@ -348,10 +348,10 @@ Grupo 1.4 - Fazer um programa em "C" que pergunte um valor em graus Fahreinheit 
 	int main()
 	{
 		double c, f;
-		printf("DIGITE O VALOR NA ESCALA FAHREINHEIT PARA CONVERTER EM CELSIUS:\n");
+		printf("DIGITE O VALOR NA ESCALA FAHRENHEIT PARA CONVERTER EM CELSIUS:\n");
 		scanf("%lf", &f);
 		c = (f - 32.0) * (5.0/9.0);
-		printf("O VALOR EM CELSIUS PARA %.2f GRAUS FAHREINHEIT EQUIVALE A %.2f.\n",  f, c);
+		printf("O VALOR EM CELSIUS PARA %.2f GRAUS FAHRENHEIT EQUIVALE A %.2f.\n",  f, c);
 		return 0;
 	}
 
@@ -363,9 +363,129 @@ Grupo 1.4 - Fazer um programa em "C" que pergunte um valor em graus Fahreinheit 
 	{
 		double c;
 		int f;
-		printf("DIGITE O VALOR NA ESCALA FAHREINHEIT PARA CONVERTER EM CELSIUS:\n");
+		printf("DIGITE O VALOR NA ESCALA FAHRENHEIT PARA CONVERTER EM CELSIUS:\n");
 		scanf("%i", &f);
 		c = (f - 32) * (5/9);
-		printf("O VALOR EM CELSIUS PARA %i GRAUS FAHREINHEIT EQUIVALE A %.2f.\n",  f, c);
+		printf("O VALOR EM CELSIUS PARA %i GRAUS FAHRENHEIT EQUIVALE A %.2f.\n",  f, c);
 		return 0;
 	}
+
+## AULA 6 - 14/09/2018 (Prof. Luiz)
+
+
+### Código
+
+**Exercício 1**
+Grupo 2.1 - Faça um programa em "C" que lê dois valores e imprime: se o primeiro valor for menor que o segundo, a lista de valores do primeiro até o segundo; se o primeiro valor for menor que o segundo a lista de valores do segundo até o primeiro em ordem decrescente; se ambos forem iguais a mensagem "valores iguais".
+
+_**Lógica**_
+
+	INICIO
+		LEIA(x1, x2);
+		SE x1 > x2 ENTÃO
+			IMPRIME x2;
+			IMPRIME x1;
+		SENÃO SE x2 > x1 ENTÃO
+			IMPRIME x1;
+			IMPRIME x2;
+		SENÃO
+			IMPRIME "Numeros Iguais";
+		FIMSE
+	FIM
+
+_**Linguagem C:**_
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	int main()
+	{
+		float val1, val2;
+		printf(" Insira o primeiro numero: ");
+		scanf("%f", &val1);
+		printf(" Insira o segundo numero: ");
+		scanf("%f", &val2);
+		if (val1 > val2) {
+			printf(" \n\nNumeros: %.2f - %.2f\n\n", val2, val1);
+		}
+		else if (val1 < val2) {
+			printf(" \n\nNumeros: %.2f - %.2f\n\n", val1, val2);
+		}
+		else if (val1 == val2) {
+			printf(" \n\nNumeros iguais.\n\n");
+		}
+		system("pause");
+		return 0;
+	}
+
+**Variação B**
+Informa se números são diferentes ou iguais de forma infinita.
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	int main()
+	{
+		float val1, val2;
+		for (;;){
+			printf(" Insira o primeiro numero: ");
+			scanf("%f", &val1);
+			printf(" Insira o segundo numero: ");
+			scanf("%f", &val2);
+			if (val1 > val2 || val1 < val2) {
+				printf(" \n\nNumeros diferentes\n\n");
+			}
+			else if (val1 == val2) {
+				printf(" \n\nNumeros iguais.\n\n");
+			}
+		}
+		return 0;
+	}
+
+**Exercício 2**
+Criar exercício com operação matemática.
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	int main()
+	{
+		float c, f;
+		printf(" Insira um n%cmero em graus Celsius: " , '\xA3');
+		scanf("%f", &c);
+		f = (c * (9.0/5.0)) + 32.0;
+		printf("\n\n %.2f graus celsius equivale a %.2f graus fahrenheit.\n\n", c, f);
+		system("pause");
+		return 0;
+	}
+
+### Pesquisa
+Operadores Lógicos (Para o dia 21/09).
+
+#### Operadores Lógicos
+
+Operadores lógicos são instrumentos para se extrair o **valor verdade** entre duas proposições. Tendo o funcionamento semelhante ao cálculo aritmético com números, as operações lógicas também são chamadas de **cálculo proposicional**.
+
+##### Negação/NOT (~)
+
+Esta operação é definida como a negação de uma proposição p, quando a proposição p for falsa o valor verdade da negação de p, "não p", será verdadeira, e quando p tiver o valor verdadeiro, "não p" terá o valor falso. Sendo assim, _**a negação terá o valor lógico oposto daquele de sua proposição**_.
+Em notação a negação se escreve "~p" e é lida "não p".
+
+Exemplo:
+
+| p | ~p |
+|:-:|----|
+| V | F  |
+| F | V  |
+
+Proposições:
+ **a** : O céu é azul. 				= V
+**~a** : O céu não é azul. 			= F
+ **b** : 1 + 7 = 0					= F
+**~b** : 1 + 7 ≠ 0					= V
+ **c** : A terra não é redonda. 	= F
+**~c** : A terra é redonda.			= V
+
+###### Negação na programação
+
+
+##### Bibliografia
+
+- **ALENCAR FILHO, Edgar de**. _Iniciação à lógica matemática_. São Paulo. Nobel. 2003.

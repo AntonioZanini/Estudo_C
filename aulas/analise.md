@@ -57,10 +57,10 @@ Exercício que exibe a lista de valores em Decimal, Octal, Hexadecimal e Char pa
 
 10. [**Aula05-ex03-Grupo1-4a.c**](Aula05-ex03-Grupo1-4a.c).
 
-Exercício que recebe valor em Fahreinheit e converte para Celsius utilizando variável de captura _double_.
+Exercício que recebe valor em Fahrenheit e converte para Celsius utilizando variável de captura _double_.
 - Exercício muito simples que, juntamente de sua variação, tem prováveis motivações didáticas quanto ao uso de tipos inteiros e pontos flutuantes.
 
 11. [**Aula05-ex03-Grupo1-4b.c**](Aula05-ex03-Grupo1-4b.c).
 
-Exercício que recebe valor em Fahreinheit e converte para Celsius utilizando variável de captura _int_.
+Exercício que recebe valor em Fahrenheit e converte para Celsius utilizando variável de captura _int_.
 - Exercício muito simples que, juntamente de sua variação, tem prováveis motivações didáticas quanto ao uso de tipos inteiros e pontos flutuantes.
