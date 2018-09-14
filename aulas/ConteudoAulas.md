@@ -476,12 +476,13 @@ Exemplo:
 | F | V  |
 
 Proposições:
- **a** : O céu é azul. 				= V
-**~a** : O céu não é azul. 			= F
- **b** : 1 + 7 = 0					= F
-**~b** : 1 + 7 ≠ 0					= V
- **c** : A terra não é redonda. 	= F
-**~c** : A terra é redonda.			= V
+
+-  **a** : O céu é azul. 				= V
+- **~a** : O céu não é azul. 			= F
+-  **b** : 1 + 7 = 0				= F
+- **~b** : 1 + 7 ≠ 0				= V
+-  **c** : A terra não é redonda. 		= F
+- **~c** : A terra é redonda.			= V
 
 ###### Negação na programação
 
