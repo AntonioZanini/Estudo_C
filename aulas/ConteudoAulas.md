@@ -201,10 +201,10 @@ _**Linguagem C:**_
 
 #### Operadores Aritméticos
 
-- \+		Soma			Ex. a + b 			Obtém o valor da soma de dois números.
+- \+	Soma			Ex. a + b 			Obtém o valor da soma de dois números.
 - \- 	Subtração		Ex. a - b 			Obtém o valor da subtração de dois números.
-- \*		Multiplicação	Ex. a * b 			Obtém o valor da multiplicação de dois números.
-- \/		Divisão 		Ex. a / b 			Obtém o valor da divisão de dois números.
+- \*	Multiplicação	Ex. a * b 			Obtém o valor da multiplicação de dois números.
+- /		Divisão 		Ex. a / b 			Obtém o valor da divisão de dois números.
 - %		Resto inteiro 	Ex. a % b 			Obtém o valor do resto da divisão inteira de dois números inteiros.
 
 #### Operadores Relacionais
@@ -456,10 +456,33 @@ Operadores Lógicos (Para o dia 21/09).
 
 Operadores lógicos são instrumentos para se extrair o **valor verdade** entre duas proposições. Tendo o funcionamento semelhante ao cálculo aritmético com números, as operações lógicas também são chamadas de **cálculo proposicional**.
 
-##### Negação/NOT (~)
+##### Operações Lógicos em C
 
-Esta operação é definida como a negação de uma proposição p, quando a proposição p for falsa o valor verdade da negação de p, "não p", será verdadeira, e quando p tiver o valor verdadeiro, "não p" terá o valor falso. Sendo assim, _**a negação terá o valor lógico oposto daquele de sua proposição**_.
-Em notação a negação se escreve "~p" e é lida "não p".
+Operações lógicas na linguagem C funcionam de forma em valores inteiros, sendo o valor 0 equivale à falsidade e todos os outros valores são tratados como verdade, apesar disso, em comparações e operações lógicas feitas pela linguagem ela utilizará o valor 1 para simbolizar a verdade. Os valores lógicos podem ser utilizados com a manipulação de variáveis e constantes inteiras, ou através da biblioteca _stdbool.h_ que adiciona o tipo _bool_ e a utilização de valores _true_ e _false_, porém, mesmo com essas adições o tipo bool (e seus valores) ainda age como "máscaras" para valores inteiros.
+
+Exemplo:
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <conio.h>
+	int main()
+	{
+		if (0)
+			printf("Este valor logico nunca sera verdadeiro.\n");
+		if (1)
+			printf("Este valor logico sempre sera verdadeiro.\n");
+		if (2)
+			printf("Este tambem.\n");
+		if (-1)
+			printf("Este idem.\n");
+		getchar();
+		return 0;
+	}
+
+##### Negação / NÃO / NOT ( ~ )
+
+Esta operação é definida como a negação de uma proposição p, quando a proposição p for falsa o valor lógico da negação de p, "não p", será verdade, e quando p tiver o valor verdadeiro, "não p" terá o valor falso. Sendo assim, _**a negação terá o valor lógico oposto daquele de sua proposição**_.
+Em notação a negação se escreve "~p", que se lê: "não p".
 
 Exemplo:
 
@@ -470,16 +493,228 @@ Exemplo:
 
 Proposições:
 
--  **a** : O céu é azul. 				= V
-- **~a** : O céu não é azul. 			= F
--  **b** : 1 + 7 = 0				= F
-- **~b** : 1 + 7 ≠ 0				= V
--  **c** : A terra não é redonda. 		= F
-- **~c** : A terra é redonda.			= V
+-  **a** : O céu é azul. 				→ V
+- **~a** : O céu não é azul. 			→ F
+-  **b** : 1 + 7 = 0					→ F
+- **~b** : 1 + 7 ≠ 0					→ V
+-  **c** : A terra não é redonda. 		→ F
+- **~c** : A terra é redonda.			→ V
 
-###### Negação na programação
+###### **Negação na programação**
 
+Na programação, o operador NOT tem a incumbência de alterar um valor lógico utilizado para algum tipo de processo, geralmente verificações condicionais. Sua implementação nas linguagens possui diferentes formas:
+
+| FORMA | LINGUAGENS                        |
+|:-----:|-----------------------------------|
+|  not  | Pascal, Visual Basic.             | 
+|   !   | C, C++, C#, Java, Javascript, PHP.|
+
+**Exemplo de negação em C**
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <conio.h>
+	#include <stdbool.h>
+	int main()
+	{
+		char escolha;
+		bool programa_ativo = true;
+		do {
+			printf("Deseja encerrar este programa? (s/n)");
+			escolha = getche();
+			programa_ativo = !(escolha == 's');
+		} while (programa_ativo == true);
+		return 0;
+	}
+
+##### Conjunção / E / AND ( ∧ )
+
+Esta operação é definida como a conjunção de duas proposições p e q, sendo chamada de "p e q", e terá o valor lógico **verdadeiro apenas se todos suas proposições forem verdade**, e o mesmo será falso em todos os outros casos.
+Em notação a conjunção se escreve "p ∧ q", que se lê: "p e q".
+
+Exemplo:
+
+| p | q | p ∧ q |
+|:-:|:-:|:-----:|
+| V | V |   V   |
+| V | F |   F   |
+| F | V |   F   |
+| F | F |   F   |
+
+Proposições:
+
+- **a** : O sol é uma estrela. 		→ V
+- **b** : O sol orbita a terra.  	→ F
+- **c** : A lua orbita a terra.		→ V
+
+Sendo:
+- **a ∧ b**			→ F
+- **c ∧ b**			→ F
+- **a ∧ c**			→ V
+- **(a ∧ b) ∧ c**	→ F
+- **a ∧ ~b**		→ V
+
+###### **Conjunção na programação**
+
+A principal função da conjunção na programação é extrair valores lógicos de comparações e verificações. Estas são as suas implementações em diferentes linguagens de programação:
+
+| FORMA | LINGUAGENS                        |
+|:-----:|-----------------------------------|
+|  and  | Pascal, Visual Basic, PHP.        | 
+|  &&   | C, C++, C#, Java, Javascript, PHP.|
+
+**Exemplo de conjunção em C**
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <conio.h>
+	#include <stdbool.h>
+	int main()
+	{
+		bool carro_aspirado, carro_lavado, carro_encerado;
+		carro_aspirado = true;
+		carro_lavado   = true;
+		carro_encerado = false;
+		if (carro_aspirado && carro_lavado && carro_encerado)
+			printf("A limpeza do carro terminou!\n");
+		else 
+			printf("A limpeza do carro ainda nao terminou.\n");
+		getchar();
+		return 0;
+	}
+
+##### Disjunção / OU / OR ( ∨ )
+
+Esta operação é definida como a disjunção de duas proposições p e q, sendo chamada de "p ou q", e **terá o valor lógico verdadeiro quando ao menos uma de suas proposições possuir o valor verdade**, caso nenhuma o possua será uma falsidade.
+Em notação a disjunção se escreve "p ∨ q", que se lê: "p e q".
+
+Exemplo:
+
+| p | q | p ∨ q |
+|:-:|:-:|:-----:|
+| V | V |   V   |
+| V | F |   V   |
+| F | V |   V   |
+| F | F |   F   |
+
+Proposições:
+
+- **a** : Gelo é água sólida.  				→ V
+- **b** : Combustão necessita de Oxigênio.	→ V
+- **c** : Baleias são peixes.				→ F
+- **d** : Tomate não é fruta.				→ F
+
+Sendo:
+- **a ∨ b**			→ V
+- **b ∨ c**			→ V
+- **c ∨ d**			→ F
+- **(a ∨ b) ∨ c**	→ V
+- **(a ∧ c) ∨ d**	→ F
+- **a ∨ d**			→ V
+- **~b ∨ d**		→ F
+
+###### **Disjunção na programação**
+
+A principal função da disjunção na programação é extrair valores lógicos de comparações e verificações. Estas são as suas implementações em diferentes linguagens de programação:
+
+| FORMA | LINGUAGENS                        |
+|:-----:|-----------------------------------|
+|  or   | Pascal, Visual Basic, PHP.        | 
+|  \|\|   | C, C++, C#, Java, Javascript, PHP.|
+
+**Exemplo de disjunção em C**
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <conio.h>
+	#include <stdbool.h>
+	int main()
+	{
+		bool carro_azul, carro_verde, carro_preto;
+		carro_azul 	= true;
+		carro_preto = false;
+		carro_verde = false;
+		if (carro_azul || carro_preto || carro_verde){
+			printf("Na garagem estao:\n");
+			carro_verde ? printf("Carro Verde\n")	:0;
+			carro_preto ? printf("Carro Preto\n")	:0;
+			carro_azul 	? printf("Carro Azul\n")	:0;
+		}
+		else 
+			printf("Garagem Vazia.\n");
+
+		getchar();
+		return 0;
+	}
+
+##### Outros Operadores
+
+###### **Disjunção Exclusiva / XOR (⊻)**
+
+Este operador é uma variação da disjunção padrão onde as proposições **p e q necessitam ter valores lógicos diferentes para ser uma verdade**, em qualquer outro caso será uma falsidade.
+Em notação a disjunção exclusiva se escreve "p ⊻ q", que se lê: "p ou q, mas não ambas".
+
+Exemplo:
+
+| p | q | p ⊻ q |
+|:-:|:-:|:-----:|
+| V | V |   F   |
+| V | F |   V   |
+| F | V |   V   |
+| F | F |   F   |
+
+Proposições:
+
+- **a** : Hoje é segunda-feira.  			→ V
+- **b** : Hoje é sábado.					→ F
+- **c** : O meu único mascote é um gato.	→ V
+- **d** : O meu único mascote é um peixe.	→ V
+
+Sendo:
+- **a ⊻ b**			→ V
+- **c ⊻ d**			→ F
+
+**Disjunção exclusiva na programação**
+
+Comparado com os operadores anteriores, a disjunção exclusiva é utilizada em escala bem menor devido a sua utilização ser necessária apenas em casos específicos, por isso ela não é implementada em todas as linguagens.
+
+###### **Condicional (→)**
+
+Também chamada de proposição condicional, é representado com "se p então q", e terá o valor lógico **verdadeiro quando a proposição q tive o valor lógico verdade ou um valor lógico igual à proposição p**.
+Em notação a condicional se escreve "p → q", que se lê: "se p então q".
+
+Exemplo:
+
+| p | q | p → q |
+|:-:|:-:|:-----:|
+| V | V |   V   |
+| V | F |   F   |
+| F | V |   V   |
+| F | F |   V   |
+
+**Condicional na programação**
+
+No formato de operador lógico, condicional não se faz presente nas linguagens de programação.
+
+###### **Bicondicional (↔)**
+
+Este operador é também chamado de proposição bicondicional, representado com "p se e somente se q", e terá o valor lógico **verdadeiro apenas se ambas as proposições tiverem valores lógicos iguais**.
+Em notação a bicondicional se escreve "p ↔ q", que se lê: "p se e somente se q".
+
+Exemplo:
+
+| p | q | p ↔ q |
+|:-:|:-:|:-----:|
+| V | V |   V   |
+| V | F |   F   |
+| F | V |   F   |
+| F | F |   V   |
+
+**Bicondicional na programação**
+
+No formato de operador lógico, bicondicional não se faz presente nas linguagens de programação.
 
 ##### Bibliografia
 
 - **ALENCAR FILHO, Edgar de**. _Iniciação à lógica matemática_. São Paulo. Nobel. 2003.
+- **LAUREANO, Marcos**. _Programando em C para Linux, Unix e Windows_. Rio de Janeiro. Brasport. 2005.

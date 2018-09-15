@@ -119,3 +119,11 @@ Uma simples descrição de progresso e visão sobre as atividades.
 
 - Arquivo de estudo _012-lista-ordena.c_ criado.
 - Exercício para reforçar o estudo de listas, utilizando em conjunto com ordenação.
+
+### Dia 17 (14/09/2018)
+
+- A 6ª aula do curso de linguagem C em um ritmo menos acelerado, mas com o tempo necessário para aqueles com dificuldade tirarem dúvidas.
+
+### Dia 18 (15/09/2018)
+
+- Pesquisa sobre operadores lógicos aconselhada na última aula, foi meio que uma visita ao passado relembrando aulas de lógica booleana.
