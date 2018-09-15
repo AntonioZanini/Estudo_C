@@ -4,11 +4,11 @@
 
 - Lista de exercícios adotada: [Curso de Extensão - Linguagem C / Universidade de Brasília](http://www.telecom.uff.br/~marcos/protocolos/www.cic.unb.br/docentes/jacobi/Extensao/ListaExerc.pdf).
 
-## AULA 1 - 27/08/2018 (Prof. Luís)
+## AULA 1 - 27/08/2018 (Prof. Luiz)
 
 - Explicação sobre Algoritmos e Fluxograma.
 
-## AULA 2 - 29/08/2018 (Prof. Luís)
+## AULA 2 - 29/08/2018 (Prof. Luiz)
 
 - Breve descrição da história da linguagem C.
 
@@ -43,7 +43,7 @@
 		return 0;
 	}
 
-## AULA 3 - 31/08/2018 (Prof. Luís)
+## AULA 3 - 31/08/2018 (Prof. Luiz)
 
 ### Algol. Cadastro em C
 
@@ -56,11 +56,9 @@
 		escreva "Nascimento: ";
 		ler nascimento;
 		...
-
 		escreva nome;
 		escreva endereço;
 		...
-
 		escreva "Sucesso";
 	Fim
 
@@ -69,14 +67,11 @@
 	#include <stdio.h>
 	#include <stdlib.h>
 	#include <conio.h>
-
 	#define cedilm '\x87' /* constante para o código char do caractere 'ç' */
-
 	int main()
 	{
 		char nome[20], endereco[30], email[25], nascimento[10];
 		int cpf, telefone;
-
 		printf("============================");
 		printf("\nInsira seus dados cadastrais");
 		printf("\n============================");
@@ -92,7 +87,6 @@
 		scanf("%i", &telefone);
 		printf("Email: ");
 		scanf("%s", &email);
-
 		printf("\n\n============================");
 		printf("\nConfira seus Dados");
 		printf("\n============================");
@@ -102,7 +96,6 @@
 		printf("\nData de Nascimento: %s", nascimento);
 		printf("\nTelefone: %d", telefone);
 		printf("\nEmail: %s\n\n", email);
-
 		printf("Cadastro preenchido corretamente? ");
 		getch();
 	}
@@ -208,10 +201,10 @@ _**Linguagem C:**_
 
 #### Operadores Aritméticos
 
-- +		Soma			Ex. a + b 			Obtém o valor da soma de dois números.
-- - 	Subtração		Ex. a - b 			Obtém o valor da subtração de dois números.
-- *		Multiplicação	Ex. a * b 			Obtém o valor da multiplicação de dois números.
-- /		Divisão 		Ex. a / b 			Obtém o valor da divisão de dois números.
+- \+		Soma			Ex. a + b 			Obtém o valor da soma de dois números.
+- \- 	Subtração		Ex. a - b 			Obtém o valor da subtração de dois números.
+- \*		Multiplicação	Ex. a * b 			Obtém o valor da multiplicação de dois números.
+- \/		Divisão 		Ex. a / b 			Obtém o valor da divisão de dois números.
 - %		Resto inteiro 	Ex. a % b 			Obtém o valor do resto da divisão inteira de dois números inteiros.
 
 #### Operadores Relacionais
@@ -220,8 +213,8 @@ _**Linguagem C:**_
 - !=	Diferte			Ex. a != 10			Compara se dois valores são diferentes.
 - <		Menor			Ex. a  < 10			Compara se um valor é menor que outro.
 - <=	Menor ou igual 	Ex. a <= 10			Compara se um valor é menor ou igual a outro.
-- >		Maior 			Ex. a  > 10			Compara se um valor é maior que outro.
-- >=	Maior ou igual 	Ex. a >= 10			Compara se um valor é maior ou igual a outro.
+- \>		Maior 			Ex. a  > 10			Compara se um valor é maior que outro.
+- \>=	Maior ou igual 	Ex. a >= 10			Compara se um valor é maior ou igual a outro.
 
 #### Operadores Lógicos
 
