@@ -64,3 +64,19 @@ Exercício que recebe valor em Fahrenheit e converte para Celsius utilizando var
 
 Exercício que recebe valor em Fahrenheit e converte para Celsius utilizando variável de captura _int_.
 - Exercício muito simples que, juntamente de sua variação, tem prováveis motivações didáticas quanto ao uso de tipos inteiros e pontos flutuantes.
+
+12. [**Aula06-ex01-Grupo2-1.c**](Aula06-ex01-Grupo2-1.c).
+
+Exercício que recebe dois valores e verifica qual é o maior e exibe o resultado na tela.
+- Um exercício de consolidação da utilização de estrutura condicional.
+- Poderia ser mais otimizado, porém foi feito para a didática.
+
+13. [**Aula06-ex01-Grupo2-1b.c**](Aula06-ex01-Grupo2-1b.c).
+
+Exercício com um loop para repetição infinita com entrada de dois números e comparação se valores são iguais ou diferentes.
+- Variação do exercício anterior.
+
+14. [**Aula06-ex02-conta.c**](Aula06-ex02-conta.c).
+
+Exercício foi livre para criar um cálculo. Criei um exercício que recebe um número e converte de celsius para fahrenheit.
+- Um simples cálculo, nada demais.
