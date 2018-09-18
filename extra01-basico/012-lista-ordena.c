@@ -35,9 +35,10 @@ int 	contar 					(node_t *);
 void 	excluir 				(node_t *);
 char 	exibir_principal		();
 void	exibir_tela_adicionar	(node_t *);
+void 	exibir_tela_navegacao	(node_t *);
 void 	exibir_tela_relatorio	(node_t *);
 void 	inserir					(node_t *, int);
-void 	ordenar					(node_t *);
+node_t 	*ordenar 				(node_t *);
 int 	receber_numero 			();
 node_t 	*selecionar_ultimo 		(node_t *);
 bool 	verificar_lista_vazia 	(node_t *);
@@ -66,7 +67,7 @@ int main()
 	adicionar(lista, 9);
 	adicionar(lista, 1);
 	/*alterar(teste);*/
-	ordenar(lista);
+	
 
 	do {
 		opcao = exibir_principal();
@@ -76,13 +77,15 @@ int main()
 				exibir_tela_adicionar(lista);
 			break;
 			case ('N'):
-		
+				exibir_tela_navegacao(lista);
 			break;
 			case ('E'):
 				exibir_tela_relatorio(lista);
 			break;
 			case ('O'):
-		
+				lista = ordenar(lista);
+				printf("\n\nLISTA ORDENADA!");
+				getch();
 			break;
 			case ('S'):
 				printf("\n\nDESEJA REALMENTE SAIR? (S) ");
@@ -93,20 +96,14 @@ int main()
 				getch();
 		}
 	} while ('S' != opcao);
-/*
-	printf("\n\n\n");
-	do {
-		printf(" %i .", lista->num);
-		lista = lista->prox;
-	} while (NULL != lista);
- */
+
 	return 0;
 }
 
 void adicionar(node_t *lista, int valor)
 {
 	node_t *novo_node;
-	lista = selecionar_ultimo(lista);
+	lista  = selecionar_ultimo(lista);
 	if (0 != lista->num){
 		novo_node = malloc(sizeof(node_t));
 		novo_node->num 	= valor;
@@ -151,48 +148,36 @@ int contar(node_t *lista)
 {
 	int contador = 0;
 	while (NULL != lista) {
-		lista = lista->prox;
+		lista 	 = lista->prox;
 		contador++;
 	}
 	return contador;
 }
 
-void ordenar(node_t *lista)
+node_t *ordenar(node_t *lista)
 {
-	int x;
-	int ultimo_elemento;
-	bool ordenado;
-	int aux_num;
-	node_t *aux_prox;
-	node_t *aux_ante;
+	node_t *aux; 
 	node_t *lista_ordem;
-	ultimo_elemento = contar(lista) - 1;
+	node_t *novo;
+	novo 		= malloc(sizeof(node_t));
+	novo->num 	= 0;
+	novo->ante 	= NULL;
+	novo->prox 	= NULL;
 	do {
-		ordenado = true;
-		lista_ordem = lista;
-		for (x = 0; x < ultimo_elemento; x++) {
-			aux_prox = lista_ordem->prox;
-			if (lista_ordem->num > aux_prox->num) {
-				if (NULL == lista_ordem->ante){
-					aux_num = lista_ordem->num;
-					lista_ordem->num = aux_prox->num;
-					aux_prox->num = aux_num;
-					ordenado = false;
-				}
-				else {
-					aux_ante = lista_ordem->ante;
-					lista_ordem->prox = aux_prox->prox;
-					lista_ordem->ante = aux_prox;
-					aux_prox->prox = lista_ordem;
-					aux_prox->ante = aux_ante;
-					aux_ante->prox = aux_prox;
-					ordenado = false;
-				}
+		lista_ordem 	= lista;
+		aux 			= lista_ordem;
+		lista_ordem 	= lista_ordem->prox;
+		do {
+			if (lista_ordem->num < aux->num) {
+				aux 	= lista_ordem;
 			}
-			lista_ordem = aux_prox;
-		}
-		ultimo_elemento = x;
-	} while (!ordenado);
+			lista_ordem = lista_ordem->prox;
+		} while (NULL != lista_ordem);
+		adicionar(novo, aux->num);
+		excluir(aux);
+	} while (1 != contar(lista));
+	adicionar(novo, lista->num);
+	return novo;
 }
 
 void alterar (node_t *elemento){
@@ -231,27 +216,29 @@ void excluir (node_t *elemento){
 	node_t *aux;
 	node_t *aux_ante;
 	node_t *aux_prox;
-	if (NULL == elemento->ante) {
-		printf("\ndebug 1\n");
-		aux = elemento->prox;
-		elemento->num = aux->num;
-		aux_prox = aux->prox;
-		elemento->prox = aux_prox;
-		aux_prox->ante = elemento;
+	if ((NULL == elemento->ante) && (NULL == elemento->prox)) {
+		elemento->num 	= 0;
+	}
+	else if (NULL == elemento->ante) {
+		aux 			= elemento->prox;
+		elemento->num 	= aux->num;
+		aux_prox 		= aux->prox;
+		elemento->prox 	= aux_prox;
+		if (NULL != aux->prox) {
+			aux_prox->ante = elemento;
+		}
 	}
 	else if (NULL == elemento->prox) {
-		printf("\ndebug 2\n");
-		aux_ante = elemento->ante;
-		aux_ante->prox = NULL;
-		elemento = aux_ante;
+		aux_ante 		= elemento->ante;
+		aux_ante->prox 	= NULL;
+		elemento 		= aux_ante;
 	}
 	else {
-		printf("\ndebug 3\n");
-		aux_ante = elemento->ante;
-		aux_prox = elemento->prox;
-		aux_ante->prox = aux_prox;
-		aux_prox->ante = aux_ante;
-		elemento = aux_prox;
+		aux_ante 		= elemento->ante;
+		aux_prox 		= elemento->prox;
+		aux_ante->prox 	= aux_prox;
+		aux_prox->ante 	= aux_ante;
+		elemento 		= aux_prox;
 	}
 }
 
@@ -281,9 +268,9 @@ bool verificar_lista_vazia (node_t *lista) {
 
 bool verificar_numero(char *num)			
 {											
-	bool retorno = true;							
-	int tamanho_num = strlen(num);					
-	int x;
+	bool retorno 	 = true;							
+	int  tamanho_num = strlen(num);					
+	int  x;
 	for (x = 0; x < tamanho_num; x++)
 	{
 		if (!isdigit(num[x]))				
@@ -328,4 +315,50 @@ void exibir_tela_relatorio(node_t *lista) {
 	printf("\n-------------------------------------------\n\n");
 	printf("TOTAL DE %i N%cMEROS PRESENTES NA LISTA", total_numeros , U_MA_AGUDO);
 	getch();
+}
+
+void exibir_tela_navegacao(node_t *lista) {
+	char tecla_selecao;
+	do {
+		system("cls");
+		printf("-------------------------------------------\n\n");
+		printf("            NUMERA%c%cO ORDENADA\n\n", C_MA_CEDILHA, A_MA_TIL);
+		printf("-------------------------------------------\n\n");
+		printf(" NAVEGA%c%cO NOS N%cMEROS DA LISTA.\n\n", C_MA_CEDILHA, A_MA_TIL, U_MA_AGUDO);
+		printf("               ----------------            \n");
+		printf("               |   %8i   |            \n", lista->num);
+		printf("               ----------------            \n\n");
+		printf(" a - ANTERIOR  p - PR%cXIMO    s - SAIR    \n", O_MA_AGUDO);
+		printf(" i - INSERIR   m - MODIFICAR   e - EXCLUIR\n\n");
+		printf("%i\n", (lista->ante != NULL) ? lista->ante->num : 0);
+		tecla_selecao = toupper(getch());
+		switch(tecla_selecao)
+		{
+			case ('A'):
+				if (NULL != lista->ante) {
+					lista = lista->ante;
+				}
+			break;
+			case ('P'):
+				if (NULL != lista->prox) {
+					lista = lista->prox;
+				}		
+			break;
+			case ('I'):
+		
+			break;
+			case ('M'):
+		
+			break;
+			case ('E'):
+		
+			break;
+			case ('S'):
+		
+			break;
+			default:
+				printf("OP%c%cO INV%cLIDA!\n", C_MA_CEDILHA, A_MA_TIL, A_MA_AGUDO);
+				getch();
+		}
+	} while ('S' != tecla_selecao);
 }

@@ -80,3 +80,20 @@ Exercício com um loop para repetição infinita com entrada de dois números e 
 
 Exercício foi livre para criar um cálculo. Criei um exercício que recebe um número e converte de celsius para fahrenheit.
 - Um simples cálculo, nada demais.
+
+15. [**Aula07-ex01-Grupo1-5.c**](Aula07-ex01-Grupo1-5.c).
+
+Exercício que recebe dois números e aplica diversas operações matemáticas a eles.
+- Apesar de também serem simples contas, este exercício demonstrou funções matemáticas com as quais eu ainda não havia lidado. Logo foi um exercício bem instrutivo.
+
+16. [**Aula07-ex02-Grupo2-3.c**](Aula07-ex02-Grupo2-3.c).
+
+Exercício que recebe um valor e aplica uma inflação de 10% caso seja menor que 100 e 20% caso contrário.
+- A característica lúdica deste exercício me atraiu, não poder utilizar _if_ e _?_ deixou o problema mais contemplativo. Gostei.
+- Utilizar uma comparação para retornar um valor 0 ou 1 foi a saída para completar o exercício com essa regra.
+
+17. [**Aula07-ex03-Grupo2-4.c**](Aula07-ex03-Grupo2-4.c).
+
+Exercício que recebe dois operandos e um operador e realiza a operação representada por eles.
+- Simples utilização de condicionais e captura de números e caractere.
+- Este exercício aparenta ter sido desenvolvido para a didática em cima da estrutura _switch_, mas ele pode ser resolvido com a mesma simplicidade utilizando _if_.

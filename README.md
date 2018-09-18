@@ -127,3 +127,18 @@ Uma simples descrição de progresso e visão sobre as atividades.
 ### Dia 18 (15/09/2018)
 
 - Pesquisa sobre operadores lógicos aconselhada na última aula, foi meio que uma visita ao passado relembrando aulas de lógica booleana.
+
+### Dia 19 (16/09/2018)
+
+- Realizadas as análises dos exercícios da aula 6.
+
+### Dia 20 (17/09/2018)
+
+- Diversos problemas com o exercício extra 12.
+
+- Aula 7 do curso, uma aula resolvendo exercícios (e seus bugs).
+
+### Dia 21 (18/09/2018)
+
+- Recorri a pesquisa para conseguir superar meus problemas com o exercício extra 12, mas somente cheguei à conclusão que seria mais viável executar a ordenação de forma mais simples para poder realizá-la sem defeitos.
+- Análises dos exercícios da aula 7.
