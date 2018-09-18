@@ -718,3 +718,92 @@ No formato de operador lógico, bicondicional não se faz presente nas linguagen
 
 - **ALENCAR FILHO, Edgar de**. _Iniciação à lógica matemática_. São Paulo. Nobel. 2003.
 - **LAUREANO, Marcos**. _Programando em C para Linux, Unix e Windows_. Rio de Janeiro. Brasport. 2005.
+
+## AULA 7 - 17/09/2018 (Prof. Stark)
+
+### Comandos
+
+- Operações
+
+| Operador | Função                                                             |
+|:--------:|:-------------------------------------------------------------------|
+|    +     | Operador de soma.                                                  |
+|    *     | Operador de multiplicação.                                         |
+|  pow()   | Função de potenciação. _pow(3,2)_ equivale a 3². Biblioteca math.h.|
+|  sqrt()  | Função de raiz quadrada. Biblioteca math.h.                        |
+|  sin()   | Função de seno radiano. Biblioteca math.h.                         |
+|  abs()   | Função de módulo inteiro. Biblioteca math.h.                       |
+|  fabs()  | Função de módulo ponto flutuante. math.h.                          |
+
+### Código
+
+**Exercício 1**
+Grupo 1.5 - Fazer um programa em "C" que solicite 2 números e informe: a) A soma dos números; b) O produto do primeiro número pelo quadrado do segundo; c) O quadrado do primeiro número; d) A raiz quadrada da soma dos quadrados; e) O seno da diferença do primeiro número pelo segundo; f) O módulo do primeiro número.
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <math.h>
+	int main(int argc, char const *argv[])
+	{
+		float primeiro_numero, segundo_numero;
+		printf("Insira primeiro numero: ");
+		scanf("%f", &primeiro_numero);
+		printf("Insira segundo numero: ");
+		scanf("%f", &segundo_numero);
+		printf("Soma: %.3f\n", (primeiro_numero + segundo_numero));
+		printf("a*(b*b): %.3f\n", (primeiro_numero * pow(segundo_numero,2)));
+		printf("a*a: %.3f\n", pow(primeiro_numero,2));
+		printf("Raiz de ((a*a)+(b*b)): %.3f \n", sqrt(pow(primeiro_numero,2)+pow(segundo_numero,2)));
+		printf("Seno de (a - b): %.3f\n", sin(primeiro_numero - segundo_numero));
+		printf("Modulo de a: %.3f\n", fabs(primeiro_numero));
+		return 0;
+	}
+
+
+**Exercício 2**
+Grupo 2.3 - Fazer um programa em "C" que lê o preço de um produto e inflaciona esse preço em 10% se ele for menor que 100 e em 20% se ele for maior ou igual a 100. OBS: não use o comando "if" ou o operador de condição "?".
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	int main(int argc, char const *argv[])
+	{
+		float preco, inflacao, resultado;
+		printf("Insira o valor do preco: ");
+		scanf("%f", &preco);
+		inflacao = 10 + (10 * (preco >= 100));
+		resultado = preco * (1 + (inflacao/100.00));
+		printf("Preco inflacionado: %.2f\n", resultado);
+		return 0;
+	}
+
+**Exercício 3**
+Grupo 2.4 - Fazer um programa que lê um valor, um operador (+,-,*,/) e outro valor e imprime o resultado da expressão: (valor 1) (operador) (valor 2).
+
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <conio.h>
+	int main(int argc, char const *argv[])
+	{
+		int op1, op2, resultado;
+		char opr;
+		do {
+		printf("Insira o operando 1: ");
+		scanf("%i", &op1);
+		printf("Insira o operador (+,-,*,/): ");
+		opr = getche();
+		printf("\nInsira o operando 2: ");
+		scanf("%i", &op2);
+		if (opr == '+')
+			resultado = op1 + op2;
+		else if (opr == '-') 
+			resultado = op1 - op2;
+		else if (opr == '*')
+			resultado = op1 * op2;
+		else if (opr == '/')
+			resultado = op1 / op2;
+		printf("\nResultado %d %c %d = %d \n\n", op1, opr, op2, resultado);
+		} while (opr != 's');
+		return 0;
+	}
+
