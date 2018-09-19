@@ -807,3 +807,102 @@ Grupo 2.4 - Fazer um programa que lê um valor, um operador (+,-,*,/) e outro va
 		return 0;
 	}
 
+## AULA 8 - 19/09/2018 (Prof. Stark)
+
+### Código
+
+**Exercício 1**
+Grupo 2.5 - Escrever um programa em "C" que solicita as notas das duas provas feitas por cada um dos alunos de uma turma (as notas tem de estar no intervalo [0 10]) e imprime para cada um a média das notas. O programa deve parar imediatamente após ter sido digitado o valor 50 para a nota da primeira prova.
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	#define MAX_ALUNOS 5
+	int main(int argc, char const *argv[])
+	{
+		int x = 0;
+		float provas_turma[MAX_ALUNOS][2];
+		float nota_1, nota_2;
+		float media_aluno, media_classe = 0;
+		int num_alunos;
+		do {
+			printf("\nINSIRA AS NOTAS DO %io ALUNO:\n", x+1);
+			printf("-------------------------------");
+			printf("\nNOTA DA PRIMEIRA PROVA: ");
+			do {
+				scanf("%f", &nota_1);
+				if ((0 > nota_1) || ((10 < nota_1) && 50 != nota_1))
+					printf("\nNOTA INVALIDA!\nINSIRA NOVO VALOR: ");
+			} while ((0 > nota_1) || ((10 < nota_1) && 50 != nota_1));
+			if (50 == nota_1) {
+				break;
+			}
+			printf("\nNOTA DA SEGUNDA PROVA: ");
+			do {
+				scanf("%f", &nota_2);
+				if ((0 > nota_2) || (10 < nota_2))
+					printf("\nNOTA INVALIDA!\nINSIRA NOVO VALOR: ");
+			} while ((0 > nota_2) || (10 < nota_2));
+			provas_turma[x][0] = nota_1;
+			provas_turma[x][1] = nota_2;
+			x++;
+		} while (MAX_ALUNOS > x);
+		num_alunos = x;
+		printf("\n\nMEDIAS:\n\n");
+		for (x = 0; x < num_alunos; x++)
+		{
+			media_aluno = (provas_turma[x][0] + provas_turma[x][1]) / 2.0;
+			printf("ALUNO %i P1: %.2f P2: %.2f M: %.2f\n", x +1, provas_turma[x][0], provas_turma[x][1],  media_aluno);
+			media_classe += media_aluno;
+		}
+		media_classe = media_classe / num_alunos;
+		printf("\nMEDIA DA CLASSE: %.2f\n\n", media_classe);
+		system("pause");
+		return 0;
+	}
+
+**Exercício 2**
+Grupo 3.2 - Faca um programa em "C" que le dois números e utiliza uma função chamada "soma" e outra chamada "subtracao" para imprimir a soma e a diferenca entre os dois números. Ambas funções devem receber dois inteiros como parâmetro e retornar um inteiro como resultado.
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	float soma(float a, float b) 
+	{
+		return (a + b);
+	}
+	int main () 
+	{
+		float valor_a, valor_b;
+		do {
+			printf(" Insira o valor de A: ");
+			scanf("%f", &valor_a);
+			printf(" Insira o valor de B: ");
+			scanf("%f", &valor_b);
+			printf("\n %.2f + %.2f = %.2f\n\n", valor_a, valor_b, soma(valor_a, valor_b));
+		} while ((0 != valor_a) || (0 != valor_a));
+		system("pause");
+		return 0;
+	}
+
+**Exercício 3**
+Grupo 4.1 - Fazer uma função que cacula a enésima potência de uma variável real x: f(x, n) = x^n.
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <math.h>
+	float potencia(float a, float b) 
+	{
+		return pow(a, b);
+	}
+	int main () 
+	{
+		float valor_a, valor_b;
+		do {
+			printf(" Insira o valor de A: ");
+			scanf("%f", &valor_a);
+			printf(" Insira o valor de B: ");
+			scanf("%f", &valor_b);
+			printf("\n %.2f ^ %.2f = %.2f\n\n", valor_a, valor_b, potencia(valor_a, valor_b));
+		} while ((0 != valor_a) || (0 != valor_a));
+		system("pause");
+		return 0;
+	}

@@ -147,3 +147,6 @@ Uma simples descrição de progresso e visão sobre as atividades.
 
 - Em uma manhã sem muito tempo para programar, me concentrei no código das rotinas de navegação e menu principal. Na navegação fiz as ligações necessárias com a rotinas e funções que fazem as tarefas de alterar, inserir e excluir registros.
 - No meio dos testes descobri que o processo de exclusão possui problemas, ele necessita que um registro seja excluído duas vezes para removê-lo da lista. Quando possível verificarei a rotina de exclusão (apesar dela aparentemente funcionar perfeitamente na função de ordenação) assim como a própria rotina de navegação.
+
+- Aula com resolução de três exercícios, problemas com a lógica de um exercício atrasaram o progresso.
+- Aprendi sobre um pouco sobre função exponencial natural, irei pesquisar mais para não ficar tão confuso ao me deparar novamente com isso no futuro.
