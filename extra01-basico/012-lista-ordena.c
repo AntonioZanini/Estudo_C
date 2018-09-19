@@ -30,11 +30,12 @@ typedef struct node_t
 } node_t;
 
 void 	adicionar				(node_t *, int);
-void 	alterar 				(node_t *);
 int 	contar 					(node_t *);
 void 	excluir 				(node_t *);
-char 	exibir_principal		();
+char 	exibir_menu_principal	();
 void	exibir_tela_adicionar	(node_t *);
+void 	exibir_tela_alterar 	(node_t *);
+void	exibir_tela_inserir		(node_t *);
 void 	exibir_tela_navegacao	(node_t *);
 void 	exibir_tela_relatorio	(node_t *);
 void 	inserir					(node_t *, int);
@@ -66,25 +67,40 @@ int main()
 	inserir(teste, 3);
 	adicionar(lista, 9);
 	adicionar(lista, 1);
-	/*alterar(teste);*/
+	/*exibir_tela_alterar(teste);*/
 	
 
 	do {
-		opcao = exibir_principal();
+		opcao = exibir_menu_principal();
 		switch(opcao)
 		{
 			case ('A'):
 				exibir_tela_adicionar(lista);
 			break;
 			case ('N'):
-				exibir_tela_navegacao(lista);
+				if (!verificar_lista_vazia(lista))
+					exibir_tela_navegacao(lista);
+				else {
+					printf("\n\nLISTA VAZIA! ADICIONE N%cMEROS!", U_MA_AGUDO);
+					getch();
+				}
 			break;
 			case ('E'):
-				exibir_tela_relatorio(lista);
+				if (!verificar_lista_vazia(lista))
+					exibir_tela_relatorio(lista);
+				else {
+					printf("\n\nLISTA VAZIA! ADICIONE N%cMEROS!", U_MA_AGUDO);
+					getch();
+				}
 			break;
 			case ('O'):
-				lista = ordenar(lista);
-				printf("\n\nLISTA ORDENADA!");
+				if (!verificar_lista_vazia(lista)) {
+					lista = ordenar(lista);
+					printf("\n\nLISTA ORDENADA!");
+				}
+				else 
+					printf("\n\nLISTA VAZIA! ADICIONE N%cMEROS!", U_MA_AGUDO);
+
 				getch();
 			break;
 			case ('S'):
@@ -180,13 +196,13 @@ node_t *ordenar(node_t *lista)
 	return novo;
 }
 
-void alterar (node_t *elemento){
+void exibir_tela_alterar (node_t *elemento){
 	system("cls");
 	printf("-------------------------------------------\n\n");
 	printf("            NUMERA%c%cO ORDENADA\n\n", C_MA_CEDILHA, A_MA_TIL);
 	printf("-------------------------------------------\n\n");
 	printf("         ALTERE ELEMETO SELECIONADO\n\n");
-	printf("                   (%05i)\n\n", elemento->num);
+	printf("                 (%08i)\n\n", elemento->num);
 	printf("-------------------------------------------\n\n");
 	elemento->num = receber_numero();
 	printf("\n\nNOVO VALOR DO ELEMENTO: %i", elemento->num);
@@ -242,7 +258,7 @@ void excluir (node_t *elemento){
 	}
 }
 
-char exibir_principal() {
+char exibir_menu_principal() {
 	system("cls");
 	printf("-------------------------------------------\n\n");
 	printf("            NUMERA%c%cO ORDENADA\n\n", C_MA_CEDILHA, A_MA_TIL);
@@ -319,6 +335,8 @@ void exibir_tela_relatorio(node_t *lista) {
 
 void exibir_tela_navegacao(node_t *lista) {
 	char tecla_selecao;
+	char confirmacao;
+	node_t *aux_prox, *aux_ante;
 	do {
 		system("cls");
 		printf("-------------------------------------------\n\n");
@@ -345,20 +363,47 @@ void exibir_tela_navegacao(node_t *lista) {
 				}		
 			break;
 			case ('I'):
-		
+				exibir_tela_inserir(lista);
 			break;
 			case ('M'):
-		
+				exibir_tela_alterar(lista);
 			break;
 			case ('E'):
-		
+				printf("\n\nDESEJA REALMENTE EXCLUIR ESTE N%cMERO? (S) ", U_MA_AGUDO);
+				confirmacao = toupper(getche());
+				if ('S' == confirmacao) {
+					aux_ante = lista->ante;
+					aux_prox = lista->prox;
+					excluir(lista);
+					printf("\nN%cMERO EXCLU%cDO!\n", U_MA_AGUDO, I_MA_AGUDO);
+					if ((NULL == aux_ante) && (NULL == aux_prox)) {
+						if (verificar_lista_vazia(lista)) {
+							tecla_selecao = 'S';
+						}
+					}
+					else {
+						lista = (NULL != aux_ante) ? aux_ante : aux_prox;
+					}
+					getch();
+				}
 			break;
 			case ('S'):
-		
 			break;
 			default:
 				printf("OP%c%cO INV%cLIDA!\n", C_MA_CEDILHA, A_MA_TIL, A_MA_AGUDO);
 				getch();
 		}
 	} while ('S' != tecla_selecao);
+}
+
+void exibir_tela_inserir(node_t *elemento) {
+	system("cls");
+	printf("-------------------------------------------\n\n");
+	printf("            NUMERA%c%cO ORDENADA\n\n", C_MA_CEDILHA, A_MA_TIL);
+	printf("-------------------------------------------\n\n");
+	printf(" ADICIONE UM NOVO N%cMERO %c LISTA,\n",U_MA_AGUDO, A_MA_GRAVE);
+	printf(" ELE SER%c INSERIDO AP%cS O N%cMERO %i\n\n",A_MA_AGUDO, O_MA_AGUDO, U_MA_AGUDO, elemento->num);
+	inserir(elemento, receber_numero());
+	printf("\n\nN%cMERO INSERIDO COM SUCESSO!", U_MA_AGUDO);
+	getch();
 }
