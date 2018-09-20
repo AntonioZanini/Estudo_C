@@ -97,3 +97,19 @@ Exercício que recebe um valor e aplica uma inflação de 10% caso seja menor qu
 Exercício que recebe dois operandos e um operador e realiza a operação representada por eles.
 - Simples utilização de condicionais e captura de números e caractere.
 - Este exercício aparenta ter sido desenvolvido para a didática em cima da estrutura _switch_, mas ele pode ser resolvido com a mesma simplicidade utilizando _if_.
+
+18. [**Aula08-ex01-Grupo2-5.c**](Aula08-ex01-Grupo2-5.c).
+
+Exercício para recebimento de duas notas (0 a 10) de cada aluno de uma classe e calcular a média.
+- Me parece que o este programa tinha a intensão de exibir a média logo após as capturas das notas, porém, minha solução utilizou a abordagem de gravar os valores em uma matriz e fazer todas as exibições após a última captura.
+- Tive muitos problemas ao cometer um erro de lógica antes de verificação para _break_ da captura, acabei achando que era um problema no _break_, mas depois de encontrar uma substituição a ele descobri que era uma condição definida de forma errônea.
+
+19. [**Aula08-ex02-Grupo3-2.c**](Aula08-ex02-Grupo3-2.c).
+
+Exercício que recebe dois números e os soma.
+- Exercício simples para demonstrar didaticamente a criação de uma função.
+
+20. [**Aula08-ex03-Grupo4-1.c**](Aula08-ex03-Grupo4-1.c).
+
+Exercício que recebe dois números e exibe o resultado do primeiro elevado ao segundo.
+- Exercício semelhante ao anterior, demonstrando as possibilidades das funções de forma simples e didática.

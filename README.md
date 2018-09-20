@@ -150,3 +150,7 @@ Uma simples descrição de progresso e visão sobre as atividades.
 
 - Aula com resolução de três exercícios, problemas com a lógica de um exercício atrasaram o progresso.
 - Aprendi sobre um pouco sobre função exponencial natural, irei pesquisar mais para não ficar tão confuso ao me deparar novamente com isso no futuro.
+
+### Dia 23 (20/09/2018)
+
+- Apenas as análises dos exercícios da aula 8, dia cheio, mas não muito produtivo.
