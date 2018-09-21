@@ -154,3 +154,8 @@ Uma simples descrição de progresso e visão sobre as atividades.
 ### Dia 23 (20/09/2018)
 
 - Apenas as análises dos exercícios da aula 8, dia cheio, mas não muito produtivo.
+
+### Dia 24 (21/09/2018)
+
+- Conclusão do exercício _012-lista-ordena.c_.
+- Bastante tempo investido não remoção de todos os erros perseptíveis. Aparentemente está completo e livre de erros básicos.

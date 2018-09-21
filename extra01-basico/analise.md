@@ -88,3 +88,9 @@ Programa: **FILA DE MENSAGENS**. Exercício que manipula uma lista encadeada de 
 Programa: **PILHA DE NÚMEROS**. Exercício que manipula uma lista encadeada de modo a utilizá-la como uma pilha de números a serem exibidos na tela.
 - Um exercício bem simples, porém o fato de ter errado na digitação que define novos tipos causou uma demora incompatível com a dificuldade deste código.
 - Este foi o exercício em que erros mais me atrapalharam, preciso tentar minimizá-los ainda mais.
+
+12. [**12-lista-ordena.c**](12-lista-ordena.c).
+
+Programa: **NUMERAÇÃO ORDENADA**. Exercício que manipula uma lista encadeada de modo a utilizá-la como uma lista de números cadastrados, possibilitando: adição, alteração, inserção, exclusão, listagem, navegação e ordenação de números.
+- Exercício idealizado para ser a consolidação do aprendizado de listas encadeadas. A conclusão demorou mais que o esperado.
+- Tive diversos contratempos, ora na ordenação e ora na exclusão. Teria sido mais simples utilizar uma lista encadeada simples no lugar de uma lista duplamente encadeada, mas isso teria tornado meu exercício menos diverso.
