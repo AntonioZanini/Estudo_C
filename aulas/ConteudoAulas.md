@@ -906,3 +906,120 @@ Grupo 4.1 - Fazer uma função que cacula a enésima potência de uma variável 
 		system("pause");
 		return 0;
 	}
+
+## AULA 9 - 21/09/2018 (Prof. Luiz)
+
+### Código
+
+**Exercício 1**
+Programa que atribui comandos para um processo encaixotador de latas.
+
+_**Lógica:**_
+
+	Algoritmo Contagem
+	INÍCIO
+		max_lata_cx		: INTEIRO;
+		cont_caixa 		: INTEIRO;
+		qtd_caixas		: INTEIRO;
+		num_latas_cx	: INTEIRO;
+		num_latas_lido	: INTEIRO;
+		x				: INTEIRO;
+		marca 			: CARACTERE;
+		data			: CARACTERE;
+		cont_caixa = 0;
+		ESCREVA ("DIGITE A DATA: ");
+		LEIA (data);
+		ESCREVA ("DIGITE A MARCA: ");
+		LEIA (marca);
+		ESCREVA ("DIGITE A QUANTIDADE DE LATAS POR CAIXA: ");
+		LEIA (max_lata_cx);
+		ESCREVA ("INSIRA A QUANTIDADE DE CAIXAS: ");
+		LEIA (qtd_caixas);
+		FAÇA
+			num_latas_cx = 0;
+			FAÇA
+				ESCREVA ("INSIRA A QUANTIDADE DE LATAS");
+				LEIA (num_latas_lido);
+				num_latas_cx = num_latas_cx + num_latas_lido;
+				SE (num_latas_cx < max_lata_cx)
+					ESCREVA("FALTAM " & (max_lata_cx - num_latas_cx) & " LATAS PARA FECHAR A CAIXA!");
+				SENÃO SE (num_latas_cx = max_lata_cx)
+					ESCREVA("CAIXA FECHADA!");
+				SENÃO
+					ESCREVA("CAIXA FECHADA! SOBRARAM " & (num_latas_cx - (max_lata_cx * (num_latas_cx /  max_lata_cx))) & "!");
+					cont_caixa += (num_latas_cx /  max_lata_cx) -1;
+				FIM SE
+			ENQUANTO (num_latas_cx < max_lata_cx);
+			cont_caixa ++;
+			ESCREVA (cont_caixa & " CAIXA(S) FECHADA(S)")
+		ENQUANTO (cont_caixa < qtd_caixas);
+		ESCREVE ("TOTAL DE CAIXAS DE LATAS EMBALADAS EM " & data & ":" & cont_caixa);
+	FIM
+
+_**Linguagem C:**_
+
+	#include <stdio.h>
+	int main()
+	{
+		int max_lata_cx;
+		int cont_caixa = 0;
+		int qtd_caixas;
+		int num_latas_cx;
+		int num_latas_lido;
+		int x;
+		char marca[12];
+		char data[10];
+		printf(" DIGITE A DATA: ");
+		scanf("%s", data);
+		printf(" DIGITE A MARCA: ");
+		scanf("%s", marca);
+		printf(" DIGITE A QUANTIDADE DE LATAS POR CAIXA: ");
+		scanf("%i", &max_lata_cx);
+		printf(" INSIRA A QUANTIDADE DE CAIXAS: ");
+		scanf("%i", &qtd_caixas);
+		do
+		{
+			num_latas_cx = 0;
+			do
+			{
+				printf(" INSIRA A QUANTIDADE DE LATAS");
+				scanf("%i", &num_latas_lido);
+				num_latas_cx += num_latas_lido;
+				if (num_latas_cx < max_lata_cx)
+					printf("\n FALTAM %i LATAS PARA FECHAR A CAIXA!\n", (max_lata_cx - num_latas_cx) );
+				else if (num_latas_cx == max_lata_cx)
+					printf("\n CAIXA FECHADA!\n");
+				else {
+					printf("\n CAIXA FECHADA! SOBRARAM %i!\n", (num_latas_cx - (max_lata_cx * (num_latas_cx /  max_lata_cx))));
+					cont_caixa += (num_latas_cx /  max_lata_cx) -1;
+				}
+			} while (num_latas_cx < max_lata_cx);
+			cont_caixa++;
+			printf("\n CAIXAS EMBALADAS: %i\n", cont_caixa );
+		} while (cont_caixa < qtd_caixas);
+		printf("\n\n TOTAL DE CAIXAS DE LATAS EMBALADAS EM %s: %i\n", data, cont_caixa );
+		return 0;
+	}
+
+**Exercício 2**
+Exercício que captura valores de bolsa de alguma ação e retorna as variações segundo os períodos informados.
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	int main(int argc, char const *argv[])
+	{
+		float bolsa[10], variacao_bolsa[9];
+		int i;
+		for (i = 0; i < 10; i++) {
+			printf("Insira o valor da bolsa durante o periodo %2i : ", i + 1);
+			scanf("%f", &bolsa[i]);
+			if (i != 0) {
+				variacao_bolsa[i-1] = (bolsa[i] - bolsa[i-1]);
+			}
+		}
+		for (i = 0; i < 9; i++) {
+			printf("A variacao %i : %.2f\n", i + 1, variacao_bolsa[i] );
+		}
+		system("pause");
+		return 0;
+	}

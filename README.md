@@ -159,3 +159,9 @@ Uma simples descrição de progresso e visão sobre as atividades.
 
 - Conclusão do exercício _012-lista-ordena.c_.
 - Bastante tempo investido não remoção de todos os erros perseptíveis. Aparentemente está completo e livre de erros básicos.
+
+- Aula 9 do curso, dois exercícios elaborados na hora.
+
+### Dia 25 (22/09/2018)
+
+- Organização dos arquivos da aula, e reprodução do exercício 2 que apenas foi feito pelo instrutor ao final da aula.
