@@ -1023,3 +1023,80 @@ Exercício que captura valores de bolsa de alguma ação e retorna as variaçõe
 		system("pause");
 		return 0;
 	}
+
+## AULA 10 - 26/09/2018 (Prof. Stark)
+
+### Conceitos
+
+- Revisão sobre funções.
+
+### Código
+
+**Exercício 1**
+Grupo 4.3 - Dado que podemos calcular e^x por: 
+**e^x = 1 + x + x^2/2! + x^3/3! + ...**
+Fazer um trecho de programa em "C" que lê um valor para x e calcula o valor de e^x. O valor deve ser calculado enquanto o termo calculado for maior que 10E-6.
+
+	#include <stdio.h>
+	#include <stdio.h>
+	#include <math.h>
+	double		fatorial 	(int n);
+	float 		euler		(int x);
+	float 		e 			(int x, int i);
+	int main(int argc, char const *argv[])
+	{
+		int valor;
+			valor = 0;
+			printf("\n\nDIGITE VALOR PARA A POTENCIA: ");
+			scanf("%i", &valor);
+			printf("RESULTADO DE E^%i: %.4f", valor, euler(valor));
+	}
+	float euler(int x)
+	{
+		float resultado;
+		resultado = e(x, 1) + 1;
+		return resultado;
+	}
+	float e(int x, int i)
+	{
+		float total = 0;
+		total = (pow(x, i) / fatorial(i));
+		if (fabs(total) >= 0.000001f)
+			total += e(x, i + 1);
+		return total;
+	}
+	double fatorial(int n)
+	{
+		double total = 1;
+		if (n >= 1)
+			total *= n * fatorial(n - 1); 
+		return (total);
+	}
+
+**Variação B**
+Resolver o mesmo exercício, porém sem a utilização de funções, apenas com a estrutura repetitiva.
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <math.h>
+	#define LIMITE 0.000001f
+	int main(int argc, char const *argv[])
+	{
+		float termo, total, valor;
+		int i;
+		printf("DIGITE VALOR PARA A POTENCIA: ");
+		scanf("%f", &valor);
+		termo 	= 1.0f;
+		total 	= 1.0f;
+		i 		= 1;
+		do
+		{
+			termo = termo * (valor / i);
+			total = total + termo;
+			i++;
+		} while (fabs(termo) >= LIMITE);
+		
+		printf("\nRESULTADO: %f\n", total);
+		system("pause");
+		return 0;
+	}

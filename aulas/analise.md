@@ -113,3 +113,28 @@ Exercício que recebe dois números e os soma.
 
 Exercício que recebe dois números e exibe o resultado do primeiro elevado ao segundo.
 - Exercício semelhante ao anterior, demonstrando as possibilidades das funções de forma simples e didática.
+
+21. [**Aula09-ex01-encaixotar.c**](Aula09-ex01-encaixotar.c).
+
+Exercício que implementa as rotinas de um processo industrial de encaixotamento de latas.
+- Este exercício ocupou a maioria da aula, mais em sua idealização e modelagem, que em sua implementação.
+- Simples utilizações de laços e condicionais, inicialmente a ideia do instrutor era a de utilizar funções para a execução, mas acabou ficando assim por falta de tempo.
+
+22. [**Aula09-ex02-bolsa.c**](Aula09-ex02-bolsa.c).
+
+Exercício que captura valores de bolsa de alguma ação e retorna as variações segundo os períodos informados.
+- Este exercício apenas foi demonstrado em sala, a implementação foi feita em casa.
+- Laços _for_, condicionais e matriz, programa objetivo e de simples implementação.
+
+23. [**Aula10-ex01-Grupo4-3.c**](Aula10-ex01-Grupo4-3.c).
+
+Exercício que calcula uma função exponencial aproximada de número recebido.
+- Este exercício teve uma dificuldade considerável pelo fato de meu conhecimento deficiente no assunto.
+- Apesar da dificuldade, com ajuda do instrutor, a lógica fluiu bem e teve uma implementação aceitável.
+- Tive problemas com erros inesperados em alguns testes, provando que o problema não era a lógica. No fim, tive que utilizar variáveis _double_ para a função de fatorial, pois todas os tipos inteiros que testei (_int, long, long long_) falharam.
+
+24. [**Aula10-ex01-Grupo4-3b.c**](Aula10-ex01-Grupo4-3b.c).
+
+Exercício que calcula uma função exponencial aproximada de número recebido.
+- Uma variação do exercício anterior onde não são utilizadas funções adicionais, apenas código na função _main_.
+- Esta versão foi a desenvolvida em sala, eu não a segui para implementar a versão original da lista. Fiz a implementação ao chegar em casa, lembrando da lógica da aula, foi simples e rápido.

@@ -165,3 +165,9 @@ Uma simples descrição de progresso e visão sobre as atividades.
 ### Dia 25 (22/09/2018)
 
 - Organização dos arquivos da aula, e reprodução do exercício 2 que apenas foi feito pelo instrutor ao final da aula.
+
+### Dia 26 (26/09/2018)
+
+- Aula 10 do curso, um exercício da lista resolvido, pode parecer pouco, mas o tema justifica.
+
+- Análises de exercícios das aulas 9 e 10.
