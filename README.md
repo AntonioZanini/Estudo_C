@@ -171,3 +171,7 @@ Uma simples descrição de progresso e visão sobre as atividades.
 - Aula 10 do curso, um exercício da lista resolvido, pode parecer pouco, mas o tema justifica.
 
 - Análises de exercícios das aulas 9 e 10.
+
+### Dia 27 (28/09/2018)
+
+- Aula 11 do curso, explicação sobre ponteiros e _switch_, um exercício e uma variação aplicando estes conceitos.

@@ -138,3 +138,13 @@ Exercício que calcula uma função exponencial aproximada de número recebido.
 Exercício que calcula uma função exponencial aproximada de número recebido.
 - Uma variação do exercício anterior onde não são utilizadas funções adicionais, apenas código na função _main_.
 - Esta versão foi a desenvolvida em sala, eu não a segui para implementar a versão original da lista. Fiz a implementação ao chegar em casa, lembrando da lógica da aula, foi simples e rápido.
+
+25. [**Aula11-ex01-desconto-carros.c**](Aula11-ex01-desconto-carros.c).
+
+Exercício que recebe um número de carros e aplica um desconto ao seu valor total de venda.
+- Exercício didático para a prática da estrutura condicional _switch_, utilizando casos numéricos simples e respostas imediatas.
+
+26. [**Aula11-ex01b-desconto-carros-ponteiro.c**](Aula11-ex01b-desconto-carros-ponteiro.c)
+
+Exercício que recebe um número de carros e aplica um desconto ao seu valor total de venda.
+- Este exercício é uma variação do exercício anterior, onde é utilizado um ponteiro para passar o valor de carros e, ao final do programa, é exibido o número do endereço de memória utilizado pelo ponteiro.

@@ -14,24 +14,28 @@
 
 ### Tipos de Variáveis:
 
-- Números inteiros	→ int
-- Ponto flutuante 	→ float, double
-- Caracteres		→ char
+|Tipos          |Conteúdo        |
+|:-------------:|:--------------:|
+|int            |Números inteiros|
+|float, double  |Ponto flutuante |
+|char           |Caracteres      |
 
 ### Comandos:
 
-- #include			→ Inclusão de biblioteca.
-- stdio.h 			→ Biblioteca de tratamento de entrada e saída de dados.
-- stdlib.h			→ Biblioteca com funções de cálculo.
-- printf			→ Função de impressão.
-- ""				→ Delimitador de texto.
-- \n				→ Marcador de quebra de texto.
-- for				→ Estrutura Repetitiva: for(variável = [início]; variável [limite lógico]; incremento ou decremento){}.
-- scanf				→ Captura de texto do teclado: scanf(tipo de dado, &variável).
-- while				→ Estrutura Repetitiva: while (condição lógica){}.
-- ||				→ Modificador lógico OU.
-- switch			→ Estrura Condicional: switch (variável) { case (caso1): [código]; break; case (caso2): [código]; break;}.
-- system("pause")	→ Pausa da tela.
+|Código de Comando |Função                                                                                                   |
+|:----------------:|:--------------------------------------------------------------------------------------------------------|
+|#include          |Inclusão de bibliotecas.                                                                                 |
+|stdio.h           |Biblioteca de tratamento de entrada e saída de dados.                                                    |
+|stdlib.h          |Biblioteca com funções de cálculo.                                                                       |
+|printf            |Função de impressão.                                                                                     |
+|""                |Delimitador de texto.                                                                                    |
+|\n                |Marcador de quebra de texto.                                                                             |
+|for               |Estrutura Repetitiva: for(variável = [início]; variável [limite lógico]; incremento ou decremento){}.    |
+|scanf             |Captura de texto do teclado: scanf(tipo de dado, &variável).                                             |
+|while             |Estrutura Repetitiva: while (condição lógica){}.                                                         |
+|\|\|              |Operador lógico OU.                                                                                      |
+|switch            |Estrura Condicional: switch (variável) { case (caso1): [código]; break; case (caso2): [código]; break;}. |
+|system("pause")   |Pausa da tela.                                                                                           |
 
 ### Código:
 
@@ -110,16 +114,23 @@
 - Variáveis **não podem** começar com dígitos. Ex errado: 2w.
 - Variáveis **não podem** ter espaços. Ex errado: peso do aluno.
 - Variáveis **não podem** ter caracteres especiais (que sejam operadores). Ex errado: sala/aula, f-e.
-- Dica **variáveis** → minúscula. **Constantes** → Maiúscula.
+- Dica:
+
+|Nomes          |Uso de Caracteres  |
+|:-------------:|:-----------------:|
+|**Variáveis**  |Sempre minúsculas. |
+|**Constantes** |Sempre MAIÚSCULAS. |
 
 ### Comandos:
 
-- math.h 		→ Biblioteca de operações matemáticas.
-- If 			→ Estrutura Condicional.
-- For 			→ Laço Repetitivo.
-- While 		→ Laço Repetitivo.
-- =				→ Operador de atribuição.
-- ==			→ Operador de comparação.
+|Código de Comando |Função                               |
+|:----------------:|:------------------------------------|
+|math.h            |Biblioteca de operações matemáticas. |
+|if                |Estrutura Condicional.               |
+|for               |Laço Repetitivo.                     |
+|while             |Laço Repetitivo.                     |
+|=                 |Operador de atribuição.              |
+|==                |Operador de comparação.              |
 
 ### Código:
 
@@ -197,30 +208,38 @@ _**Linguagem C:**_
 
 #### Operador Atribuição
 
-- =		Atribuição 		Ex. a = 10			Atribui um valor para um elemento.
+|Operador |Nome       |Função                             |Exemplo    |
+|:-------:|:---------:|:----------------------------------|:----------|
+|=        |Atribuição |Atribui um valor para um elemento. |Ex. a = 10 |
 
 #### Operadores Aritméticos
 
-- \+	Soma			Ex. a + b 			Obtém o valor da soma de dois números.
-- \- 	Subtração		Ex. a - b 			Obtém o valor da subtração de dois números.
-- \*	Multiplicação	Ex. a * b 			Obtém o valor da multiplicação de dois números.
-- /		Divisão 		Ex. a / b 			Obtém o valor da divisão de dois números.
-- %		Resto inteiro 	Ex. a % b 			Obtém o valor do resto da divisão inteira de dois números inteiros.
+|Operador |Nome          |Função                                                              |Exemplo   |
+|:-------:|:------------:|:-------------------------------------------------------------------|:---------|
+|\+       |Soma          |Obtém o valor da soma de dois números.                              |Ex. a + b |
+|\-       |Subtração     |Obtém o valor da subtração de dois números.                         |Ex. a - b |
+|\*       |Multiplicação |Obtém o valor da multiplicação de dois números.                     |Ex. a * b |
+|/        |Divisão       |Obtém o valor da divisão de dois números.                           |Ex. a / b |
+|%        |Resto Inteiro |Obtém o valor do resto da divisão inteira de dois números inteiros. |Ex. a % b |
 
 #### Operadores Relacionais
 
-- ==	Igualdade		Ex. a == 10			Compara se dois valores são diferentes.
-- !=	Diferte			Ex. a != 10			Compara se dois valores são diferentes.
-- <		Menor			Ex. a  < 10			Compara se um valor é menor que outro.
-- <=	Menor ou igual 	Ex. a <= 10			Compara se um valor é menor ou igual a outro.
-- \>		Maior 			Ex. a  > 10			Compara se um valor é maior que outro.
-- \>=	Maior ou igual 	Ex. a >= 10			Compara se um valor é maior ou igual a outro.
+|Operador |Nome           |Função                                        |Exemplo     |
+|:-------:|:-------------:|:---------------------------------------------|:-----------|
+|==       |Igualdade      |Compara se dois valores são iguais.           |Ex. a == 10 |
+|!=	      |Diferença      |Compara se dois valores são diferentes.       |Ex. a != 10 |
+|<        |Menor          |Compara se um valor é menor que outro.        |Ex. a  < 10 |
+|<=       |Menor ou igual |Compara se um valor é menor ou igual a outro. |Ex. a <= 10 |
+|\>       |Maior          |Compara se um valor é maior que outro.        |Ex. a  > 10 |
+|\>=      |Maior ou igual |Compara se um valor é maior ou igual a outro. |Ex. a >= 10 |
 
 #### Operadores Lógicos
 
-- &&	E (AND)			Ex. a && b 			Retorna valor verdade de dois valores com o operador E.
-- ||	OU (OR)			Ex. a || b 			Retorna valor verdade de dois valores com o operador OU.
-- !		Negação (NOT)	Ex. a  ! b 			Retorna valor verdade de um ou dois valores com o operador NÃO.
+|Operador |Nome          |Função                                                          |Exemplo     |
+|:-------:|:------------:|:---------------------------------------------------------------|:-----------|
+|&&       |E (AND)       |Retorna valor verdade de dois valores com o operador E.         |Ex. a && b   |
+|\|\|     |OU (OR)       |Retorna valor verdade de dois valores com o operador OU.        |Ex. a \|\| b |
+|!        |Negação (NOT) |Retorna valor verdade de um ou dois valores com o operador NÃO. |Ex. a  ! b   |
 
 #### For
 
@@ -240,8 +259,10 @@ Comando de atribuição → Uso para controle de Loop (Laço).
 
 ### Comandos
 
-- %f 			→ Indicador de formato de captura para valores **float**.
-- %lf 			→ Indicador de formato de captura para valores **double**.
+|Código de Comando |Função                                                   |
+|:----------------:|:--------------------------------------------------------|
+|%f                |Indicador de formato de captura para valores **float**.  |
+|%lf               |Indicador de formato de captura para valores **double**. |
 
 ### Código
 
@@ -617,9 +638,9 @@ Sendo:
 
 A principal função da disjunção na programação é extrair valores lógicos de comparações e verificações. Estas são as suas implementações em diferentes linguagens de programação:
 
-| FORMA | LINGUAGENS                        |
-|:-----:|-----------------------------------|
-|  or   | Pascal, Visual Basic, PHP.        | 
+| FORMA   | LINGUAGENS                        |
+|:-------:|-----------------------------------|
+|  or     | Pascal, Visual Basic, PHP.        | 
 |  \|\|   | C, C++, C#, Java, Javascript, PHP.|
 
 **Exemplo de disjunção em C**
@@ -1098,5 +1119,138 @@ Resolver o mesmo exercício, porém sem a utilização de funções, apenas com 
 		
 		printf("\nRESULTADO: %f\n", total);
 		system("pause");
+		return 0;
+	}
+
+## AULA 11 - 28/09/2018 (Prof. Luiz)
+
+### Conceitos
+
+- Ponteiros.
+
+### Código
+
+- Ponteiro:
+
+		int idade;
+		int *pnt_idade;
+		int ano;
+		pnt_idade = &idade;
+		ano = 2018 - *pnt_idade;
+
+- Switch:
+
+		switch (idade) {
+			case 10:
+				printf("Vai jogar bola");
+				break;
+		}
+
+**Exercício 1**
+Programa que recebe um número de carros e aplica um desconto à seu valor total de venda.
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <stdbool.h>
+	#define U_MI_AGUDO 	'\xA3' 	/* ú */
+	#define E_MI_CIRC 	'\x88' 	/* ê */
+	#define A_MI_TIL 	'\xC6' 	/* ã */
+	#define CIFRAO 		'\x24' 	/* $ */
+	int main(int argc, char const *argv[])
+	{
+		int 	num_carros;
+		float 	desconto;
+		float	preco_carro = 70000.0f;
+		bool	compra;
+		do {
+			compra = true;
+			printf("\n Insira o n%cmero de carros a ser comprados: ", U_MI_AGUDO);
+			scanf("%d", &num_carros);
+		switch (*carros_selecionados) {
+				case 0:
+					printf("\n Olhe mais uma vez nossos carros!\n");
+					compra = false;
+					break;
+				case 1:
+					printf("\n Escolha mais um carro para ter um desconto!\n");
+					desconto = 0;
+					break;
+				case 2:
+					printf("\n Dois carros! Receba 15%% de desconto!\n");
+					desconto = 15;
+					break;
+				case 3:
+					printf("\n Tr%cs carros! Receba 20%% de desconto!\n", E_MI_CIRC);
+					desconto = 20;
+					break;
+				case 4:
+					printf("\n Quatro carros! Receba 25%% de desconto, ou seja, UM CARRO GRATUITO!\n");
+					desconto = 25;
+					break;
+				default:
+					printf("\n N%co trabalhamos com esta quantidade de carros!\n", A_MI_TIL);
+					compra = false;
+					break;
+			}
+			if (compra) {
+				printf("\n Valor total a ser pago: R%c %.2f.\n", CIFRAO, num_carros * preco_carro * (1 - desconto / 100) );
+			}
+		} while (-1 != num_carros);
+		return 0;
+	}
+
+**Variação B**
+Alteração do programa anterior para funcionar utilizando ponteiros e exibindo o endereço do ponteiro utilizado.
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <stdbool.h>
+	#define U_MI_AGUDO 	'\xA3' 	/* ú */
+	#define E_MI_CIRC 	'\x88' 	/* ê */
+	#define A_MI_TIL 	'\xC6' 	/* ã */
+	#define CIFRAO 		'\x24' 	/* $ */
+	int main(int argc, char const *argv[])
+	{
+		int 	num_carros;
+		int		*carros_selecionados;
+		float 	desconto;
+		float	preco_carro = 70000.0f;
+		bool	compra;
+		do {
+			compra = true;
+			printf("\n Insira o n%cmero de carros a ser comprados: ", U_MI_AGUDO);
+			scanf("%d", &num_carros);
+			carros_selecionados = &num_carros;
+			switch (num_carros) {
+				case 0:
+					printf("\n Olhe mais uma vez nossos carros!\n");
+					compra = false;
+					break;
+				case 1:
+					printf("\n Escolha mais um carro para ter um desconto!\n");
+					desconto = 0;
+					break;
+				case 2:
+					printf("\n Dois carros! Receba 15%% de desconto!\n");
+					desconto = 15;
+					break;
+				case 3:
+					printf("\n Tr%cs carros! Receba 20%% de desconto!\n", E_MI_CIRC);
+					desconto = 20;
+					break;
+				case 4:
+					printf("\n Quatro carros! Receba 25%% de desconto, ou seja, UM CARRO GRATUITO!\n");
+					desconto = 25;
+					break;
+				default:
+					printf("\n N%co trabalhamos com esta quantidade de carros!\n", A_MI_TIL);
+					compra = false;
+					break;
+			}
+		
+			if (compra) {
+				printf("\n Valor total a ser pago: R%c %.2f.\n", CIFRAO, num_carros * preco_carro * (1 - desconto / 100) );
+			}
+		} while (-1 != num_carros);
 		return 0;
 	}
