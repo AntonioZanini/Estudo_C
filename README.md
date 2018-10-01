@@ -175,3 +175,10 @@ Uma simples descrição de progresso e visão sobre as atividades.
 ### Dia 27 (28/09/2018)
 
 - Aula 11 do curso, explicação sobre ponteiros e _switch_, um exercício e uma variação aplicando estes conceitos.
+
+### Dia 28 (29/09/2018)
+
+- Arquivo de estudo _013-arvore-binaria-1.c_ criado.
+- Arquivo de estudo _014-merge-sort.c_ criado.
+
+- Exercícios interessantes, achei que teria mais dificuldade, mas os únicos contratempos vieram de pequenos erros lógicos.

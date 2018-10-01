@@ -1,0 +1,45 @@
+Algoritmo Principal
+INÍCIO
+FIM
+
+Inteiro[] MergeSort(Inteiro lista[], Inteiro tamanho)
+INÍCIO
+	tamanho_a = (tamanho / 2) 					: INTEIRO;
+	tamanho_b = (tamanho / 2) + (tamanho % 2)	: INTEIRO;
+	x, y, i, y_ini	: INTEIRO;
+	a[tamanho_a]	: INTEIRO;	
+	b[tamanho_b]    : INTEIRO;
+	
+	PARA (x = 0; x < tamanho_a; x++ ) {
+		a[x] = lista[x];
+	}
+	PARA (x = 0; x < tamanho_b; x++) {
+		b[x] = lista[x+tamanho_a];
+	}
+	SE (1 < tamanho_a)
+		MergeSort(a, tamanho_a);
+	SE (1 < tamanho_b)
+		MergeSort(b, tamanho_b);
+
+	x = 0;
+	y = 0;
+	y_ini = 0;
+	i = 0;
+	PARA (x = 0; x < tamanho_a; x++)
+		PARA (y = y_ini; y < tamanho_b; y++)
+			SE (a[x] >= b[y])
+				lista[i] = b[y];
+				i++;
+				y_ini++;
+			FIM SE
+		FIM PARA
+		lista[i] = a[x];
+		i++;
+	FIM PARA
+	SE (y_ini < tamanho_b)
+		PARA (y = y_ini; y < tamanho_b; y++)
+			lista[i] = b[y];
+			i++;
+		FIM PARA
+	FIM SE
+FIM
