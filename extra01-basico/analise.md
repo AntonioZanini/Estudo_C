@@ -94,3 +94,15 @@ Programa: **PILHA DE NÚMEROS**. Exercício que manipula uma lista encadeada de 
 Programa: **NUMERAÇÃO ORDENADA**. Exercício que manipula uma lista encadeada de modo a utilizá-la como uma lista de números cadastrados, possibilitando: adição, alteração, inserção, exclusão, listagem, navegação e ordenação de números.
 - Exercício idealizado para ser a consolidação do aprendizado de listas encadeadas. A conclusão demorou mais que o esperado.
 - Tive diversos contratempos, ora na ordenação e ora na exclusão. Teria sido mais simples utilizar uma lista encadeada simples no lugar de uma lista duplamente encadeada, mas isso teria tornado meu exercício menos diverso.
+
+13. [**13-arvore-binaria-1.c**](13-arvore-binaria-1.c).
+
+Exercício que cria uma árvore binária e a popula com número de forma ordenada. 
+- Exercício que aparentava ser complexo, mas, na prática, se mostrou bem simples.
+- Irei realizar novos exercícios sobre árvores binárias, cada um explorando novos conceitos.
+
+14. [**14-merge-sort.c**](14-merge-sort.c).
+
+Exercício que executa o método de ordenação Merge Sort em uma sequência aleatória de valores inteiros de modo a reordená-los.
+- Mais um exercício que parecia mais difícil de longe que de perto.
+- Aprendi a utilizar ponteiros e alocação de memória para simular o comportamento de uma matriz, isso é algo que me deixo bastante empolgado e pode trazer muitas possibilidades futuras.

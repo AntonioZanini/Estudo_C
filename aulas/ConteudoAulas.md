@@ -1254,3 +1254,253 @@ Alteração do programa anterior para funcionar utilizando ponteiros e exibindo 
 		} while (-1 != num_carros);
 		return 0;
 	}
+
+## AULA 12 - 01/10/2018 (Prof. Stark)
+
+### Código
+
+**Exercício 1**
+Grupo 5.1 - Procure determinar quais valores são impressos ao final deste programa. Confira sua resposta testando o programa no micro. Execute-o passo a passo conferindo o valor das variáveis em cada momento.
+
+**a.** 
+
+	void main()
+	{
+		int a,b,*c;
+		a = 3;
+		b = 4;
+		c = &a;
+		b++;
+		*c = a+2;
+		printf("%d %d",a,b);
+	}
+
+Saída: "5 5" CORRETO
+
+**b.**
+
+	void main()
+	{
+		int a,b,*c;
+		a = 4;
+		b = 3;
+		c = &a;
+		*c = *c +1;
+		c = &b;
+		b = b+4;
+		printf("%d %d %d",a,b,*c);
+	}
+
+Saída: "5 7 7" CORRETO
+
+**c.**
+
+	void main()
+	{
+		int a,b,*c,*d,*f;
+		a = 4;
+		b = 3;
+		c = &a;
+		d = &b;
+		*c /= 2;
+		f = c;
+		c = d;
+		d = f;
+		printf("%d %d",*c,*d);
+	}
+
+Saída: "3 2" CORRETO
+
+**d.**
+
+	int calcula(int);
+	void main()
+	{
+		int a,b,c;
+		char d;
+		a=1;b=2;c=3;d='A';
+		a+=b*c;
+		d=(a>7)?d-1:d+1;
+		b = calcula(b);
+		c = calcula(calcula(a));
+		a = c++;
+		printf("%d - %d - %d - %c\n",a,b,c,d);
+	}
+	int calcula(int x)
+	{
+		int i;
+		if ((x=x*2)>5) return(x+3);
+		for(i=0;i<10;i++)
+		{
+			if (i<5) continue;
+			if (x>8) break;
+			x+=2;
+		}
+		return(x);
+	}
+
+Saída: "38 10 37 B" ERRADO "37 10 38 B" 
+a = c++: Faz **a** receber o valor de c (37) e, após isso, incrementa c para 38.
+
+**Exercício 2** 
+Grupo 6.1 - Fazer um programa em "C" que lê 10 valores e imprime o maior e o menor valores lidos.
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	#define U_MI_AGUDO 		'\xA3' 	/* ú */
+	#define ORDINAL_MASC	'\xA7' 	/* º */
+	int main()
+	{
+		int i, num[10], maior, menor;
+		for (i = 0; i < 10; i++) {
+			printf(" Insira o %2i%c n%cmero: ", i+1, ORDINAL_MASC, U_MI_AGUDO);
+			scanf("%i", &num[i]);
+		}
+		menor = num[0];
+		maior = num[0];
+		for (i = 1; i < 10; i++) {
+			if (menor > num[i])
+				menor = num[i];
+			if (maior < num[i])
+				maior = num[i];
+		}
+		printf("\n Menor: %i\n Maior: %i\n\n", menor, maior);
+		system("pause");
+		return 0;
+	}
+
+**Exercício 3**
+Grupo 6.2 - Fazer um programa que lê um conjunto de 10 valores e os imprime ordenados.
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <stdbool.h>
+	#define U_MI_AGUDO 		'\xA3' 	/* ú */
+	#define ORDINAL_MASC	'\xA7' 	/* º */
+	void ordenar(int *, int);
+	int main()
+	{
+		int i, num[10];
+		for (i = 0; i < 10; i++) {
+			printf(" Insira o %2i%c n%cmero: ", i+1, ORDINAL_MASC, U_MI_AGUDO);
+			scanf("%i", &num[i]);
+		}
+		ordenar(num, 10);
+		printf("\n N%cmeros Ordenados: \n\n", U_MI_AGUDO);
+		for (i = 0; i < 10; i++) {
+			printf(" %i ", num[i]);
+			if (i != 9)
+				printf("-");
+			else
+				printf("\n\n");
+		}
+		system("pause");
+		return 0;
+	}
+	void ordenar(int *lista, int tamanho)
+	{
+		int aux, final, i;
+		bool ordenado;
+		final = tamanho - 1;
+		do {
+			ordenado = true;
+			for (i = 0; i < final; i++) {
+				if (lista[i] > lista[i+1]) {
+					aux = lista[i+1];
+					lista[i+1] = lista[i];
+					lista[i] = aux;
+					ordenado = false;
+				}
+			}
+			final--;
+		} while (!ordenado);
+	}
+
+**Exercício 4**
+Grupo 6.3 - Fazer uma rotina que recebe como parâmetro um array de 5 posições contendo as notas de um aluno ao longo do ano e devolve a média do aluno.
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	#define ORDINAL_FEM		'\xA6' 	/* ª */
+	#define E_MI_AGUDO		'\x82' 	/* é */
+	float media(int *, int);
+	int main(int argc, char const *argv[])
+	{
+		int i, notas[5];
+		for (i = 0; i < 5; i++) {
+			printf(" Insira a %2i%c nota do aluno: ", i+1, ORDINAL_FEM);
+			scanf("%i", &notas[i]);
+		}
+		printf("\n A m%cdia do aluno %c: %.2f", E_MI_AGUDO, E_MI_AGUDO, media(notas, 5));
+		return 0;
+	}
+	float media(int *notas, int quantidade)
+	{
+		int i, total = 0;
+		for (i = 0; i < quantidade; i++) {
+			total += notas[i];
+		}
+		return (total / (quantidade * 1.0f));
+	}
+
+**Exercício 5**
+Grupo 6.4 - Fazer uma rotina que recebe um array do tipo double e o número de valores que devem ser solicitados ao usuário e devolve o array preenchido com os valores digitados.
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	#define QUANTIDADE_MATERIAS 	6
+	#define ORDINAL_FEM			'\xA6' 	/* ª */
+	#define E_MI_AGUDO			'\x82' 	/* é */
+	int main(int argc, char const *argv[])
+	{
+		int i;
+		double medias[QUANTIDADE_MATERIAS];
+		preencher_medias(medias);
+		printf("\n\n M%cdias: \n\n", E_MI_AGUDO);
+		for (i = 0; i < QUANTIDADE_MATERIAS; i++) {
+			printf(" %.2lf ", medias[i]);
+			if (i != (QUANTIDADE_MATERIAS - 1))
+				printf("-");
+			else
+				printf("\n\n");
+		}
+		system("pause");
+		return 0;
+	}
+	void preencher_medias(double *medias)
+	{
+		int i;
+		for (i = 0; i < QUANTIDADE_MATERIAS; i++) {
+			printf(" Insira a m%cdia da %2i%c mat%cria do aluno: ", E_MI_AGUDO, i+1, ORDINAL_FEM, E_MI_AGUDO);
+			scanf("%lf", &medias[i]);
+		}
+	}
+
+**Exercício 6**
+Grupo 6.5 - Fazer um programa em "C" que lê um conjunto de 10 valores inteiros e verifica se algum dos valores é igual a média dos mesmos.
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	#define E_MI_AGUDO		'\x82' 	/* é */
+	float media(int *);
+	int main(int argc, char const *argv[])
+	{
+		int valores[10] = {2, 2, 2, 2, 3 , 3, 3, 1, 1 ,1};
+		int i;
+		float media_geral;
+		media_geral = media(valores);
+		printf("\n\n M%cdia: %.2f\n\n", E_MI_AGUDO, media_geral);
+		for (i = 0; i < 10; i++) {
+			if (valores[i] == media_geral)
+				printf(" Valor mediano: %i \n", valores[i] );
+		}
+		return 0;
+	}
+	float media(int *valores)
+	{
+		int i, soma = 0;
+		for (i = 0; i < 10; i++) {
+			soma += valores[i];
+		}
+		return (soma / 10.0);
+	}

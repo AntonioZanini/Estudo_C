@@ -148,3 +148,37 @@ Exercício que recebe um número de carros e aplica um desconto ao seu valor tot
 
 Exercício que recebe um número de carros e aplica um desconto ao seu valor total de venda.
 - Este exercício é uma variação do exercício anterior, onde é utilizado um ponteiro para passar o valor de carros e, ao final do programa, é exibido o número do endereço de memória utilizado pelo ponteiro.
+
+27. **Aula12-ex01-Grupo5-1.c [A](Aula12-ex01-Grupo5-1a.c) [B](Aula12-ex01-Grupo5-1b.c) [C](Aula12-ex01-Grupo5-1c.c) [D](Aula12-ex01-Grupo5-1d.c)**.
+
+Exercício diferente, envolve códigos predefinido de programas e a avaliação de seu comportamento.
+- A: Simples, sem problemas ao conhecer o funcionamento dos ponteiros.
+- B: Ligeiramente mais complexo, mas ainda sim bem simples.
+- C: Esse realmente consegue dar uma embaralhada na cabeça, mas consegui desvendá-lo.
+- D: Esse me pegou! Apesar de não se utilizar de ponteiros, não previ corretamente o comportamento deste trecho: _**a = c++;**_. Pensei que atribuiria a _**a**_ o valor de _**c**_ incrementado em um, mas estava enganado, _**a**_ recebe o valor de _**c**_ e este se auto incremento por fim.
+- Em geral, foi um bom exercício para a fixação do funcionamento de ponteiros e atribuições sucessivas.
+
+28. [**Aula12-ex02-Grupo6-1.c**](Aula12-ex02-Grupo6-1.c).
+
+Exercício que recebe uma lista de dez números em uma matriz e exibe o menor e o maior número dentre eles.
+- Exercício de seleção simples de valores, poderia ser realizado facilmente sem _array_, mas ele é necessário por razões didáticas.
+
+29. [**Aula12-ex03-Grupo6-2.c**](Aula12-ex03-Grupo6-2.c).
+
+Exercício que recebe uma lista de dez números em uma matriz e os exibe de forma ordenada.
+- Basicamente um exercício de ordenação, poderia ter alguma dificuldade se eu ainda tivesse estudado múltiplos métodos de ordenação.
+
+30. [**Aula13-ex04-Grupo6-3.c**](Aula13-ex04-Grupo6-3.c).
+
+Exercício que recebe uma lista de notas e chama uma função para realizar a média.
+- Outro exercício simples, nada a se acrescentar.
+
+31. [**Aula13-ex05-Grupo6-4.c**](Aula13-ex05-Grupo6-4.c).
+
+Exercício que cria uma matriz de valores _double_ e delega a captura de valores e seu preenchimento a uma rotina.
+- Um exercício simples, porém interessante, sempre me interesso pela divisão da execução de tarefas na codificação.
+
+32. [**Aula13-ex06-Grupo6-5.c**](Aula13-ex06-Grupo6-5.c).
+
+Exercício que verifica quais valores de uma lista são equivalentes à média dos valores da lista.
+- Um bom exercício que reutiliza códigos anteriores, pensei que teria problemas com tipos de dados (_int_ e _float_), mas o exercício foi resolvido de maneira tranquila.

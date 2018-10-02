@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+
+/* Programa que cria uma árvore binária e a popula com número de forma ordenada. */
+
 			/* Constantes para a exibição de caracteres especiais. 	*/
 #define A_MA_AGUDO		'\xB5' /* Á */
 #define QUADRADO		'\xFE' /* Caractere quadrado para tópico. 	*/
@@ -57,7 +60,7 @@ void adicionar(node_t *arvore, int val)		/* Rotina que adiciona nova folha em 	*
 			adicionar(arvore->pri, val); 	/* Recursivamente, tenta adicionar o valor 	*/
 	}										/* em um nível inferior. 					*/
 	else { /* arvore->valor <= val */
-		if (NULL == arvore->seg) { /* Codicional para verificar se já não possui segunda folha. */
+		if (NULL == arvore->seg) { /* Condicional para verificar se já não possui segunda folha. */
 			folha 			= malloc(sizeof(node_t));
 			folha->pri 		= NULL;			/* Alocação da memória e inicialização dos 	*/
 			folha->seg 		= NULL;			/* valores da folha. 						*/
@@ -76,7 +79,7 @@ void imprimir_sequencia(node_t *arvore, bool ocultar_raiz)	/* Rotina que exibe n
 	if (NULL != arvore->pri) {			/* Se houver uma primeira folha, mova para ela. 		*/
 		imprimir_sequencia(arvore->pri, ocultar_raiz);
 	}
-	if (!ocultar) {						/* Condição lógicamente possível apenas para a raiz. 	*/
+	if (!ocultar) {						/* Condição logicamente possível apenas para a raiz. 	*/
 		printf(" %c %3i\n", QUADRADO, arvore->valor);	/* Exibe valor da folha atual. 			*/
 	}
 	if (NULL != arvore->seg) {			/* Se houver uma segunda folha, mova para ela.	 		*/
@@ -92,10 +95,10 @@ int contar_folhas(node_t * arvore, bool ocultar_raiz)	/* Função que conta o n�
 	if (NULL != arvore->pri) {			/* Se houver uma primeira folha, mova para ela. 		*/
 		soma += contar_folhas(arvore->pri, ocultar_raiz);
 	}
-	if (!ocultar) {
+	if (!ocultar) {						/* Condição logicamente possível apenas para a raiz. 	*/
 		soma ++;
 	}
-	if (NULL != arvore->seg) {
+	if (NULL != arvore->seg) {			/* Se houver uma segunda folha, mova para ela.	 		*/
 		soma += contar_folhas(arvore->seg, ocultar_raiz);
 	}
 	return (soma);
