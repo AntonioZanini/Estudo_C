@@ -186,3 +186,13 @@ Uma simples descrição de progresso e visão sobre as atividades.
 ### Dia 29 (01/09/2018)
 
 - Aula 12 do curso, muitos e muitos exercícios, esta foi uma aula em que avançamos muito na lista.
+
+### Dia 30 (02/09/2018)
+
+- Arquivo de estudo _015-arvore-binaria-2.c_ criado.
+
+### Dia 31 (03/09/2018)
+
+- Aula 13 do curso, dois exercícios realizados, foram divertidos e bom para praticar a lógica.
+
+- Bastante trabalho no exercício extra 15, praticamente todas as funcionalidades estão programadas, falta apenas terminar de ajeitar os mecanismos para apresentá-las.

@@ -1504,3 +1504,125 @@ Grupo 6.5 - Fazer um programa em "C" que lê um conjunto de 10 valores inteiros 
 		}
 		return (soma / 10.0);
 	}
+
+## AULA 13 - 03/10/2018 (Prof. Stark)
+
+### Conceitos
+
+#### Strings
+
+Declaração:
+
+			(nome)		(quantidade de caracteres)
+	char nome_do_vetor[n]
+
+### Código
+
+**Exercício 1**
+Grupo 6.6 - Fazer um programa que lê valores para uma matriz do tipo "float"de 5 linhas por 3 colunas e imprime a diferença entre a média dos elementos das colunas pares e a média dos elementos das linhas ímpares.
+
+	#include <stdio.h>
+	#define NUM_LINHAS 		5
+	#define NUM_COLUNAS 	3
+	#define ORDINAL_MASC	'\xA7' 	/* º */
+	#define ORDINAL_FEM		'\xA6' 	/* ª */
+	#define U_MI_AGUDO 		'\xA3' 	/* ú */
+	#define E_MI_AGUDO		'\x82' 	/* é */
+	#define C_MI_CEDILHA 	'\x87'	/* ç */
+	int main(int argc, char const *argv[])
+	{
+		float valores[NUM_LINHAS][NUM_COLUNAS];
+		float somatoria = 0.0f;
+		float media_colunas_pares;
+		float media_linhas_impares = 0;
+		int x, y;
+		for (x = 0; x < NUM_LINHAS; x++){
+			printf(" Insira os 3 n%cmeros da %i%c linha (ex: '0 0 0'): ",  U_MI_AGUDO, x+1, ORDINAL_FEM );
+			scanf("%f %f %f", &valores[x][0], &valores[x][1], &valores[x][2]);
+		}
+		for (y = 1; y < NUM_COLUNAS; y += 2) {
+			for (x = 0; x < NUM_LINHAS; x++){
+				somatoria += valores[x][y];
+			}
+		}
+		media_colunas_pares = somatoria / (float)NUM_LINHAS;
+		somatoria = 0;
+		for (x = 0; x < NUM_LINHAS; x += 2){
+			for (y = 0; y < NUM_COLUNAS; y++)
+			{
+				somatoria += valores[x][y];
+			}
+			media_linhas_impares += (somatoria / (float)NUM_COLUNAS);
+			somatoria = 0;
+		}
+		media_linhas_impares = media_linhas_impares / 3.0f; 
+		printf(" \n\n M%cdia das colunas PARES: %.2f\n", E_MI_AGUDO, media_colunas_pares);
+		printf(" M%cdia das linhas IMPARES: %.2f\n\n", E_MI_AGUDO, media_linhas_impares);
+		printf(" Diferen%ca entre as m%cdias: %.2f\n\n", C_MI_CEDILHA, E_MI_AGUDO, media_colunas_pares - media_linhas_impares);
+		return 0;
+	}
+
+**Exercício 2**
+Grupo 7.1 - Fazer um programa em "C" que lê um string qualquer de no máximo 80 caracteres e imprime: - Quantos caracteres tem o string; - Quantos caracteres são de pontuação; - Quantos caracteres são números; - Quantos caracteres são minúsculas.
+
+	#include <stdio.h>
+	#include <string.h>
+	#define U_MI_AGUDO 		'\xA3' 	/* ú */
+	int contar_minusculas(char *);
+	int contar_pontuacao(char *string);
+	int contar_numeros(char *string);
+	int main(int argc, char const *argv[])
+	{
+		char palavra[80];
+		int tamanho, letras_min, qtd_num, qdt_pont;
+		printf("\n Insira uma palavra: ");
+		scanf("%s", palavra);
+		printf("\n Palavra inserida: %s\n\n", palavra);
+		
+		tamanho = strlen(palavra);
+		letras_min = contar_minusculas(palavra);
+		qtd_num = contar_numeros(palavra);
+		qdt_pont = contar_pontuacao(palavra);
+		
+		printf(" Tamanho: %i\n", tamanho);
+		printf(" Min%csculas: %i\n", U_MI_AGUDO, letras_min);
+		printf(" N%cmeros: %i\n", U_MI_AGUDO, qtd_num);
+		printf(" Pontuacao: %i\n", qdt_pont);
+		
+		return 0;
+	}
+	int contar_minusculas(char *string)
+	{
+		int max, i, somatoria = 0;
+		max = strlen(string);
+		for (i = 0; i < max; i++)
+			if(string[i] > 96 && string[i] < 123)
+				somatoria++;
+		return somatoria;
+	}
+	int contar_numeros(char *string)
+	{
+		int max, i, somatoria = 0;
+		max = strlen(string);
+		for (i = 0; i < max; i++)
+			if(string[i] > 47 && string[i] < 58)
+				somatoria++;
+		return somatoria;
+	}
+	int contar_pontuacao(char *string)
+	{
+		int max, i, j, somatoria = 0, pont_max;
+		char pontuacao[] = ",.:;-!?()";
+		pont_max = strlen(pontuacao);
+		max = strlen(string);
+		for (i = 0; i < max; i++){
+			for (j = 0; j < pont_max; j++)
+			{
+				if(string[i] == pontuacao[j]){
+					somatoria++;
+					break;
+				}
+			}
+		}
+		return somatoria;
+	}

@@ -3,6 +3,21 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
+#include <conio.h>
+#include <windows.h>
+
+#define C_MI_CEDILHA '\x87' /* ç */
+#define A_MI_TIL '\xC6' /* ã */
+#define O_MI_AGUDO '\xA2' /* ó */
+#define O_MI_TIL '\xE4' /* õ */
+#define E_MI_AGUDO '\x82' /* é */
+#define U_MI_AGUDO '\xA3' /* ú */
+#define I_MI_AGUDO '\xA1' /* í */
+#define A_MI_AGUDO '\xA0' /* á */
+#define E_MI_CIRC 	'\x88' 	/* ê */
+#define A_MA_AGUDO		'\xB5' /* Á */
+#define ORDINAL_MASC	'\xA7' 	/* º */
+
 typedef struct arvore_t
 {
 	char 			palavra[10];
@@ -16,8 +31,8 @@ int obter_altura(arvore_t *, int);
 int obter_profundidade(arvore_t *, arvore_t *);
 int contar_nos(arvore_t *);
 int contar_folhas(arvore_t *);
-arvore_t *obter_menor_folha(arvore_t *);
-arvore_t *obter_maior_folha(arvore_t *);
+arvore_t *obter_menor_no(arvore_t *);
+arvore_t *obter_maior_no(arvore_t *);
 bool verificar_folha(arvore_t *);
 char **obter_lista(arvore_t *);
 void popular_lista_palavras(arvore_t *, char **, int *);
@@ -28,17 +43,21 @@ float obter_eficiencia(arvore_t *, int);
 char **gerar_array_string(int, int);
 arvore_t *popular_nova_arvore(arvore_t *, char **, int);
 arvore_t *reorganizar(arvore_t *);
+arvore_t *tela_adicionar(arvore_t *);
+arvore_t *tela_procurar(arvore_t *);
+arvore_t *tela_info(arvore_t *);
+void goToXY(int, int);
+void imprime_arvore(arvore_t *, arvore_t *, int, int);
 
 
 arvore_t *reorganizar(); 
 
 int main(int argc, char const *argv[])
 {
-	arvore_t *arvore, *busca;
-	char **lista;
-	int i;
+	arvore_t *arvore;
+	char opcao;
 	arvore = NULL;
-
+/*
 	arvore = adicionar(arvore, "pato");
 	arvore = adicionar(arvore, "rato");
 	arvore = adicionar(arvore, "zato");
@@ -46,38 +65,129 @@ int main(int argc, char const *argv[])
 	arvore = adicionar(arvore, "zzzz");
 	arvore = adicionar(arvore, "zzzzz");
 	arvore = adicionar(arvore, "zzzz0");
-
-
-	printf("%s %s %s %s\n", arvore->palavra, arvore->direita->palavra, arvore->direita->esquerda->palavra, arvore->direita->direita->palavra);
-	busca = procurar(arvore, "pato");
-	printf("Achou : %s\n", busca->palavra);
-	printf("Vazio: %s\n", (strcmp(busca->palavra,"") == 0)? "SIM" : "NAO");
-	printf("Nulo ? %s\n", (busca == NULL)? "SIM" : "NAO");
-	printf("Pai : %s\n", obter_pai(arvore, busca)->palavra);
-	printf("Prof :  %i\n", obter_profundidade(arvore, busca));
-	printf("Uma Folha? %s\n", (verificar_folha(busca))? "SIM" : "NAO");
-	printf("H-Arvore :  %i\n", obter_altura(arvore, 1));
-	printf("Nos na Arvore :  %i\n", contar_nos(arvore));
-	printf("Capacidade :  %i\n", obter_capacidade_altura(obter_altura(arvore, 1)));
-	printf("Eficiencia :  %.2f%\n", 100 * obter_eficiencia(arvore, obter_altura(arvore, 1)));
-	printf("Folhas na Arvore :  %i\n", contar_folhas(arvore));
-	printf("Menor Folha :  %s\n", obter_menor_folha(arvore)->palavra);
-	printf("Maior Folha :  %s\n", obter_maior_folha(arvore)->palavra);
-	lista = obter_lista(arvore);
-	printf("\n\n");
-	for (i = 0; i < contar_nos(arvore); i++)
-	{
-		printf("%s\n", lista[i]);
-	}
-
-	arvore = reorganizar(arvore);
-	printf("%s %s %s \n", arvore->palavra, arvore->direita->palavra, arvore->esquerda->palavra);
-	printf("H-Arvore :  %i\n", obter_altura(arvore, 1));
-	printf("Nos na Arvore :  %i\n", contar_nos(arvore));
-	printf("Capacidade :  %i\n", obter_capacidade_altura(obter_altura(arvore, 1)));
-	printf("Eficiencia :  %.2f%\n", 100 * obter_eficiencia(arvore, obter_altura(arvore, 1)));
-	/* code */
+*/
+	arvore = adicionar(arvore, "1");
+	arvore = adicionar(arvore, "2");
+	arvore = adicionar(arvore, "3");
+	arvore = adicionar(arvore, "4");
+	arvore = adicionar(arvore, "5");
+	arvore = adicionar(arvore, "6");
+	arvore = adicionar(arvore, "7");
+	do {
+		system("cls");
+		printf("----------------------------------------------\n\n");
+		printf("           %cRVORE BIN%cRIA DE BUSCA                \n\n", A_MA_AGUDO, A_MA_AGUDO);
+		printf("----------------------------------------------\n\n");
+		printf("  1 - Adicionar. \n\n");
+		printf("  2 - Procurar. \n\n");
+		printf("  3 - Informa%c%ces sobre a %crvore. \n\n", C_MI_CEDILHA, O_MI_TIL, A_MI_AGUDO);
+		printf("  4 - Sair. \n\n");
+		printf("----------------------------------------------\n\n");
+		printf("  Op%c%co: ", C_MI_CEDILHA, A_MI_TIL);
+		opcao = getche();
+		switch(opcao)
+		{
+			case ('1'):
+				arvore = tela_adicionar(arvore);
+			break;
+			case ('2'):
+				arvore = tela_procurar(arvore);
+			break;
+			case ('3'):
+				arvore = tela_info(arvore);
+			break;
+			case ('4'):
+				
+			break;
+			default:
+				printf("\n\n  Op%c%co inv%clida! Escolha novamente. ", C_MI_CEDILHA, A_MI_TIL, A_MI_AGUDO);
+				getch();
+		}
+	} while (opcao != '4');
 	return 0;
+}
+
+arvore_t *tela_adicionar(arvore_t *arvore)
+{
+	char nova_palavra[10];
+	system("cls");
+	printf("----------------------------------------------\n\n");
+	printf("           %cRVORE BIN%cRIA DE BUSCA                \n\n", A_MA_AGUDO, A_MA_AGUDO);
+	printf("----------------------------------------------\n\n");
+	printf("  Digite uma palavra: ");
+	scanf("%s", nova_palavra);
+	arvore = adicionar(arvore, nova_palavra);
+	printf("  Palavra adicionada!\n");
+	getch();
+	return arvore;
+}
+
+arvore_t *tela_procurar(arvore_t *arvore)
+{
+	char valor_busca[10];
+	char tecla_digitada;
+	arvore_t *resultado_pesquisa;
+	do {
+		system("cls");
+		printf("----------------------------------------------\n\n");
+		printf("           %cRVORE BIN%cRIA DE BUSCA                \n\n", A_MA_AGUDO, A_MA_AGUDO);
+		printf("----------------------------------------------\n\n");
+		printf("  Digite valor para a pesquisa: ");
+		scanf("%s", valor_busca);
+		resultado_pesquisa = procurar(arvore, valor_busca);
+		if (NULL == resultado_pesquisa){
+			printf("  Palavra n%co encontrada!\n", A_MI_TIL);
+			printf("\n\n   P - Sair.");
+		}
+		else{
+			printf("  Palavra encontrada:\n");
+			printf("                          %s\n", resultado_pesquisa->palavra);
+			printf("                     Pai: %s\n", obter_pai(arvore, resultado_pesquisa) );
+			printf("                  Filhos: %s\n", (verificar_folha(resultado_pesquisa))? "N\xC6o": "Sim" );
+			printf("                   N%cvel: %i\n", I_MI_AGUDO, obter_profundidade(arvore, resultado_pesquisa) );
+			printf("\n\n   1 - Exclur.   4 - Sair.");
+		}
+		tecla_digitada = getche();
+	} while (tecla_digitada != '4');
+	return arvore;
+}
+
+arvore_t *tela_info(arvore_t *arvore)
+{
+	char tecla_digitada;
+	do {
+		system("cls");
+		imprime_arvore(arvore, arvore, 50, 2);
+		goToXY(0, 22);
+		printf("------------------------------------------------------------");
+		printf("------------------------------------------------------------\n");
+		printf("   Altura da %crvore: %i", A_MI_AGUDO, obter_altura(arvore, 1));
+		printf("   N%c de n%cs: %i", ORDINAL_MASC, O_MI_AGUDO, contar_nos(arvore));
+		printf("   N%c de folhas: %i", ORDINAL_MASC, contar_folhas(arvore));
+		printf("   Menor: %s", obter_menor_no(arvore)->palavra);
+		printf("   Maior: %s\n", obter_maior_no(arvore)->palavra);
+		printf("   Capacidade: %i", obter_capacidade_altura(obter_altura(arvore, 1)));
+		printf("   Efici%cncia: %.f%\n", E_MI_CIRC, 100 * obter_eficiencia(arvore, obter_altura(arvore, 1)));
+		printf("   1 - Reorganizar.   4 - Sair.\n");
+		printf("------------------------------------------------------------");
+		printf("------------------------------------------------------------\n   ");
+		tecla_digitada = getche();
+		if (tecla_digitada == '1')
+			arvore = reorganizar(arvore);
+	} while (tecla_digitada != '4');
+	return arvore;
+}
+
+void imprime_arvore(arvore_t *arvore, arvore_t *raiz, int x, int y)
+{
+	int nivel;
+	if (NULL != arvore){
+		nivel = obter_profundidade(raiz, arvore) + 1;
+		goToXY(x, y);
+		printf("%s\n", arvore->palavra);
+		imprime_arvore(arvore->esquerda, raiz, x-(2*(10 / nivel)), y + 2);
+		imprime_arvore(arvore->direita, raiz, x+(2*(10 / nivel)), y + 2);
+	}
 }
 
 arvore_t *adicionar(arvore_t *arvore, char *palavra)
@@ -174,18 +284,18 @@ int contar_folhas(arvore_t *arvore)
 	return soma;
 }
 
-arvore_t *obter_menor_folha(arvore_t *arvore)
+arvore_t *obter_menor_no(arvore_t *arvore)
 {
 	if (NULL != arvore->esquerda){
-		arvore = obter_menor_folha(arvore->esquerda);
+		arvore = obter_menor_no(arvore->esquerda);
 	}
 	return arvore;
 }
 
-arvore_t *obter_maior_folha(arvore_t *arvore)
+arvore_t *obter_maior_no(arvore_t *arvore)
 {
 	if (NULL != arvore->direita){
-		arvore = obter_maior_folha(arvore->direita);
+		arvore = obter_maior_no(arvore->direita);
 	}
 	return arvore;	
 }
@@ -267,12 +377,12 @@ arvore_t *popular_nova_arvore(arvore_t *arvore, char **palavras, int total)
 	n_a = total / 2;
 	n_b = (total / 2) + (impar -1);
 	arvore = adicionar(arvore, palavras[n_a]);
-	metade_a = gerar_array_string(n_a, 5);
+	metade_a = gerar_array_string(n_a, 10);
 
 	for (i = 0; i < n_a; i++){
 		strcpy(metade_a[i], palavras[i]);
 	}
-	metade_b = gerar_array_string(n_b, 5);
+	metade_b = gerar_array_string(n_b, 10);
 	for (i = 0; i < n_b; i++){
 		strcpy(metade_b[i], palavras[i+n_a+1]);
 	}
@@ -295,7 +405,7 @@ char **obter_lista(arvore_t *arvore)
 	int i = 0, total_nos;
 	char **lista;
 	total_nos =  contar_nos(arvore);
-	lista = gerar_array_string(total_nos, 5);
+	lista = gerar_array_string(total_nos, 10);
 	popular_lista_palavras(arvore, lista, &i);
 	return lista;
 }
@@ -320,4 +430,13 @@ char **gerar_array_string(int posicoes, int caracteres)
 		matriz[i] = malloc(sizeof(char) * caracteres);
 	}
 	return matriz;
+}
+
+void goToXY(int x, int y)
+{
+  COORD coord; 									/* Estrutura que representa coordenadas em uma tela. */
+  coord.X = x;									/* Valor da coluna. */
+  coord.Y = y;									/* Valor da linha.  */
+  SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);  	/* Função que recebe o manipulador do stdout (saida de texto da tela)     */
+  																		/* e um conjunto de coordenadas, com estes ele move o cursor de impressão */
 }

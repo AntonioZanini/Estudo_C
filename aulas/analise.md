@@ -168,17 +168,29 @@ Exercício que recebe uma lista de dez números em uma matriz e exibe o menor e 
 Exercício que recebe uma lista de dez números em uma matriz e os exibe de forma ordenada.
 - Basicamente um exercício de ordenação, poderia ter alguma dificuldade se eu ainda tivesse estudado múltiplos métodos de ordenação.
 
-30. [**Aula13-ex04-Grupo6-3.c**](Aula13-ex04-Grupo6-3.c).
+30. [**Aula12-ex04-Grupo6-3.c**](Aula12-ex04-Grupo6-3.c).
 
 Exercício que recebe uma lista de notas e chama uma função para realizar a média.
 - Outro exercício simples, nada a se acrescentar.
 
-31. [**Aula13-ex05-Grupo6-4.c**](Aula13-ex05-Grupo6-4.c).
+31. [**Aula12-ex05-Grupo6-4.c**](Aula12-ex05-Grupo6-4.c).
 
 Exercício que cria uma matriz de valores _double_ e delega a captura de valores e seu preenchimento a uma rotina.
 - Um exercício simples, porém interessante, sempre me interesso pela divisão da execução de tarefas na codificação.
 
-32. [**Aula13-ex06-Grupo6-5.c**](Aula13-ex06-Grupo6-5.c).
+32. [**Aula12-ex06-Grupo6-5.c**](Aula12-ex06-Grupo6-5.c).
 
 Exercício que verifica quais valores de uma lista são equivalentes à média dos valores da lista.
 - Um bom exercício que reutiliza códigos anteriores, pensei que teria problemas com tipos de dados (_int_ e _float_), mas o exercício foi resolvido de maneira tranquila.
+
+33. [**Aula13-ex01-Grupo6-6.c**](Aula13-ex01-Grupo6-6.c).
+
+Exercício que recebe valores para uma matriz bidimensional e efetua operações matemáticas com ela.
+- Exercício simples, porém, trabalhoso. Interessante de se fazer.
+- Uma estrutura _for_ para popular a matriz (fiz um truque de captura para economizar um for adicional), e duas duplas _for_ para efetuar os cálculos de médias, após isso, foi apenas finalizar a conta e exibir os valores.
+
+34. [**Aula13-ex02-Grupo7-1.c**](Aula13-ex2-Grupo7-1.c).
+
+Exercício que recebe um texto e o exibe, conta seus caracteres, suas letras minúsculas, números e caracteres de pontuação.
+- Um bom exercício, praticar a lógica criando funções é bem legal.
+- Utilizei a função _strlen()_ da biblioteca _string.h_, isso economizou a criação de uma função. Criei as três outras funções, que são bem similares, mas com focos diferentes. A função para contar caracteres de pontuação foi a mais complexa entre elas, mas ainda assim não foi nada demais.
