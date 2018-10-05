@@ -48,6 +48,7 @@ arvore_t *tela_procurar(arvore_t *);
 arvore_t *tela_info(arvore_t *);
 void goToXY(int, int);
 void imprime_arvore(arvore_t *, arvore_t *, int, int);
+arvore_t *excluir(arvore_t *, arvore_t *);
 
 
 arvore_t *reorganizar(); 
@@ -66,13 +67,22 @@ int main(int argc, char const *argv[])
 	arvore = adicionar(arvore, "zzzzz");
 	arvore = adicionar(arvore, "zzzz0");
 */
-	arvore = adicionar(arvore, "1");
-	arvore = adicionar(arvore, "2");
-	arvore = adicionar(arvore, "3");
-	arvore = adicionar(arvore, "4");
-	arvore = adicionar(arvore, "5");
-	arvore = adicionar(arvore, "6");
-	arvore = adicionar(arvore, "7");
+	arvore = adicionar(arvore, "A");
+	arvore = adicionar(arvore, "B");
+	arvore = adicionar(arvore, "C");
+	arvore = adicionar(arvore, "D");
+	arvore = adicionar(arvore, "E");
+	arvore = adicionar(arvore, "F");
+	arvore = adicionar(arvore, "G");
+	arvore = adicionar(arvore, "H");
+	arvore = adicionar(arvore, "I");
+	arvore = adicionar(arvore, "J");
+	arvore = adicionar(arvore, "K");
+	arvore = adicionar(arvore, "L");
+	arvore = adicionar(arvore, "M");
+	arvore = adicionar(arvore, "N");
+	arvore = adicionar(arvore, "O");
+
 	do {
 		system("cls");
 		printf("----------------------------------------------\n\n");
@@ -155,6 +165,8 @@ arvore_t *tela_procurar(arvore_t *arvore)
 arvore_t *tela_info(arvore_t *arvore)
 {
 	char tecla_digitada;
+	char *test;
+	test = malloc(sizeof(char)* 10);
 	do {
 		system("cls");
 		imprime_arvore(arvore, arvore, 50, 2);
@@ -172,9 +184,15 @@ arvore_t *tela_info(arvore_t *arvore)
 		printf("------------------------------------------------------------");
 		printf("------------------------------------------------------------\n   ");
 		tecla_digitada = getche();
-		if (tecla_digitada == '1')
+		if (tecla_digitada == 'a')
 			arvore = reorganizar(arvore);
-	} while (tecla_digitada != '4');
+		else{
+			test[0] = tecla_digitada;
+			test[1] = '\0';
+			if (tecla_digitada != 'a' && tecla_digitada != 's')
+				arvore = excluir(arvore, procurar(arvore, test));
+		}
+	} while (tecla_digitada != 's');
 	return arvore;
 }
 
@@ -333,17 +351,19 @@ float obter_eficiencia(arvore_t *arvore, int h)
 arvore_t *obter_pai(arvore_t *arvore, arvore_t *elemento)
 {
 	arvore_t *pai = NULL;
-	if (!verificar_paternidade(arvore, elemento) && NULL != arvore->esquerda){	
-			if (!verificar_folha(arvore->esquerda)){
+	if (!verificar_paternidade(arvore, elemento)){
+		if (strcmp(elemento->palavra, arvore->palavra) < 0)
+			if (arvore->esquerda == NULL)
+				pai = NULL;
+			else
 				pai = obter_pai(arvore->esquerda, elemento);
-			}
+		else
+			if (arvore->direita == NULL)
+				pai = NULL;
+			else
+				pai = obter_pai(arvore->direita, elemento);	
 	}
-	if (!verificar_paternidade(arvore, elemento) && NULL != arvore->direita){	
-		if (!verificar_folha(arvore->direita) ) {
-			pai = obter_pai(arvore->direita, elemento);	
-		}	
-	}
-	if (verificar_paternidade(arvore, elemento)){
+	else {
 		pai = arvore;
 	}
 	return pai;
@@ -439,4 +459,43 @@ void goToXY(int x, int y)
   coord.Y = y;									/* Valor da linha.  */
   SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);  	/* Função que recebe o manipulador do stdout (saida de texto da tela)     */
   																		/* e um conjunto de coordenadas, com estes ele move o cursor de impressão */
+}
+
+arvore_t *excluir(arvore_t *arvore, arvore_t *elemento)
+{
+	arvore_t *substituto;
+	arvore_t *pai_subs;
+	arvore_t *pai;
+	pai = obter_pai(arvore, elemento);
+	substituto = NULL;
+	if (elemento->esquerda != NULL){
+		substituto = obter_maior_no(elemento->esquerda);
+		pai_subs = obter_pai(arvore, substituto);
+		if (pai_subs->direita == substituto)
+				pai_subs->direita = substituto->esquerda;
+		else
+			pai_subs->esquerda = substituto->esquerda;
+	}
+	else if (elemento->direita != NULL){
+		substituto = obter_menor_no(elemento->direita);
+		pai_subs = obter_pai(arvore, substituto);
+		if (pai_subs->direita == substituto)
+			pai_subs->direita = substituto->direita;
+		else
+			pai_subs->esquerda = substituto->direita;
+	}
+	if (pai != NULL) {
+		if (pai->direita == elemento)
+			pai->direita = substituto;
+		else
+			pai->esquerda = substituto;
+	}
+	else {
+		arvore = substituto;
+	}
+	if (substituto != NULL){
+		substituto->direita = elemento->direita;
+		substituto->esquerda = elemento->esquerda;
+	}
+	return arvore;
 }

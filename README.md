@@ -196,3 +196,10 @@ Uma simples descrição de progresso e visão sobre as atividades.
 - Aula 13 do curso, dois exercícios realizados, foram divertidos e bom para praticar a lógica.
 
 - Bastante trabalho no exercício extra 15, praticamente todas as funcionalidades estão programadas, falta apenas terminar de ajeitar os mecanismos para apresentá-las.
+
+### Dia 32 (04/09/2018)
+
+- A partir de hoje terei menos frequência nos estudos de C, uma vez que tenho que relembrar e me aprimorar em C#.
+
+- Modifições no exercício _015-arvore-binaria-2.c_.
+- Aparentemente concluí a lógica da função de exclusão de nós da árvore. Me fez pensar bastante mas está funcionando.
