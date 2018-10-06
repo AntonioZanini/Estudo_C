@@ -203,3 +203,7 @@ Uma simples descrição de progresso e visão sobre as atividades.
 
 - Modifições no exercício _015-arvore-binaria-2.c_.
 - Aparentemente concluí a lógica da função de exclusão de nós da árvore. Me fez pensar bastante mas está funcionando.
+
+### Dia 33 (05/09/2018)
+
+- Aula 14, um exercício personalizado e escalado durante o desenvolvimento. Bem divertido de programar, podendo utilizar múltiplos recursos para a resolução do problema.

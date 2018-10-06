@@ -194,3 +194,11 @@ Exercício que recebe valores para uma matriz bidimensional e efetua operações
 Exercício que recebe um texto e o exibe, conta seus caracteres, suas letras minúsculas, números e caracteres de pontuação.
 - Um bom exercício, praticar a lógica criando funções é bem legal.
 - Utilizei a função _strlen()_ da biblioteca _string.h_, isso economizou a criação de uma função. Criei as três outras funções, que são bem similares, mas com focos diferentes. A função para contar caracteres de pontuação foi a mais complexa entre elas, mas ainda assim não foi nada demais.
+
+35. [**Aula14-ex01-oficina.c**](Aula14-ex01-oficina.c).
+
+Exercício onde são selecionados os serviços consumidos de uma oficina, e o preço final a ser pago é calculado.
+- Com a premissa de utilizar matriz para armazenar os preços, defini um _enum_ para auxiliar na legibilidade do código. Inicialmente se provou inútil, mas com a escalada na demanda do exercício, passando a ter serviços casados, ele se tornou efetivo na definição de tais serviços;
+- Para não permitir repetições de serviços no mesmo pedido, inclui uma matriz para armazenar as opções escolhidas anteriormente, e assim poder verificar antes de cada serviço;
+- Tirando estas coisas o exercício realizada o laço de execução e as acumulações de preços relativas a opção selecionada no menu.
+- O exercício foi resolvido de forma simples e objetiva, poderia ser melhorado ao utilizar _struct_, mas não chega a ser um problema.
